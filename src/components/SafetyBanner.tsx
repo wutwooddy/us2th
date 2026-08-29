@@ -5,9 +5,18 @@ import { ShieldAlert } from 'lucide-react';
 
 export default function SafetyBanner() {
   return (
-    <div className="w-full bg-red-950/40 border-b border-red-500/30 text-red-200 py-2.5 px-4 text-xs md:text-sm font-semibold flex items-center justify-center gap-2 animate-pulse">
-      <ShieldAlert className="w-4 h-4 text-brand-orange flex-shrink-0" />
-      <span>⚠️ ระวังมิจฉาชีพ ติดต่อผ่านแชทหลักร้านเท่านั้น</span>
+    <div className="w-full bg-[#FF5A09] text-black py-2 px-4 overflow-hidden border-b border-black select-none">
+      <div className="relative w-full flex items-center justify-center">
+        {/* Moving Alert Ticker */}
+        <div className="flex whitespace-nowrap animate-marquee text-[10px] md:text-xs font-mono font-black uppercase tracking-widest">
+          {Array(8).fill(
+            <span className="mx-6 flex items-center gap-2">
+              <ShieldAlert className="w-4 h-4 text-black flex-shrink-0" />
+              SECURITY WARNING ✦ ระวังมิจฉาชีพ! แอบอ้างชื่อร้าน ✦ ติดต่อผ่านช่องทางหลักที่ระบุบนหน้านี้เท่านั้น ✦ OFFICIAL CHANNELS ONLY
+            </span>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

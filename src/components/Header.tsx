@@ -5,57 +5,60 @@ import { Send, MessageCircle } from 'lucide-react';
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-dark-bg/85 backdrop-blur-md border-b border-dark-card-border/80">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#" className="flex flex-col">
-          <span className="text-xl md:text-2xl font-black tracking-widest text-white">
-            US<span className="text-brand-orange">2</span>TH
+    <header className="sticky top-0 z-50 w-full bg-dark-bg/95 backdrop-blur-md border-b border-neutral-900">
+      <div className="max-w-[1400px] mx-auto flex items-stretch h-16">
+        
+        {/* Logo Section */}
+        <a 
+          href="#" 
+          className="px-6 md:px-8 flex flex-col justify-center border-r border-neutral-900 select-none group"
+        >
+          <span className="text-xl md:text-2xl font-black tracking-tighter text-white uppercase">
+            US<span className="text-brand-orange group-hover:text-white transition-colors">2</span>TH
           </span>
-          <span className="text-[8px] md:text-[9px] tracking-[0.25em] text-dark-text-secondary uppercase -mt-1 font-bold">
-            Rare Sourcing
+          <span className="text-[7px] tracking-[0.3em] font-mono text-neutral-500 uppercase -mt-1 font-bold">
+            INDEX.SOURCING
           </span>
         </a>
 
-        {/* Navigation - Desktop */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-dark-text-secondary">
-          <a href="#showcase" className="hover:text-white transition-colors">Delivered Showcase</a>
-          <a href="#tracker" className="hover:text-white transition-colors">Shipment Tracker</a>
-          <a href="#inquiry" className="hover:text-white transition-colors">Request Quote</a>
-          <a href="#openchat" className="hover:text-white transition-colors">OpenChat Community</a>
+        {/* Navigation - Desktop (Spans middle column of grid) */}
+        <nav className="hidden md:flex flex-grow items-center px-10 text-xs font-mono tracking-widest uppercase text-neutral-400 gap-8">
+          <a href="#showcase" className="hover:text-white transition-colors relative py-5 border-b-2 border-transparent hover:border-brand-orange">
+            [01/ SHOWCASE]
+          </a>
+          <a href="#tracker" className="hover:text-white transition-colors relative py-5 border-b-2 border-transparent hover:border-brand-orange">
+            [02/ LIVE TRACKER]
+          </a>
+          <a href="#inquiry" className="hover:text-white transition-colors relative py-5 border-b-2 border-transparent hover:border-brand-orange">
+            [03/ SOURCING TERMINAL]
+          </a>
         </nav>
 
-        {/* CTA Buttons - Desktop */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* Action CTAs Column */}
+        <div className="flex items-stretch border-l border-neutral-900 text-xs font-mono">
+          {/* LINE Button */}
           <a
             href="https://lin.ee/ByS27YW"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-4 py-1.5 rounded-sm bg-brand-orange text-white text-xs font-bold hover:bg-brand-orange-hover transition-all tracking-wider uppercase"
+            className="flex items-center justify-center gap-2 px-6 border-r border-neutral-900 text-neutral-300 hover:text-white hover:bg-neutral-900/40 transition-all uppercase tracking-wider font-bold"
           >
-            <MessageCircle className="w-3.5 h-3.5" />
-            LINE @hij2541a
+            <MessageCircle className="w-4 h-4 text-brand-orange" />
+            <span className="hidden sm:inline">LINE OA</span>
           </a>
+          
+          {/* FB Button */}
           <a
             href="https://www.facebook.com/us2th"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-4 py-1.5 rounded-sm border border-white/20 text-white text-xs font-bold hover:bg-white/5 transition-all tracking-wider uppercase"
+            className="flex items-center justify-center gap-2 px-6 text-neutral-300 hover:text-white hover:bg-neutral-900/40 transition-all uppercase tracking-wider font-bold"
           >
-            <Send className="w-3.5 h-3.5" />
-            Messenger
+            <Send className="w-4 h-4 text-brand-emerald" />
+            <span className="hidden sm:inline">MESSENGER</span>
           </a>
         </div>
 
-        {/* Simple Mobile Version indicator - Hamburger not strictly required since it's a single-page landing page, but desktop links will be visible in the mobile bottom sticky bar and main section links */}
-        <div className="md:hidden flex items-center">
-          <a
-            href="#inquiry"
-            className="px-3 py-1 bg-brand-orange text-white text-xs font-black rounded-sm uppercase tracking-wider"
-          >
-            Request Sourcing
-          </a>
-        </div>
       </div>
     </header>
   );
