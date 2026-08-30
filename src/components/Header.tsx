@@ -29,9 +29,6 @@ export default function Header() {
           <a href="#magazine" className="hover:text-brand-blue transition-colors relative py-5">
             US2TH Journal
           </a>
-          <a href="#tracker" className="hover:text-brand-blue transition-colors relative py-5">
-            สถานะขนส่ง
-          </a>
           <a href="#inquiry" className="hover:text-brand-blue transition-colors relative py-5">
             ฝากหาของ / เช็คราคา
           </a>

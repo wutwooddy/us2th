@@ -5,7 +5,6 @@ import HeroSection from '@/components/HeroSection';
 import FlashSaleSection from '@/components/FlashSaleSection';
 import DeliveredGallery from '@/components/DeliveredGallery';
 import MagazineSection from '@/components/MagazineSection';
-import ShipmentTimeline from '@/components/ShipmentTimeline';
 import OpenChatBanner from '@/components/OpenChatBanner';
 import InquiryForm from '@/components/InquiryForm';
 import StickyMobileBottomBar from '@/components/StickyMobileBottomBar';
@@ -26,7 +25,6 @@ export default function Home() {
         <FlashSaleSection />
         <DeliveredGallery />
         <MagazineSection />
-        <ShipmentTimeline />
         <OpenChatBanner />
         <InquiryForm />
       </main>
