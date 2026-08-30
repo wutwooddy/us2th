@@ -14,7 +14,19 @@ interface Promotion {
   end_time: string | null;
   is_active: boolean;
   shipping_time: string | null;
+  description: string | null;
+  sizes: string | null;
+  size_chart_url: string | null;
 }
+
+const BRAND_SIZE_CHARTS: Record<string, string> = {
+  nike: 'https://static.nike.com/a/images/w_1920,c_limit/fb70f073-d334-4bf4-b21d-bd9c68a4bf0d/image.jpg',
+  jordan: 'https://static.nike.com/a/images/w_1920,c_limit/fb70f073-d334-4bf4-b21d-bd9c68a4bf0d/image.jpg',
+  adidas: 'https://www.soleracks.com/wp-content/uploads/2019/10/adidas-shoe-size-chart.png',
+  'new balance': 'https://www.soleracks.com/wp-content/uploads/2019/10/New-Balance-Shoe-Size-Chart.png',
+  'on running': 'https://www.soleracks.com/wp-content/uploads/2021/04/on-running-shoe-size-chart.png',
+  on: 'https://www.soleracks.com/wp-content/uploads/2021/04/on-running-shoe-size-chart.png'
+};
 
 export default function FlashSaleSection() {
   const [promotions, setPromotions] = useState<Promotion[]>([]);
@@ -23,6 +35,18 @@ export default function FlashSaleSection() {
   const [showModal, setShowModal] = useState(false);
   const [activeDealTitle, setActiveDealTitle] = useState('');
   const [activeDealPrice, setActiveDealPrice] = useState('');
+  const [sizeChartModalUrl, setSizeChartModalUrl] = useState<string | null>(null);
+
+  const getSizeChartUrl = (deal: Promotion) => {
+    if (deal.size_chart_url) return deal.size_chart_url;
+    const titleLower = deal.title.toLowerCase();
+    for (const brand in BRAND_SIZE_CHARTS) {
+      if (titleLower.includes(brand)) {
+        return BRAND_SIZE_CHARTS[brand];
+      }
+    }
+    return null;
+  };
   
   // Timers state to trigger re-renders every second
   const [now, setNow] = useState<number>(Date.now());
@@ -185,9 +209,26 @@ export default function FlashSaleSection() {
                       {deal.title}
                     </h3>
                     
-                    {deal.shipping_time && (
-                      <div className="mb-4 inline-flex items-center gap-1 bg-slate-100/80 px-2.5 py-1 rounded-lg text-xs font-bold text-slate-600 font-heading">
-                        {deal.shipping_time}
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                      {deal.shipping_time && (
+                        <span className="inline-flex items-center gap-1 bg-slate-100/80 px-2.5 py-1 rounded-lg text-xs font-bold text-slate-600 font-heading">
+                          {deal.shipping_time}
+                        </span>
+                      )}
+                    </div>
+
+                    {deal.description && (
+                      <p className="text-xs text-slate-500 mb-4 font-semibold leading-relaxed whitespace-pre-line">
+                        {deal.description}
+                      </p>
+                    )}
+
+                    {deal.sizes && (
+                      <div className="mb-4 text-xs font-bold font-heading flex flex-wrap items-baseline gap-1.5">
+                        <span className="text-slate-400 font-semibold font-sans">ไซส์ที่มี:</span>
+                        <span className="bg-brand-blue/5 text-brand-blue px-2.5 py-0.5 rounded-lg">
+                          {deal.sizes}
+                        </span>
                       </div>
                     )}
                     
@@ -209,13 +250,13 @@ export default function FlashSaleSection() {
                 </div>
 
                 {/* Card Button */}
-                <div className="px-6 pb-6 pt-0 flex gap-2">
+                <div className="px-6 pb-6 pt-0 flex flex-col gap-2">
                   <button
                     onClick={() => handleOrderDeal(deal)}
                     disabled={isExpired}
-                    className={`flex-grow h-12 rounded-xl text-sm font-bold flex items-center justify-center gap-1.5 transition-all shadow-sm ${
+                    className={`w-full h-12 rounded-xl text-sm font-bold flex items-center justify-center gap-1.5 transition-all shadow-sm ${
                       isExpired
-                        ? 'bg-slate-200 text-slate-400 cursor-not-allowed w-full'
+                        ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
                         : 'bg-brand-green hover:bg-brand-green-hover text-white cursor-pointer hover:shadow'
                     }`}
                   >
@@ -223,16 +264,29 @@ export default function FlashSaleSection() {
                     {isExpired ? 'หมดเขตช่วงโปร' : 'ฝากสั่งด่วน'}
                   </button>
                   
-                  {deal.affiliate_url && !isExpired && (
-                    <a
-                      href={deal.affiliate_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 h-12 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-550 rounded-xl text-xs font-bold flex items-center justify-center transition-all cursor-pointer font-heading"
-                      title="ดูโพสต์ต้นฉบับ"
-                    >
-                      ดูโพสต์
-                    </a>
+                  {!isExpired && (deal.affiliate_url || getSizeChartUrl(deal)) && (
+                    <div className="flex gap-2 w-full">
+                      {getSizeChartUrl(deal) && (
+                        <button
+                          onClick={() => setSizeChartModalUrl(getSizeChartUrl(deal))}
+                          className="flex-grow h-10 border border-slate-200 hover:border-slate-350 hover:bg-slate-50 text-slate-600 rounded-xl text-xs font-bold flex items-center justify-center transition-all cursor-pointer font-heading"
+                        >
+                          ตารางไซส์
+                        </button>
+                      )}
+                      
+                      {deal.affiliate_url && (
+                        <a
+                          href={deal.affiliate_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-grow h-10 border border-slate-200 hover:border-slate-350 hover:bg-slate-50 text-slate-600 rounded-xl text-xs font-bold flex items-center justify-center transition-all cursor-pointer font-heading text-center"
+                          title="ดูโพสต์ต้นฉบับ"
+                        >
+                          ดูโพสต์
+                        </a>
+                      )}
+                    </div>
                   )}
                 </div>
               </div>
@@ -290,6 +344,34 @@ export default function FlashSaleSection() {
             >
               ปิดหน้าต่างนี้
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Sizing Chart Modal */}
+      {sizeChartModalUrl && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fade-in">
+          <div className="w-full max-w-2xl bg-white border border-slate-100 p-6 rounded-2xl shadow-2xl relative text-left">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-base font-bold text-slate-900 font-heading">
+                ตารางเทียบไซส์สินค้า (Sizing Guide)
+              </h3>
+              <button
+                onClick={() => setSizeChartModalUrl(null)}
+                className="text-xs font-bold text-slate-400 hover:text-slate-700 transition-colors bg-slate-100 hover:bg-slate-200 px-3 py-1 rounded-lg cursor-pointer font-heading"
+              >
+                ปิด
+              </button>
+            </div>
+            
+            <div className="w-full overflow-auto max-h-[75vh] flex justify-center bg-slate-50 border border-slate-100 rounded-xl p-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={sizeChartModalUrl}
+                alt="Sizing Chart"
+                className="max-w-full h-auto object-contain rounded-lg shadow-sm"
+              />
+            </div>
           </div>
         </div>
       )}

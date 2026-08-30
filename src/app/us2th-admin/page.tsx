@@ -51,6 +51,9 @@ export default function AdminPage() {
   const [dealAffiliateUrl, setDealAffiliateUrl] = useState('');
   const [dealDurationHours, setDealDurationHours] = useState('24');
   const [dealShippingTime, setDealShippingTime] = useState('✈️ พรีออเดอร์ 20-30 วัน');
+  const [dealDescription, setDealDescription] = useState('');
+  const [dealSizes, setDealSizes] = useState('');
+  const [dealSizeChartUrl, setDealSizeChartUrl] = useState('');
   const [dealSaveLoading, setDealSaveLoading] = useState(false);
   const [dealSuccessMsg, setDealSuccessMsg] = useState('');
 
@@ -140,6 +143,9 @@ export default function AdminPage() {
         end_time: endTime,
         is_active: true,
         shipping_time: dealShippingTime,
+        description: dealDescription || null,
+        sizes: dealSizes || null,
+        size_chart_url: dealSizeChartUrl || null,
       });
 
       if (error) throw error;
@@ -152,6 +158,9 @@ export default function AdminPage() {
       setDealImgUrl('');
       setDealAffiliateUrl('');
       setDealShippingTime('✈️ พรีออเดอร์ 20-30 วัน');
+      setDealDescription('');
+      setDealSizes('');
+      setDealSizeChartUrl('');
       fetchData();
     } catch (err: any) {
       alert(`Error saving promotion: ${err.message}`);
@@ -436,6 +445,88 @@ export default function AdminPage() {
                     onChange={(e) => setDealAffiliateUrl(e.target.value)}
                     className="w-full h-11 bg-slate-50 border border-slate-200 focus:bg-white focus:border-brand-blue rounded-xl px-4 text-sm text-slate-800 outline-none transition-all placeholder:text-slate-450 font-semibold"
                   />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-bold text-slate-650 mb-1.5 uppercase tracking-wider font-heading">
+                    คำอธิบายดีลสั้นๆ (Description - ถ้ามี)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="เช่น มีสองสี ฟ้า และ แดง หรือ มีสินค้าพร้อมส่งเลย"
+                    value={dealDescription}
+                    onChange={(e) => setDealDescription(e.target.value)}
+                    className="w-full h-11 bg-slate-50 border border-slate-200 focus:bg-white focus:border-brand-blue rounded-xl px-4 text-sm text-slate-800 outline-none transition-all placeholder:text-slate-450 font-semibold"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-bold text-slate-650 mb-1.5 uppercase tracking-wider font-heading">
+                    ขนาดไซส์ที่มี (Sizes - ถ้ามี)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="เช่น XL 2XL 3XL หรือ US 7 - 13"
+                    value={dealSizes}
+                    onChange={(e) => setDealSizes(e.target.value)}
+                    className="w-full h-11 bg-slate-50 border border-slate-200 focus:bg-white focus:border-brand-blue rounded-xl px-4 text-sm text-slate-800 outline-none transition-all placeholder:text-slate-450 font-semibold"
+                  />
+                  
+                  {/* Sizing Quick Presets */}
+                  <div className="mt-2 flex flex-wrap gap-1.5 items-center">
+                    <span className="text-[10px] text-slate-400 font-bold mr-1">คลิกเลือกเพื่อใส่เทมเพลตไซส์ด่วน:</span>
+                    <button
+                      type="button"
+                      onClick={() => setDealSizes('S M L XL 2XL')}
+                      className="text-[10px] font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded-md transition-colors cursor-pointer"
+                    >
+                      🧥 เสื้อ (S-2XL)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setDealSizes('XS S M L XL 2XL 3XL')}
+                      className="text-[10px] font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded-md transition-colors cursor-pointer"
+                    >
+                      🧥 เสื้อ (XS-3XL)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setDealSizes('US 7 / 8 / 8.5 / 9 / 9.5 / 10 / 10.5 / 11 / 12 / 13')}
+                      className="text-[10px] font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded-md transition-colors cursor-pointer"
+                    >
+                      👟 รองเท้า (US 7-13)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setDealSizes('US 8 / 8.5 / 9 / 9.5 / 10 / 10.5 / 11 / 12')}
+                      className="text-[10px] font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded-md transition-colors cursor-pointer"
+                    >
+                      👟 รองเท้า (US 8-12)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setDealSizes('One Size')}
+                      className="text-[10px] font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded-md transition-colors cursor-pointer"
+                    >
+                      🧢 One Size
+                    </button>
+                  </div>
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-xs font-bold text-slate-650 mb-1.5 uppercase tracking-wider font-heading">
+                    ลิงก์รูปภาพตารางไซส์ประกอบ (Size Chart URL - เสื้อผ้า/กำหนดเอง)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="วางลิงก์รูปตารางไซส์สำหรับเสื้อผ้า หรือยี่ห้อเฉพาะ (ปล่อยว่างหากต้องการใช้ตารางรองเท้ามาตรฐาน)"
+                    value={dealSizeChartUrl}
+                    onChange={(e) => setDealSizeChartUrl(e.target.value)}
+                    className="w-full h-11 bg-slate-50 border border-slate-200 focus:bg-white focus:border-brand-blue rounded-xl px-4 text-sm text-slate-800 outline-none transition-all placeholder:text-slate-450 font-semibold"
+                  />
+                  <p className="text-[10px] text-slate-400 mt-1 font-semibold">
+                    *สำหรับรองเท้าแบรนด์ดัง (เช่น Nike, Jordan, Adidas, New Balance, On Running) ระบบจะดึงตารางไซส์มาตรฐานขึ้นมาให้ลูกค้าตรวจเช็คได้อัตโนมัติโดยที่คุณไม่ต้องใส่ช่องนี้ครับ
+                  </p>
                 </div>
 
                 <div>
