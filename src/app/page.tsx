@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import FlashSaleSection from '@/components/FlashSaleSection';
 import DeliveredGallery from '@/components/DeliveredGallery';
+import TestimonialsSection from '@/components/TestimonialsSection';
 import MagazineSection from '@/components/MagazineSection';
 import OpenChatBanner from '@/components/OpenChatBanner';
 import InquiryForm from '@/components/InquiryForm';
@@ -23,10 +24,11 @@ export default function Home() {
       <main className="flex-grow">
         <HeroSection />
         <FlashSaleSection />
-        <DeliveredGallery />
         <MagazineSection />
-        <OpenChatBanner />
         <InquiryForm />
+        <DeliveredGallery />
+        <TestimonialsSection />
+        <OpenChatBanner />
       </main>
 
       {/* Bottom operational details & footer */}
