@@ -7,6 +7,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SafetyBanner from '@/components/SafetyBanner';
 import StickyMobileBottomBar from '@/components/StickyMobileBottomBar';
+import { mockArticles } from '@/lib/mockArticles';
 
 interface PageProps {
   params: Promise<{
@@ -18,11 +19,24 @@ export async function generateMetadata({ params }: PageProps) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
   
-  const { data: article } = await supabase
-    .from('articles')
-    .select('title, excerpt')
-    .eq('slug', slug)
-    .single();
+  let article = null;
+  try {
+    const { data } = await supabase
+      .from('articles')
+      .select('title, excerpt')
+      .eq('slug', slug)
+      .single();
+    if (data) {
+      article = data;
+    }
+  } catch (err) {
+    // Ignore query error, will try fallback
+  }
+
+  // Fallback to mockup
+  if (!article) {
+    article = mockArticles.find((a) => a.slug === slug);
+  }
 
   if (!article) {
     return {
@@ -40,13 +54,29 @@ export default async function ArticlePage({ params }: PageProps) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
 
-  const { data: article, error } = await supabase
-    .from('articles')
-    .select('*')
-    .eq('slug', slug)
-    .single();
+  let article = null;
+  try {
+    const { data } = await supabase
+      .from('articles')
+      .select('*')
+      .eq('slug', slug)
+      .single();
+    if (data) {
+      article = data;
+    }
+  } catch (err) {
+    console.error('Supabase query error, fallback to mockup: ', err);
+  }
 
-  if (error || !article) {
+  // Fallback check
+  if (!article) {
+    const mock = mockArticles.find((a) => a.slug === slug);
+    if (mock) {
+      article = mock;
+    }
+  }
+
+  if (!article) {
     notFound();
   }
 
