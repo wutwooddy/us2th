@@ -68,16 +68,16 @@ export default function HeroSection() {
 
             {/* Sub-headline */}
             <p className="max-w-lg text-sm md:text-base text-slate-600 leading-relaxed mb-8">
-              บริการรับกดและนำเข้า รองเท้าสนีกเกอร์ เสื้อผ้าสตรีทแวร์ และของสะสมหายากจากทุกมุมโลก (US, JP, UK, EU, KR, HK, SG) พร้อมเคลียร์ภาษีนำเข้าครบถ้วน ไม่มีเก็บเพิ่มภายหลัง ปลอดภัย มั่นใจได้ของแท้ 100%
+              บริการรับกดและนำเข้า รองเท้าสนีกเกอร์ เสื้อผ้าสตรีทแวร์ และของสะสมหายากจากทุกมุมโลก (US, JP, UK, EU, KR, HK, SG) ราคาเหมาจ่ายเบ็ดเสร็จรวมส่งถึงหน้าบ้านคุณ ไม่มีเก็บเพิ่มภายหลัง ปลอดภัย มั่นใจได้ของแท้ 100%
             </p>
 
             {/* Sourcing Price Checker Card */}
-            <div className="w-full max-w-xl bg-white border border-slate-200 rounded-2xl p-6 shadow-sm relative overflow-hidden">
+            <div className="w-full max-w-xl bg-white border border-slate-100 rounded-2xl p-6 shadow-sm relative overflow-hidden">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
                 <div className="flex items-center gap-2">
                   <Terminal className="w-4 h-4 text-brand-orange" />
                   <span className="text-sm font-bold text-slate-800">
-                    เช็คราคานำเข้าด่วน
+                    เช็คราคาเหมาจ่ายนำเข้าฟรี
                   </span>
                 </div>
                 <span className="w-2 h-2 rounded-full bg-brand-emerald animate-pulse" />
@@ -85,7 +85,7 @@ export default function HeroSection() {
 
               <div className="space-y-4">
                 <p className="text-xs text-slate-500">
-                  วางลิงก์สินค้าจากเว็บต่างประเทศ (เช่น StockX, Nike, JP Web) ด้านล่างเพื่อเช็คราคาฟรี
+                  วางลิงก์สินค้าจากเว็บต่างประเทศ (เช่น StockX, Nike, JP Web) ด้านล่างเพื่อประเมินราคาเหมาจ่าย
                 </p>
 
                 <form onSubmit={handleCheckPrice} className="space-y-3">
@@ -98,11 +98,11 @@ export default function HeroSection() {
                         setUrl(e.target.value);
                         setError('');
                       }}
-                      className="flex-grow h-12 bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 text-sm focus:border-brand-orange focus:bg-white outline-none transition-colors placeholder:text-slate-400"
+                      className="flex-grow h-12 bg-slate-50/50 border border-slate-200 text-slate-800 rounded-xl px-4 text-sm focus:border-brand-orange focus:bg-white outline-none transition-colors placeholder:text-slate-400 font-medium"
                     />
                     <button
                       type="submit"
-                      className="h-12 px-6 bg-brand-orange hover:bg-brand-orange-hover text-white text-sm font-bold rounded-xl flex items-center justify-center gap-1.5 transition-all flex-shrink-0"
+                      className="h-12 px-6 bg-slate-900 hover:bg-slate-850 text-white text-sm font-bold rounded-xl flex items-center justify-center gap-1.5 transition-all flex-shrink-0"
                     >
                       {copied ? <Check className="w-4 h-4" /> : <Search className="w-4 h-4" />}
                       {copied ? 'คัดลอกแล้ว' : 'ส่งเช็คราคา'}
@@ -117,7 +117,7 @@ export default function HeroSection() {
                 )}
 
                 <div className="text-xs text-slate-400 leading-normal border-t border-slate-100 pt-3">
-                  *ระบบจะคัดลอกข้อความเตรียมไว้ให้ เพื่อให้คุณทักแชทคุยกับแอดมินเช็คราคาได้สะดวกรวดเร็วที่สุดครับ
+                  *ระบบจะคัดลอกข้อความเพื่อทักแชทคุยกับแอดมินเพื่อประเมินราคาได้สะดวกรวดเร็วที่สุดครับ
                 </div>
               </div>
             </div>
@@ -135,8 +135,8 @@ export default function HeroSection() {
               <span className="block text-sm md:text-base font-bold text-slate-800 mt-1">20 - 30 วัน</span>
             </div>
             <div>
-              <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">ค่าใช้จ่าย</span>
-              <span className="block text-sm md:text-base font-bold text-slate-800 mt-1">รวมภาษีนำเข้าแล้ว</span>
+              <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">ราคาบริการ</span>
+              <span className="block text-sm md:text-base font-bold text-slate-800 mt-1">เหมาจ่ายเบ็ดเสร็จ</span>
             </div>
           </div>
 
@@ -168,20 +168,6 @@ export default function HeroSection() {
         </div>
 
       </div>
-
-      {/* Sleek moving marquee text banner */}
-      <div className="w-full border-t border-slate-100 bg-slate-50 py-4 overflow-hidden select-none">
-        <div className="relative w-full flex items-center justify-center">
-          <div className="flex whitespace-nowrap animate-marquee text-xs md:text-sm font-semibold tracking-[0.1em] text-slate-600">
-            {Array(4).fill(
-              <span className="mx-8">
-                GLOBAL SOURCING ✦ สั่งง่าย ได้ของแท้จาก US, JP, UK, KR, CN ✦ เคลียร์ภาษีนำเข้าครบถ้วน ✦ จัดส่งถึงหน้าบ้านคุณทั่วไทย ✦
-              </span>
-            )}
-          </div>
-        </div>
-      </div>
-
       {/* Pricing Checker Success Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">

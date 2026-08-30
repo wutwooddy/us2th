@@ -12,46 +12,46 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 pb-16 border-b border-slate-200 text-left">
           
           {/* Terms 1: Authenticity */}
-          <div className="flex gap-4 p-5 bg-white border border-slate-150 rounded-2xl shadow-sm">
+          <div className="flex gap-4 p-6 bg-white border border-slate-100 rounded-2xl shadow-sm">
             <div className="w-10 h-10 rounded-full bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center text-brand-orange flex-shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-slate-800 mb-1.5">
+              <h4 className="text-base font-bold text-slate-850 mb-1.5">
                 รับประกันของแท้ 100%
               </h4>
-              <p className="text-xs text-slate-500 leading-relaxed font-medium">
+              <p className="text-sm text-slate-500 leading-relaxed font-semibold">
                 การันตีสินค้าลิขสิทธิ์แท้ 100% รับหาทุกรุ่นตามงบ พบปลอมยินดีคืนเงินเต็มจำนวนทันที
               </p>
             </div>
           </div>
 
           {/* Terms 2: Import Timeline */}
-          <div className="flex gap-4 p-5 bg-white border border-slate-150 rounded-2xl shadow-sm">
+          <div className="flex gap-4 p-6 bg-white border border-slate-100 rounded-2xl shadow-sm">
             <div className="w-10 h-10 rounded-full bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center text-brand-orange flex-shrink-0">
               <Calendar className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-slate-800 mb-1.5">
+              <h4 className="text-base font-bold text-slate-850 mb-1.5">
                 ระยะเวลานำเข้าที่รวดเร็ว
               </h4>
-              <p className="text-xs text-slate-500 leading-relaxed font-medium">
+              <p className="text-sm text-slate-500 leading-relaxed font-semibold">
                 ระยะเวลานำเข้า Pre-order ส่งตรงจากต่างประเทศ 20-30 วัน และจัดส่งต่อในไทยรวดเร็วผ่านขนส่งชั้นนำ 2-5 วัน
               </p>
             </div>
           </div>
 
           {/* Terms 3: Import Sourcing Care */}
-          <div className="flex gap-4 p-5 bg-white border border-slate-150 rounded-2xl shadow-sm">
+          <div className="flex gap-4 p-6 bg-white border border-slate-100 rounded-2xl shadow-sm">
             <div className="w-10 h-10 rounded-full bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center text-brand-orange flex-shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-slate-800 mb-1.5">
-                รวมภาษีนำเข้าเรียบร้อย
+              <h4 className="text-base font-bold text-slate-850 mb-1.5">
+                ราคาเหมาจ่ายเบ็ดเสร็จ
               </h4>
-              <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                เคลียร์ภาษีนำเข้าและจัดส่งถึงหน้าบ้านคุณ ไม่มีเรียกเก็บค่าใช้จ่ายเพิ่มเติมใด ๆ ภายหลังแน่นอนครับ
+              <p className="text-sm text-slate-500 leading-relaxed font-semibold">
+                ดูแลการนำเข้าและจัดส่งตรงถึงหน้าบ้านคุณ ราคาเคลียร์จบครบทุกอย่าง ไม่มีเรียกเก็บค่าใช้จ่ายเพิ่มเติมภายหลังแน่นอนครับ
               </p>
             </div>
           </div>

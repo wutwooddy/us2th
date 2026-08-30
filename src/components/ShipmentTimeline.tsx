@@ -9,7 +9,7 @@ const activeShipments = [
     origin: 'OREGON, USA 🇺🇸',
     destination: 'BANGKOK, TH 🇹🇭',
     method: 'AIR_CARGO',
-    status: 'IN CUSTOMS CLEARANCE (ศุลกากรขาเข้า)',
+    status: 'ARRIVED AT TH HUB (อยู่ระหว่างจัดเตรียมนำส่ง)',
     percentage: 80,
     steps: [
       { name: 'PICKUP', done: true },
@@ -76,7 +76,7 @@ export default function ShipmentTimeline() {
 
           <div className="mt-6 md:mt-0 border border-emerald-100 bg-emerald-50/50 rounded-2xl px-4 py-2.5 text-xs md:text-sm text-emerald-800 flex items-center gap-2 font-semibold">
             <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>ผ่านพิธีการศุลกากรอย่างถูกต้อง // เสียภาษีครบถ้วน</span>
+            <span>ดำเนินการนำเข้าอย่างเป็นระบบ // เคลียร์จบทุกขั้นตอนไม่มีบวกเพิ่ม</span>
           </div>
         </div>
 
@@ -142,7 +142,7 @@ export default function ShipmentTimeline() {
                               step.done || step.active ? 'text-slate-700' : 'text-slate-400'
                             }`}
                           >
-                            {step.name === 'PICKUP' ? 'รับของ' : step.name === 'DEP.US' || step.name === 'DEP.JP' || step.name === 'DEP.UK' ? 'ส่งออก' : step.name === 'ARR.TH' ? 'ถึงไทย' : step.name === 'CUSTOMS' ? 'ศุลกากร' : 'จัดส่ง'}
+                            {step.name === 'PICKUP' ? 'รับของ' : step.name === 'DEP.US' || step.name === 'DEP.JP' || step.name === 'DEP.UK' ? 'ส่งออก' : step.name === 'ARR.TH' ? 'ถึงไทย' : step.name === 'CUSTOMS' ? 'คลังไทย' : 'จัดส่ง'}
                           </span>
                         </div>
                       ))}

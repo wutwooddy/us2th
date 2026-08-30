@@ -64,31 +64,31 @@ export default function InquiryForm() {
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="w-2 h-2 rounded-full bg-brand-orange" />
-              <span className="text-xs font-bold text-brand-orange uppercase tracking-wider">[ ขั้นตอนส่งเช็คราคา ]</span>
+              <span className="text-xs font-bold text-brand-orange uppercase tracking-wider">[ บริการสั่งซื้อตามความต้องการ ]</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6">
               ฝากหาของ / เช็คราคา
             </h2>
             <p className="text-sm md:text-base text-slate-500 leading-relaxed mb-8">
-              หากคุณต้องการสั่งซื้อรองเท้า เสื้อผ้า หรือของสะสมรุ่นพิเศษที่ไม่มีขายในไทย คุณสามารถกรอกรายละเอียดความต้องการเพื่อให้ทีมงานของเราช่วยตรวจสอบราคาและแหล่งซื้อที่ดีที่สุดจากทั่วโลกได้ฟรีครับ
+              เมื่อไอเทมที่คุณตามหาไม่มีวางจำหน่ายในประเทศไทย หรือหาซื้อได้ยาก... เราพร้อมช่วยจัดซื้อและนำส่งตรงถึงหน้าบ้านคุณ ด้วยระบบบริการแบบเหมาจ่ายเบ็ดเสร็จ ไม่มีค่าใช้จ่ายแอบแฝงเพิ่มเติมภายหลังแน่นอนครับ
             </p>
             
-            <div className="space-y-4 border-t border-slate-100 pt-6">
+            <div className="space-y-5 border-t border-slate-100 pt-6">
               <div className="flex items-start gap-3">
-                <Info className="w-5 h-5 text-brand-orange flex-shrink-0 mt-0.5" />
-                <p className="text-xs md:text-sm text-slate-600 leading-relaxed font-semibold">
+                <Info className="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" />
+                <p className="text-sm text-slate-650 leading-relaxed font-semibold">
                   1. เลือกหมวดหมู่ประเภทสินค้าที่ต้องการ
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <Info className="w-5 h-5 text-brand-orange flex-shrink-0 mt-0.5" />
-                <p className="text-xs md:text-sm text-slate-600 leading-relaxed font-semibold">
+                <Info className="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" />
+                <p className="text-sm text-slate-650 leading-relaxed font-semibold">
                   2. ระบุลิงก์สินค้า, ชื่อรุ่น, รหัส หรือไซส์ที่ต้องการ (เช่น 9US / 42.5EU)
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <Info className="w-5 h-5 text-brand-orange flex-shrink-0 mt-0.5" />
-                <p className="text-xs md:text-sm text-slate-600 leading-relaxed font-semibold">
+                <Info className="w-5 h-5 text-slate-400 flex-shrink-0 mt-0.5" />
+                <p className="text-sm text-slate-650 leading-relaxed font-semibold">
                   3. กรอกช่องทางติดต่อที่สะดวก (เช่น LINE ID หรือเบอร์โทรศัพท์)
                 </p>
               </div>
@@ -96,12 +96,12 @@ export default function InquiryForm() {
           </div>
 
           <div className="mt-12 lg:mt-0 pt-6 border-t border-slate-100 text-xs font-bold text-slate-400">
-            ระบบส่งข้อมูลเข้ารหัส RLS ปลอดภัย
+            ระบบส่งข้อมูลเข้ารหัส ปลอดภัย มั่นใจได้ของแท้ 100%
           </div>
         </div>
 
         {/* Right Side: Form Card */}
-        <div className="lg:col-span-7 bg-slate-50 border border-slate-200 p-6 md:p-10 rounded-3xl shadow-sm">
+        <div className="lg:col-span-7 bg-slate-50/40 border border-slate-100 p-6 md:p-10 rounded-3xl shadow-sm">
           
           {success ? (
             <div className="text-center py-12 animate-fade-in">
@@ -154,8 +154,8 @@ export default function InquiryForm() {
                       onClick={() => setCategory(cat.id)}
                       className={`py-3 px-4 text-xs md:text-sm font-bold border rounded-xl transition-all ${
                         category === cat.id
-                          ? 'bg-brand-orange border-brand-orange text-white shadow-sm'
-                          : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                          ? 'bg-slate-900 border-slate-900 text-white shadow-sm'
+                          : 'bg-white border-slate-200 text-slate-650 hover:bg-slate-50 hover:text-slate-900'
                       }`}
                     >
                       {cat.label}
@@ -173,10 +173,10 @@ export default function InquiryForm() {
                   id="details"
                   rows={4}
                   required
-                  placeholder="เช่น: Nike Dunk Low สี Panda ไซส์ 9.5US หรือวางลิงก์สินค้าจากเว็ปต่างประเทศ..."
+                  placeholder="เช่น: Nike Dunk Low สี Panda ไซส์ 9.5US หรือวางลิงก์สินค้าจากเว็บต่างประเทศ..."
                   value={productDetails}
                   onChange={(e) => setProductDetails(e.target.value)}
-                  className="w-full bg-white border border-slate-200 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-slate-800 rounded-xl p-4 text-sm placeholder-slate-400 outline-none transition-colors"
+                  className="w-full bg-white border border-slate-200 focus:border-slate-800 focus:ring-1 focus:ring-slate-800 text-slate-800 rounded-xl p-4 text-sm placeholder-slate-400 outline-none transition-colors font-medium"
                 />
               </div>
 
@@ -192,7 +192,7 @@ export default function InquiryForm() {
                   placeholder="เช่น LINE ID: @ชื่อไอดี / เบอร์โทร: 08x-xxx-xxxx"
                   value={contactInfo}
                   onChange={(e) => setContactInfo(e.target.value)}
-                  className="w-full h-12 bg-white border border-slate-200 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-slate-800 rounded-xl px-4 text-sm placeholder-slate-400 outline-none transition-colors"
+                  className="w-full h-12 bg-white border border-slate-200 focus:border-slate-800 focus:ring-1 focus:ring-slate-800 text-slate-800 rounded-xl px-4 text-sm placeholder-slate-400 outline-none transition-colors font-medium"
                 />
               </div>
 
@@ -208,7 +208,7 @@ export default function InquiryForm() {
                           href="https://lin.ee/ByS27YW"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-4 py-2 bg-brand-orange text-white text-xs font-bold rounded-lg inline-flex items-center gap-1.5 hover:bg-brand-orange-hover transition-colors shadow-sm"
+                          className="px-4 py-2 bg-[#06C755] text-white text-xs font-bold rounded-lg inline-flex items-center gap-1.5 hover:bg-[#05b34c] transition-colors shadow-sm"
                         >
                           <MessageCircle className="w-3.5 h-3.5" /> ทัก LINE OA แทน
                         </a>
@@ -223,7 +223,7 @@ export default function InquiryForm() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full h-12 bg-brand-orange hover:bg-brand-orange-hover text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+                  className="w-full h-12 bg-slate-900 hover:bg-slate-850 text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
                 >
                   {loading ? (
                     <>
