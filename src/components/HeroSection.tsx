@@ -60,10 +60,8 @@ export default function HeroSection() {
             </div>
 
             {/* Title with Prompt */}
-            <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold tracking-tight text-slate-900 mb-6 leading-tight font-heading">
-              รับสั่งซื้อและนำเข้า <br />
-              <span className="text-brand-blue font-extrabold">ของหายากจากทั่วโลก</span> <br />
-              ส่งถึงหน้าบ้านคุณ
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mb-4 font-heading">
+              รับสั่ง รับกดสินค้า
             </h1>
 
             {/* Sub-headline */}
@@ -151,8 +149,9 @@ export default function HeroSection() {
               alt="Streetwear Lookbook 1"
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            <span className="absolute bottom-4 left-4 text-xs font-bold text-white tracking-wide">ภาพผลงานบริการสั่งซื้อ 01</span>
+            <div className="absolute bottom-4 left-4 bg-white text-slate-800 border border-slate-100 px-3 py-1.5 rounded-xl text-xs font-bold shadow-md z-10 font-heading">
+              ✈️ รับสั่งซื้อและนำเข้า
+            </div>
           </div>
           
           <div className="relative overflow-hidden group rounded-2xl shadow-sm">
@@ -162,8 +161,9 @@ export default function HeroSection() {
               alt="Streetwear Lookbook 2"
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            <span className="absolute bottom-4 left-4 text-xs font-bold text-white tracking-wide">ภาพผลงานบริการสั่งซื้อ 02</span>
+            <div className="absolute bottom-4 left-4 bg-white text-slate-800 border border-slate-100 px-3 py-1.5 rounded-xl text-xs font-bold shadow-md z-10 font-heading">
+              📦 ส่งตรงถึงหน้าบ้านคุณ
+            </div>
           </div>
         </div>
 

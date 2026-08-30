@@ -104,12 +104,9 @@ export default function DeliveredGallery() {
                 <span className="text-[10px] font-bold text-brand-green uppercase tracking-wider block mb-0.5">
                   {item.category}
                 </span>
-                <h3 className="text-xs font-bold text-slate-800 line-clamp-1 leading-tight mb-1" title={item.name}>
+                <h3 className="text-xs font-bold text-slate-800 line-clamp-1 leading-tight" title={item.name}>
                   {item.name}
                 </h3>
-                <span className="text-xs font-extrabold text-brand-blue block">
-                  {item.price}
-                </span>
               </div>
 
             </div>
