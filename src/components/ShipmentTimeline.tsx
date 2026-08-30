@@ -56,27 +56,27 @@ const activeShipments = [
 
 export default function ShipmentTimeline() {
   return (
-    <section id="tracker" className="w-full bg-black py-24 px-4 md:px-8 border-b border-neutral-900 relative">
+    <section id="tracker" className="w-full bg-white py-24 px-4 md:px-8 border-b border-slate-100 relative">
       <div className="max-w-[1400px] mx-auto">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-neutral-900 pb-8 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-100 pb-8 mb-16">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="w-1.5 h-1.5 bg-brand-emerald animate-pulse" />
-              <span className="font-mono text-xs font-black text-brand-emerald uppercase tracking-widest">[ CARGO TRACKING PROTOCOL ]</span>
+              <span className="w-2 h-2 rounded-full bg-brand-emerald animate-pulse" />
+              <span className="text-xs font-bold text-brand-emerald uppercase tracking-wider">[ ติดตามสถานะการนำเข้า ]</span>
             </div>
-            <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-white uppercase">
-              LIVE TIMELINE
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">
+              สถานะตู้สินค้าล่าสุด
             </h2>
-            <p className="text-xs font-mono text-neutral-500 uppercase tracking-wider mt-3 max-w-lg leading-relaxed">
-              REAL-TIME LOGISTICS TRACKER FOR ACTIVE CARGOS CURRENTLY IN TRANSIT TO THAILAND.
+            <p className="text-sm md:text-base text-slate-500 mt-2 max-w-lg leading-relaxed">
+              ติดตามเส้นทางการขนส่งสินค้าของแต่ละรอบบิน/รอบเรือจากต่างประเทศแบบเรียลไทม์
             </p>
           </div>
 
-          <div className="mt-6 md:mt-0 font-mono border border-brand-emerald/20 bg-brand-emerald/5 px-4 py-2 text-xs text-brand-emerald flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-brand-emerald" />
-            <span>SECURE CLEARANCE SYSTEM // TAX_PAID</span>
+          <div className="mt-6 md:mt-0 border border-emerald-100 bg-emerald-50/50 rounded-2xl px-4 py-2.5 text-xs md:text-sm text-emerald-800 flex items-center gap-2 font-semibold">
+            <ShieldCheck className="w-4 h-4 text-emerald-600" />
+            <span>ผ่านพิธีการศุลกากรอย่างถูกต้อง // เสียภาษีครบถ้วน</span>
           </div>
         </div>
 
@@ -86,42 +86,42 @@ export default function ShipmentTimeline() {
             return (
               <div 
                 key={shipment.id}
-                className="bg-neutral-950 border border-neutral-900 p-6 flex flex-col justify-between hover:border-brand-emerald/30 transition-colors"
+                className="bg-slate-50/50 border border-slate-100 p-6 flex flex-col justify-between hover:border-slate-200 transition-colors rounded-3xl shadow-sm"
               >
                 <div>
                   {/* Top Bar */}
-                  <div className="flex justify-between items-center mb-6 font-mono">
-                    <span className="text-xs font-black text-brand-orange">
+                  <div className="flex justify-between items-center mb-6">
+                    <span className="text-sm font-bold text-brand-orange">
                       // {shipment.id}
                     </span>
-                    <span className="text-[9px] text-neutral-400 border border-neutral-800 px-2 py-0.5 uppercase tracking-widest">
-                      {shipment.method}
+                    <span className="text-xs text-slate-500 border border-slate-200 px-2.5 py-0.5 rounded-full uppercase tracking-wider bg-white font-semibold">
+                      {shipment.method === 'AIR_CARGO' ? 'ขนส่งทางอากาศ' : 'ขนส่งทางเรือ'}
                     </span>
                   </div>
 
                   {/* Route */}
-                  <div className="mb-6 font-mono">
-                    <span className="block text-[8px] text-neutral-500 tracking-wider">ROUTE</span>
-                    <span className="block text-sm font-black text-white mt-1">
+                  <div className="mb-6">
+                    <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">เส้นทางขนส่ง</span>
+                    <span className="block text-base font-bold text-slate-800 mt-1">
                       {shipment.origin} ➔ {shipment.destination}
                     </span>
                   </div>
 
                   {/* Current Status */}
-                  <div className="mb-8 font-mono">
-                    <span className="block text-[8px] text-neutral-500 tracking-wider">LOG_STATUS</span>
-                    <div className="mt-2 p-3 bg-neutral-900 border border-neutral-850 text-[10px] font-bold text-brand-emerald flex items-start gap-2">
-                      <Navigation className="w-3.5 h-3.5 text-brand-emerald animate-pulse flex-shrink-0 mt-0.5" />
+                  <div className="mb-8">
+                    <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">สถานะปัจจุบัน</span>
+                    <div className="mt-2 p-3 bg-emerald-50/50 border border-emerald-100 rounded-2xl text-xs md:text-sm font-bold text-emerald-850 flex items-start gap-2">
+                      <Navigation className="w-4 h-4 text-emerald-600 animate-pulse flex-shrink-0 mt-0.5" />
                       <span className="leading-snug">{shipment.status}</span>
                     </div>
                   </div>
 
-                  {/* Sleek Line Tracker */}
+                  {/* Line Tracker */}
                   <div className="relative mb-8 px-2">
                     {/* Line Bar */}
-                    <div className="absolute top-1.5 left-2 right-2 h-[1px] bg-neutral-800" />
+                    <div className="absolute top-1.5 left-2 right-2 h-1 bg-slate-200 rounded-full" />
                     <div 
-                      className="absolute top-1.5 left-2 h-[1px] bg-brand-emerald transition-all duration-500" 
+                      className="absolute top-1.5 left-2 h-1 bg-emerald-500 rounded-full transition-all duration-500" 
                       style={{ width: `${shipment.percentage}%` }}
                     />
                     
@@ -129,20 +129,20 @@ export default function ShipmentTimeline() {
                       {shipment.steps.map((step, idx) => (
                         <div key={idx} className="flex flex-col items-center">
                           <div 
-                            className={`w-3.5 h-3.5 rounded-none border flex items-center justify-center ${
+                            className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center ${
                               step.done 
-                                ? 'bg-brand-emerald border-brand-emerald' 
+                                ? 'bg-emerald-500 border-emerald-500' 
                                 : step.active 
-                                ? 'bg-black border-brand-emerald text-brand-emerald animate-pulse'
-                                : 'bg-neutral-950 border-neutral-850'
+                                ? 'bg-white border-emerald-500 text-emerald-500 animate-pulse'
+                                : 'bg-slate-200 border-slate-200'
                             }`}
                           />
                           <span 
-                            className={`font-mono text-[8px] tracking-wider mt-2.5 ${
-                              step.done || step.active ? 'text-white font-bold' : 'text-neutral-600'
+                            className={`text-[10px] md:text-xs font-bold mt-2.5 ${
+                              step.done || step.active ? 'text-slate-700' : 'text-slate-400'
                             }`}
                           >
-                            {step.name}
+                            {step.name === 'PICKUP' ? 'รับของ' : step.name === 'DEP.US' || step.name === 'DEP.JP' || step.name === 'DEP.UK' ? 'ส่งออก' : step.name === 'ARR.TH' ? 'ถึงไทย' : step.name === 'CUSTOMS' ? 'ศุลกากร' : 'จัดส่ง'}
                           </span>
                         </div>
                       ))}
@@ -151,9 +151,9 @@ export default function ShipmentTimeline() {
                 </div>
 
                 {/* Bottom Details */}
-                <div className="pt-4 border-t border-neutral-900 font-mono">
-                  <span className="block text-[8px] text-neutral-500 tracking-wider">DELIVERY SUMMARY</span>
-                  <span className="block text-xs font-black text-white mt-1">{shipment.eta}</span>
+                <div className="pt-4 border-t border-slate-100">
+                  <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">ประมาณการจัดส่ง</span>
+                  <span className="block text-sm font-bold text-slate-800 mt-1">{shipment.eta}</span>
                 </div>
               </div>
             );

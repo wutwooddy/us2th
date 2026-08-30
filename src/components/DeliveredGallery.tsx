@@ -68,79 +68,75 @@ const deliveredItems = [
 
 export default function DeliveredGallery() {
   return (
-    <section id="showcase" className="w-full bg-dark-bg py-24 px-4 md:px-8 border-b border-neutral-900">
+    <section id="showcase" className="w-full bg-slate-50/30 py-24 px-4 md:px-8 border-b border-slate-100">
       <div className="max-w-[1400px] mx-auto">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-neutral-900 pb-8 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-100 pb-8 mb-16">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="w-1.5 h-1.5 bg-brand-orange" />
-              <span className="font-mono text-xs font-black text-brand-orange uppercase tracking-widest">[ SOURCED INDEX CATALOG ]</span>
+              <span className="w-2 h-2 rounded-full bg-brand-orange" />
+              <span className="text-xs font-bold text-brand-orange uppercase tracking-wider">[ ผลงานนำเข้าล่าสุด ]</span>
             </div>
-            <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-white uppercase">
-              DELIVERED SHOWCASE
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">
+              ตัวอย่างสินค้าที่จัดส่งสำเร็จ
             </h2>
-            <p className="text-xs font-mono text-neutral-500 uppercase tracking-wider mt-3 max-w-lg leading-relaxed">
-              PREVIOUS ACQUISITIONS SHIPPED DIRECTLY TO COLLECTORS IN THAILAND. 100% AUTHENTIC VERIFIED.
+            <p className="text-sm md:text-base text-slate-500 mt-2 max-w-lg leading-relaxed">
+              รวมภาพสินค้าแบรนด์เนมและของสะสมหายาก ที่เราจัดซื้อและนำส่งถึงมือลูกค้าในประเทศไทยอย่างปลอดภัย การันตีของแท้ 100%
             </p>
           </div>
           
-          <div className="mt-6 md:mt-0 font-mono text-[10px] text-neutral-600 uppercase tracking-widest">
-            CATALOG_ID: US2TH-ARCHIVE_v1 // 1,240+ DELIVERIES
+          <div className="mt-6 md:mt-0 text-xs font-bold text-slate-400">
+            รวมจัดส่งสำเร็จแล้วกว่า 1,240+ รายการ
           </div>
         </div>
 
         {/* Asymmetric Lookbook Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
           {deliveredItems.map((item) => (
             <div 
               key={item.id}
-              className={`group bg-neutral-950 border border-neutral-900 overflow-hidden flex flex-col justify-between transition-all duration-500 hover:border-brand-orange ${item.spanClass}`}
+              className={`group bg-white border border-slate-100 rounded-3xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-md hover:border-slate-200 ${item.spanClass}`}
             >
               
               {/* Photo Area */}
-              <div className="relative w-full h-full overflow-hidden flex-grow min-h-[250px]">
+              <div className="relative w-full overflow-hidden min-h-[220px] md:min-h-[280px] flex-grow">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={item.imgUrl}
                   alt={item.name}
-                  className="w-full h-full object-cover grayscale brightness-75 group-hover:scale-105 group-hover:grayscale-0 group-hover:brightness-90 transition-all duration-700 absolute inset-0"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 absolute inset-0"
                 />
                 
-                {/* Asymmetric Text Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                
                 {/* Top Badges */}
-                <div className="absolute top-4 left-4 right-4 flex justify-between items-start font-mono text-[9px] tracking-widest uppercase">
-                  <span className="bg-brand-emerald text-black font-black px-2 py-1 flex items-center gap-1">
-                    <Package className="w-3 h-3 text-black" />
-                    DELIVERED
+                <div className="absolute top-4 left-4 right-4 flex justify-between items-start text-xs tracking-wide">
+                  <span className="bg-emerald-500 text-white font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-sm">
+                    <Package className="w-3.5 h-3.5 text-white" />
+                    จัดส่งแล้ว
                   </span>
                   
-                  <span className="bg-black/90 text-white border border-neutral-800 px-2 py-1 flex items-center gap-1 font-bold">
-                    <MapPin className="w-3 h-3 text-brand-orange" />
-                    {item.country}
+                  <span className="bg-white/90 text-slate-800 border border-slate-100 px-3 py-1.5 rounded-full flex items-center gap-1 font-bold shadow-sm">
+                    <MapPin className="w-3.5 h-3.5 text-brand-orange" />
+                    สั่งจาก {item.country.replace(/🇺🇸|🇯🇵|🇬🇧|🇭🇰|🇰🇷|🇸🇬/g, '').trim()} {item.country.match(/🇺🇸|🇯🇵|🇬🇧|🇭🇰|🇰🇷|🇸🇬/g)}
                   </span>
                 </div>
+              </div>
 
-                {/* Bottom Details */}
-                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
-                  <div className="max-w-[70%]">
-                    <span className="font-mono text-[9px] text-brand-orange uppercase tracking-widest block mb-1">
-                      // {item.category}
-                    </span>
-                    <h3 className="text-sm md:text-lg font-black text-white uppercase tracking-tight leading-tight">
-                      {item.name}
-                    </h3>
-                  </div>
-                  
-                  <div className="text-right font-mono">
-                    <span className="block text-[8px] text-neutral-500 tracking-wider">VALUE</span>
-                    <span className="text-xs md:text-sm font-black text-white tracking-tighter">{item.price}</span>
-                  </div>
+              {/* Bottom Details (Now underneath image with high-contrast text) */}
+              <div className="p-6 bg-white flex justify-between items-end border-t border-slate-50">
+                <div className="max-w-[70%]">
+                  <span className="text-xs font-bold text-brand-orange uppercase tracking-wider block mb-1">
+                    {item.category === 'Sneakers' ? 'รองเท้าสนีกเกอร์' : item.category === 'Apparel' ? 'เสื้อผ้าแฟชั่น' : 'ของสะสมหายาก'}
+                  </span>
+                  <h3 className="text-sm md:text-base font-bold text-slate-800 leading-snug">
+                    {item.name}
+                  </h3>
                 </div>
-
+                
+                <div className="text-right">
+                  <span className="block text-[10px] text-slate-400 font-bold uppercase tracking-wider">ราคารวมส่ง</span>
+                  <span className="text-sm md:text-base font-extrabold text-brand-orange tracking-tight">{item.price}</span>
+                </div>
               </div>
 
             </div>

@@ -23,7 +23,7 @@ export default function RootLayout({
       lang="th"
       className={`${kanit.variable} scroll-smooth`}
     >
-      <body className="bg-dark-bg text-white">
+      <body className="bg-white text-slate-900">
         {children}
       </body>
     </html>

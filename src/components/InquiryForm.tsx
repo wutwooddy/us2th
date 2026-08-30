@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
-import { Send, CheckCircle2, AlertTriangle, Loader2, Info } from 'lucide-react';
+import { Send, CheckCircle2, AlertTriangle, Loader2, Info, MessageCircle } from 'lucide-react';
 
 export default function InquiryForm() {
   const [category, setCategory] = useState('Sneakers');
@@ -56,63 +56,63 @@ export default function InquiryForm() {
   };
 
   return (
-    <section id="inquiry" className="w-full bg-dark-bg py-24 px-4 md:px-8 border-b border-neutral-900">
+    <section id="inquiry" className="w-full bg-white py-24 px-4 md:px-8 border-b border-slate-100">
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
         
         {/* Left Side: Information & Instructions */}
-        <div className="lg:col-span-5 flex flex-col justify-between font-mono">
+        <div className="lg:col-span-5 flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="w-1.5 h-1.5 bg-brand-orange" />
-              <span className="text-xs font-black text-brand-orange uppercase tracking-widest">[ SUBMISSION PROTOCOL ]</span>
+              <span className="w-2 h-2 rounded-full bg-brand-orange" />
+              <span className="text-xs font-bold text-brand-orange uppercase tracking-wider">[ ขั้นตอนส่งเช็คราคา ]</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white uppercase mb-6">
-              SOURCING REQUEST
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6">
+              ฝากหาของ / เช็คราคา
             </h2>
-            <p className="text-xs md:text-sm text-neutral-400 leading-relaxed mb-8 uppercase tracking-wide">
-              SUBMIT A SPECIFIC REQUEST FOR SNEAKERS, APPAREL, OR EXCLUSIVE TOYS NOT PRESENT IN LOCAL STORES. OUR AGENTS WILL SOURCE THE BEST PRICED OPTIONS GLOBALLY.
+            <p className="text-sm md:text-base text-slate-500 leading-relaxed mb-8">
+              หากคุณต้องการสั่งซื้อรองเท้า เสื้อผ้า หรือของสะสมรุ่นพิเศษที่ไม่มีขายในไทย คุณสามารถกรอกรายละเอียดความต้องการเพื่อให้ทีมงานของเราช่วยตรวจสอบราคาและแหล่งซื้อที่ดีที่สุดจากทั่วโลกได้ฟรีครับ
             </p>
             
-            <div className="space-y-4 border-t border-neutral-900 pt-6">
+            <div className="space-y-4 border-t border-slate-100 pt-6">
               <div className="flex items-start gap-3">
-                <Info className="w-4 h-4 text-brand-orange flex-shrink-0 mt-0.5" />
-                <p className="text-[10px] text-neutral-500 uppercase tracking-widest leading-normal">
-                  1. SELECT THE PRODUCT SEGMENT APPROPRIATELY.
+                <Info className="w-5 h-5 text-brand-orange flex-shrink-0 mt-0.5" />
+                <p className="text-xs md:text-sm text-slate-600 leading-relaxed font-semibold">
+                  1. เลือกหมวดหมู่ประเภทสินค้าที่ต้องการ
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <Info className="w-4 h-4 text-brand-orange flex-shrink-0 mt-0.5" />
-                <p className="text-[10px] text-neutral-500 uppercase tracking-widest leading-normal">
-                  2. INCLUDE LINKS, CODES, AND SPECIFIC SIZES (US/EU).
+                <Info className="w-5 h-5 text-brand-orange flex-shrink-0 mt-0.5" />
+                <p className="text-xs md:text-sm text-slate-600 leading-relaxed font-semibold">
+                  2. ระบุลิงก์สินค้า, ชื่อรุ่น, รหัส หรือไซส์ที่ต้องการ (เช่น 9US / 42.5EU)
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <Info className="w-4 h-4 text-brand-orange flex-shrink-0 mt-0.5" />
-                <p className="text-[10px] text-neutral-500 uppercase tracking-widest leading-normal">
-                  3. LEAVE A SECURE RETURN CONTACT FIELD (LINE_ID PREFERRED).
+                <Info className="w-5 h-5 text-brand-orange flex-shrink-0 mt-0.5" />
+                <p className="text-xs md:text-sm text-slate-600 leading-relaxed font-semibold">
+                  3. กรอกช่องทางติดต่อที่สะดวก (เช่น LINE ID หรือเบอร์โทรศัพท์)
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="mt-12 lg:mt-0 pt-6 border-t border-neutral-900 font-mono text-[9px] text-neutral-600 uppercase tracking-widest">
-            FORM STATE: SECURE_POST // RLS_ACTIVE
+          <div className="mt-12 lg:mt-0 pt-6 border-t border-slate-100 text-xs font-bold text-slate-400">
+            ระบบส่งข้อมูลเข้ารหัส RLS ปลอดภัย
           </div>
         </div>
 
         {/* Right Side: Form Card */}
-        <div className="lg:col-span-7 bg-black border border-neutral-900 p-6 md:p-10 relative">
+        <div className="lg:col-span-7 bg-slate-50 border border-slate-200 p-6 md:p-10 rounded-3xl shadow-sm">
           
           {success ? (
-            <div className="text-center py-12 font-mono animate-fade-in">
-              <div className="w-12 h-12 rounded-none bg-brand-emerald/10 text-brand-emerald flex items-center justify-center mx-auto mb-6 border border-brand-emerald/20">
+            <div className="text-center py-12 animate-fade-in">
+              <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-6 border border-emerald-100 shadow-sm">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-black text-white uppercase tracking-widest mb-3">
-                [REQUEST_SUBMITTED]
+              <h3 className="text-lg font-bold text-slate-900 mb-3">
+                ส่งความต้องการสำเร็จแล้ว!
               </h3>
-              <p className="text-xs text-neutral-400 max-w-sm mx-auto leading-relaxed mb-8 uppercase tracking-wide">
-                WE RECEIVED YOUR REQUEST. AN ADMIN WILL REVIEW THE CASE DETAILS AND CONTACT YOU SHORTLY.
+              <p className="text-sm text-slate-500 max-w-sm mx-auto leading-relaxed mb-8">
+                เราได้รับข้อมูลของคุณเรียบร้อยแล้ว ทีมงานแอดมินจะรีบตรวจสอบราคาแหล่งซื้อและติดต่อกลับโดยเร็วที่สุดครับ
               </p>
               
               <div className="flex flex-col sm:flex-row justify-center gap-3">
@@ -120,39 +120,45 @@ export default function InquiryForm() {
                   href="https://lin.ee/ByS27YW"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-3 px-6 bg-brand-orange hover:bg-brand-orange-hover text-white text-xs font-black tracking-widest uppercase rounded-none flex items-center justify-center gap-1.5 transition-all"
+                  className="py-3 px-6 bg-[#06C755] hover:bg-[#05b34c] text-white text-xs font-bold rounded-full flex items-center justify-center gap-1.5 transition-all shadow-sm"
                 >
-                  TALK VIA LINE
+                  <MessageCircle className="w-4 h-4 text-white" />
+                  ทักแชทสอบถามทาง LINE
                 </a>
                 <button
                   onClick={() => setSuccess(false)}
-                  className="py-3 px-6 border border-neutral-800 hover:bg-neutral-900 text-white text-xs font-black tracking-widest uppercase rounded-none transition-all"
+                  className="py-3 px-6 border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold rounded-full transition-all shadow-sm"
                 >
-                  ADD ANOTHER REQUEST
+                  ส่งรายการเพิ่มอีกรายการ
                 </button>
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6 font-mono">
+            <form onSubmit={handleSubmit} className="space-y-6">
               
               {/* Category Selector */}
               <div>
-                <label className="block text-[10px] font-black text-neutral-500 uppercase tracking-widest mb-3">
-                  01 / PRODUCT CATEGORY
+                <label className="block text-sm font-bold text-slate-700 mb-3">
+                  01 / เลือกประเภทสินค้า
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {['Sneakers', 'Apparel', 'Collectibles', 'Others'].map((cat) => (
+                  {[
+                    { id: 'Sneakers', label: 'รองเท้าสนีกเกอร์' },
+                    { id: 'Apparel', label: 'เสื้อผ้าแฟชั่น' },
+                    { id: 'Collectibles', label: 'ของสะสมหายาก' },
+                    { id: 'Others', label: 'อื่น ๆ' }
+                  ].map((cat) => (
                     <button
-                      key={cat}
+                      key={cat.id}
                       type="button"
-                      onClick={() => setCategory(cat)}
-                      className={`py-3 px-4 text-xs font-bold uppercase tracking-widest border rounded-none transition-all ${
-                        category === cat
-                          ? 'bg-white border-white text-black font-black'
-                          : 'bg-neutral-950 border-neutral-900 text-neutral-400 hover:bg-neutral-900 hover:text-white'
+                      onClick={() => setCategory(cat.id)}
+                      className={`py-3 px-4 text-xs md:text-sm font-bold border rounded-xl transition-all ${
+                        category === cat.id
+                          ? 'bg-brand-orange border-brand-orange text-white shadow-sm'
+                          : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                       }`}
                     >
-                      {cat}
+                      {cat.label}
                     </button>
                   ))}
                 </div>
@@ -160,51 +166,51 @@ export default function InquiryForm() {
 
               {/* Product Details */}
               <div>
-                <label htmlFor="details" className="block text-[10px] font-black text-neutral-500 uppercase tracking-widest mb-3">
-                  02 / LINKS, CODES, SIZE &amp; CASE DETAILS
+                <label htmlFor="details" className="block text-sm font-bold text-slate-700 mb-3">
+                  02 / รายละเอียดสินค้า ลิงก์ ชื่อรุ่น หรือไซส์ที่ต้องการ
                 </label>
                 <textarea
                   id="details"
                   rows={4}
                   required
-                  placeholder="เช่น: NIKE DUNK LOW GALAXY SIZE 9.5US OR PASTE SECURE SITE LINK HERE..."
+                  placeholder="เช่น: Nike Dunk Low สี Panda ไซส์ 9.5US หรือวางลิงก์สินค้าจากเว็ปต่างประเทศ..."
                   value={productDetails}
                   onChange={(e) => setProductDetails(e.target.value)}
-                  className="w-full bg-neutral-950 border border-neutral-900 focus:border-white text-white rounded-none p-4 text-xs placeholder-neutral-700 outline-none tracking-widest uppercase transition-colors"
+                  className="w-full bg-white border border-slate-200 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-slate-800 rounded-xl p-4 text-sm placeholder-slate-400 outline-none transition-colors"
                 />
               </div>
 
               {/* Contact Info */}
               <div>
-                <label htmlFor="contact" className="block text-[10px] font-black text-neutral-500 uppercase tracking-widest mb-3">
-                  03 / SECURE CONTACT RETURN FIELD (LINE, PHONE, FB)
+                <label htmlFor="contact" className="block text-sm font-bold text-slate-700 mb-3">
+                  03 / ช่องทางการติดต่อกลับ (LINE ID, เบอร์โทร หรือ Facebook)
                 </label>
                 <input
                   id="contact"
                   type="text"
                   required
-                  placeholder="LINE_ID: @USERID / PHONE: 08XXXXXXXX"
+                  placeholder="เช่น LINE ID: @ชื่อไอดี / เบอร์โทร: 08x-xxx-xxxx"
                   value={contactInfo}
                   onChange={(e) => setContactInfo(e.target.value)}
-                  className="w-full h-11 bg-neutral-950 border border-neutral-900 focus:border-white text-white rounded-none px-4 text-xs placeholder-neutral-700 outline-none tracking-widest uppercase transition-colors"
+                  className="w-full h-12 bg-white border border-slate-200 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-slate-800 rounded-xl px-4 text-sm placeholder-slate-400 outline-none transition-colors"
                 />
               </div>
 
               {/* Error Alert */}
               {errorMsg && (
-                <div className="bg-brand-orange/10 border border-brand-orange/20 text-brand-orange text-xs font-bold p-4 rounded-none flex items-start gap-3">
-                  <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                <div className="bg-red-50 border border-red-100 text-red-800 text-xs md:text-sm font-bold p-4 rounded-xl flex items-start gap-3">
+                  <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5 text-red-600" />
                   <div>
-                    <p className="tracking-wide">{errorMsg}</p>
+                    <p className="leading-snug">{errorMsg}</p>
                     {errorMsg.includes('DB_CONNECTION_FAILED') && (
-                      <div className="mt-3 flex gap-2">
+                      <div className="mt-3">
                         <a
                           href="https://lin.ee/ByS27YW"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-4 py-1.5 bg-brand-orange text-white text-[10px] font-black tracking-widest uppercase rounded-none flex items-center gap-1.5 hover:bg-brand-orange-hover"
+                          className="px-4 py-2 bg-brand-orange text-white text-xs font-bold rounded-lg inline-flex items-center gap-1.5 hover:bg-brand-orange-hover transition-colors shadow-sm"
                         >
-                          OPEN LINE LINK
+                          <MessageCircle className="w-3.5 h-3.5" /> ทัก LINE OA แทน
                         </a>
                       </div>
                     )}
@@ -217,17 +223,17 @@ export default function InquiryForm() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full h-12 bg-brand-orange hover:bg-brand-orange-hover text-white text-xs font-black tracking-widest uppercase rounded-none flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed orange-glow"
+                  className="w-full h-12 bg-brand-orange hover:bg-brand-orange-hover text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
                 >
                   {loading ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" />
-                      SUBMITTING_CASE...
+                      กำลังส่งข้อมูล...
                     </>
                   ) : (
                     <>
                       <Send className="w-4 h-4" />
-                      SUBMIT REQUEST FORM
+                      ส่งข้อมูลตรวจสอบราคาฟรี
                     </>
                   )}
                 </button>

@@ -43,141 +43,139 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative w-full bg-dark-bg border-b border-neutral-900">
+    <section className="relative w-full bg-white border-b border-slate-100">
       
       {/* 2-Column Split Lookbook Grid */}
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[600px] items-stretch">
         
         {/* Left Column: Sourcing Terminal & Copy */}
-        <div className="lg:col-span-7 flex flex-col justify-between p-6 md:p-12 lg:border-r lg:border-neutral-900 relative">
+        <div className="lg:col-span-7 flex flex-col justify-between p-6 md:p-12 lg:border-r lg:border-slate-100 relative bg-slate-50/20">
           
           <div className="mb-10">
             {/* Meta Tags */}
-            <div className="flex items-center gap-3 font-mono text-[10px] tracking-widest text-neutral-500 uppercase mb-6">
-              <span>[ INDEX-001 ]</span>
+            <div className="flex items-center gap-2 text-xs font-bold text-slate-400 mb-6">
+              <span>[ บริการนำเข้าสินค้า ]</span>
               <span>✦</span>
-              <span className="text-brand-orange">[ EXCLUSIVE SOURCING ]</span>
+              <span className="text-brand-orange">SNEAKERS & STREETWEAR SOURCING</span>
             </div>
 
-            {/* Massive brutalist typography */}
-            <h1 className="text-5xl sm:text-6xl xl:text-8xl font-black tracking-tighter uppercase leading-[0.9] text-white mb-6">
-              US<span className="text-brand-orange">2</span>TH <br />
-              RARE <br />
-              <span className="text-neutral-500 font-light">SOURCING</span>
+            {/* Title with Kanit */}
+            <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold tracking-tight text-slate-900 mb-6 leading-tight">
+              รับสั่งซื้อและนำเข้า <br />
+              <span className="text-brand-orange font-extrabold">ของหายากจากทั่วโลก</span> <br />
+              ส่งถึงหน้าบ้านคุณ
             </h1>
 
             {/* Sub-headline */}
-            <p className="max-w-lg text-sm font-mono tracking-wide text-neutral-400 leading-relaxed mb-8">
-              PREMIUM GLOBAL IMPORT SERVICE. WE SOURCE SNEAKERS & STREETWEAR FROM THE WORLD’S MOST EXCLUSIVE STORES AND DELIVER DOOR-TO-DOOR. ALL-INCLUSIVE CUSTOMS CLEARANCE.
+            <p className="max-w-lg text-sm md:text-base text-slate-600 leading-relaxed mb-8">
+              บริการรับกดและนำเข้า รองเท้าสนีกเกอร์ เสื้อผ้าสตรีทแวร์ และของสะสมหายากจากทุกมุมโลก (US, JP, UK, EU, KR, HK, SG) พร้อมเคลียร์ภาษีนำเข้าครบถ้วน ไม่มีเก็บเพิ่มภายหลัง ปลอดภัย มั่นใจได้ของแท้ 100%
             </p>
 
-            {/* Terminal Sourcing Price Checker */}
-            <div className="w-full max-w-xl bg-black border-2 border-neutral-900 rounded-none p-5 relative overflow-hidden">
-              {/* Terminal Title Bar */}
-              <div className="flex items-center justify-between border-b border-neutral-900 pb-3 mb-4">
+            {/* Sourcing Price Checker Card */}
+            <div className="w-full max-w-xl bg-white border border-slate-200 rounded-2xl p-6 shadow-sm relative overflow-hidden">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
                 <div className="flex items-center gap-2">
                   <Terminal className="w-4 h-4 text-brand-orange" />
-                  <span className="font-mono text-xs font-black tracking-widest text-white">
-                    [SOURCING_TERMINAL.EXE]
+                  <span className="text-sm font-bold text-slate-800">
+                    เช็คราคานำเข้าด่วน
                   </span>
                 </div>
-                <span className="w-2.5 h-2.5 rounded-full bg-brand-emerald animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-brand-emerald animate-pulse" />
               </div>
 
-              <div className="space-y-4 font-mono">
-                <div className="text-[10px] text-neutral-500 flex justify-between">
-                  <span>SYSTEM: STANDBY</span>
-                  <span>LOCATIONS: GLOBAL_NET</span>
-                </div>
+              <div className="space-y-4">
+                <p className="text-xs text-slate-500">
+                  วางลิงก์สินค้าจากเว็บต่างประเทศ (เช่น StockX, Nike, JP Web) ด้านล่างเพื่อเช็คราคาฟรี
+                </p>
 
                 <form onSubmit={handleCheckPrice} className="space-y-3">
                   <div className="flex flex-col sm:flex-row gap-2">
                     <input
                       type="text"
-                      placeholder="PASTE PRODUCT URL HERE (StockX, Nike, etc.)"
+                      placeholder="วางลิงก์สินค้าที่นี่ (เช่น https://...)"
                       value={url}
                       onChange={(e) => {
                         setUrl(e.target.value);
                         setError('');
                       }}
-                      className="flex-grow h-11 bg-neutral-950 border border-neutral-800 text-white rounded-none px-4 text-xs focus:border-brand-orange outline-none font-mono tracking-wider transition-colors placeholder:text-neutral-700"
+                      className="flex-grow h-12 bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 text-sm focus:border-brand-orange focus:bg-white outline-none transition-colors placeholder:text-slate-400"
                     />
                     <button
                       type="submit"
-                      className="h-11 px-6 bg-white hover:bg-neutral-200 text-black text-xs font-black tracking-widest uppercase rounded-none flex items-center justify-center gap-1.5 transition-all flex-shrink-0"
+                      className="h-12 px-6 bg-brand-orange hover:bg-brand-orange-hover text-white text-sm font-bold rounded-xl flex items-center justify-center gap-1.5 transition-all flex-shrink-0"
                     >
                       {copied ? <Check className="w-4 h-4" /> : <Search className="w-4 h-4" />}
-                      {copied ? 'COPIED' : 'CHECK_PRICE'}
+                      {copied ? 'คัดลอกแล้ว' : 'ส่งเช็คราคา'}
                     </button>
                   </div>
                 </form>
 
                 {error && (
-                  <p className="text-[10px] text-brand-orange font-bold">
+                  <p className="text-xs text-red-500 font-bold">
                     {error}
                   </p>
                 )}
 
-                <div className="text-[9px] text-neutral-500 leading-normal border-t border-neutral-900 pt-3">
-                  *PASTING AND SUBMITTING WILL PRE-FORMAT AND COPY SOURCING TEXT, OPENING THE DIRECT CHANNEL TO AN ADMIN.
+                <div className="text-xs text-slate-400 leading-normal border-t border-slate-100 pt-3">
+                  *ระบบจะคัดลอกข้อความเตรียมไว้ให้ เพื่อให้คุณทักแชทคุยกับแอดมินเช็คราคาได้สะดวกรวดเร็วที่สุดครับ
                 </div>
               </div>
             </div>
 
           </div>
 
-          {/* Operational Quick stats in monospaced grids */}
-          <div className="grid grid-cols-3 border-t border-neutral-900 pt-8 gap-4 font-mono">
+          {/* Operational Quick stats */}
+          <div className="grid grid-cols-3 border-t border-slate-100 pt-8 gap-4">
             <div>
-              <span className="block text-[10px] text-neutral-500 uppercase tracking-widest">[ AUTHENTICITY ]</span>
-              <span className="block text-xs font-black text-white mt-1">100% GENUINE</span>
+              <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">รับประกันสินค้า</span>
+              <span className="block text-sm md:text-base font-bold text-slate-800 mt-1">ของแท้ 100%</span>
             </div>
             <div>
-              <span className="block text-[10px] text-neutral-500 uppercase tracking-widest">[ ESTIMATED TIMELINE ]</span>
-              <span className="block text-xs font-black text-white mt-1">20-30 DAYS</span>
+              <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">ระยะเวลานำเข้า</span>
+              <span className="block text-sm md:text-base font-bold text-slate-800 mt-1">20 - 30 วัน</span>
             </div>
             <div>
-              <span className="block text-[10px] text-neutral-500 uppercase tracking-widest">[ TAX/DUTY ]</span>
-              <span className="block text-xs font-black text-white mt-1">ALL-INCLUSIVE</span>
+              <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">ค่าใช้จ่าย</span>
+              <span className="block text-sm md:text-base font-bold text-slate-800 mt-1">รวมภาษีนำเข้าแล้ว</span>
             </div>
           </div>
 
         </div>
 
         {/* Right Column: Split grid lookbook images */}
-        <div className="lg:col-span-5 grid grid-cols-2 bg-neutral-950 min-h-[400px] lg:min-h-0 border-t border-neutral-900 lg:border-t-0">
-          <div className="relative border-r border-neutral-900 overflow-hidden group">
+        <div className="lg:col-span-5 grid grid-cols-2 bg-slate-50 min-h-[400px] lg:min-h-0 border-t border-slate-100 lg:border-t-0 p-4 md:p-8 gap-4">
+          <div className="relative overflow-hidden group rounded-2xl shadow-sm">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&q=80&w=600" 
               alt="Streetwear Lookbook 1"
-              className="absolute inset-0 w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
-            <span className="absolute bottom-4 left-4 font-mono text-[9px] text-neutral-400 uppercase tracking-widest">[ SOURCED ITEM 01 ]</span>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <span className="absolute bottom-4 left-4 text-xs font-bold text-white tracking-wide">ภาพผลงานบริการสั่งซื้อ 01</span>
           </div>
           
-          <div className="relative overflow-hidden group">
+          <div className="relative overflow-hidden group rounded-2xl shadow-sm">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=600" 
               alt="Streetwear Lookbook 2"
-              className="absolute inset-0 w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
-            <span className="absolute bottom-4 left-4 font-mono text-[9px] text-neutral-400 uppercase tracking-widest">[ SOURCED ITEM 02 ]</span>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <span className="absolute bottom-4 left-4 text-xs font-bold text-white tracking-wide">ภาพผลงานบริการสั่งซื้อ 02</span>
           </div>
         </div>
 
       </div>
 
       {/* Sleek moving marquee text banner */}
-      <div className="w-full border-t border-neutral-900 bg-black py-4 overflow-hidden select-none">
+      <div className="w-full border-t border-slate-100 bg-slate-50 py-4 overflow-hidden select-none">
         <div className="relative w-full flex items-center justify-center">
-          <div className="flex whitespace-nowrap animate-marquee text-xs md:text-sm font-mono font-black uppercase tracking-[0.25em] text-white">
+          <div className="flex whitespace-nowrap animate-marquee text-xs md:text-sm font-semibold tracking-[0.1em] text-slate-600">
             {Array(4).fill(
               <span className="mx-8">
-                GLOBAL SOURCING ✦ US, JP, UK, KR, CN ✦ 100% AUTHENTIC GUARANTEED ✦ DOOR-TO-DOOR INCLUSIVE PRICING ✦ DOOR-TO-DOOR DELIVERY ✦
+                GLOBAL SOURCING ✦ สั่งง่าย ได้ของแท้จาก US, JP, UK, KR, CN ✦ เคลียร์ภาษีนำเข้าครบถ้วน ✦ จัดส่งถึงหน้าบ้านคุณทั่วไทย ✦
               </span>
             )}
           </div>
@@ -186,51 +184,51 @@ export default function HeroSection() {
 
       {/* Pricing Checker Success Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fade-in">
-          <div className="w-full max-w-md bg-neutral-950 border border-neutral-800 p-6 rounded-none shadow-2xl relative text-left">
-            <h3 className="text-md font-mono font-black text-white uppercase tracking-widest mb-3 flex items-center gap-2">
-              <Check className="w-5 h-5 text-brand-emerald" /> [COPY_SUCCESSFUL]
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
+          <div className="w-full max-w-md bg-white border border-slate-200 p-6 rounded-2xl shadow-2xl relative text-left">
+            <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+              <Check className="w-5 h-5 text-emerald-500" /> คัดลอกข้อความสำเร็จ!
             </h3>
-            <p className="text-xs font-mono text-neutral-400 leading-relaxed mb-4">
-              ระบบได้คัดลอกข้อความและลิงก์เรียบร้อยแล้ว กรุณาทักแชทหลักด้านล่างเพื่อตรวจสอบราคา:
+            <p className="text-sm text-slate-500 leading-relaxed mb-4">
+              ระบบได้คัดลอกข้อความและลิงก์ความต้องการของแบรนด์เนมเรียบร้อยแล้ว กรุณาทักแชทแอดมินเพื่อเช็คราคาต่อได้เลยครับ:
             </p>
             
-            <div className="bg-neutral-900 border border-neutral-850 p-4 rounded-none text-xs font-mono text-neutral-300 break-all mb-5">
+            <div className="bg-slate-50 border border-slate-100 p-4 rounded-xl text-xs text-slate-600 break-all mb-5 font-mono">
               {`สวัสดีครับ อยากเช็กราคานำเข้าสินค้านี้ครับ:\n${url}`}
             </div>
 
-            <p className="text-xs font-mono text-brand-orange font-bold uppercase tracking-widest mb-4">
-              ➔ SELECT CHAT CHANNEL TO ADMIN
+            <p className="text-xs font-bold text-brand-orange uppercase tracking-wider mb-4">
+              ➔ เลือกช่องทางแชทคุยกับแอดมิน
             </p>
             
-            <div className="flex flex-col gap-2.5 font-mono">
+            <div className="flex flex-col gap-2.5">
               <a
                 href="https://lin.ee/ByS27YW"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeModal}
-                className="w-full h-11 bg-brand-orange hover:bg-brand-orange-hover text-white text-xs font-black tracking-widest uppercase rounded-none flex items-center justify-center gap-2 transition-all"
+                className="w-full h-12 bg-[#06C755] hover:bg-[#05b34c] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm"
               >
                 <MessageCircle className="w-4 h-4" />
-                LINE @hij2541a
+                คุยทาง LINE OA
               </a>
               <a
                 href="https://m.me/us2th"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeModal}
-                className="w-full h-11 bg-white hover:bg-neutral-200 text-black text-xs font-black tracking-widest uppercase rounded-none flex items-center justify-center gap-2 transition-all"
+                className="w-full h-12 bg-[#1877F2] hover:bg-[#166fe5] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm"
               >
                 <Send className="w-4 h-4" />
-                FB MESSENGER
+                คุยทาง FB Messenger
               </a>
             </div>
 
             <button
               onClick={closeModal}
-              className="w-full text-center text-xs font-mono text-neutral-500 hover:text-white transition-colors mt-5 py-1 uppercase tracking-widest"
+              className="w-full text-center text-xs font-semibold text-slate-400 hover:text-slate-600 transition-colors mt-5 py-1 uppercase tracking-wider"
             >
-              [ CLOSE_WINDOW ]
+              ปิดหน้าต่างนี้
             </button>
           </div>
         </div>
