@@ -222,7 +222,7 @@ export default function FlashSaleSection() {
 
                   {/* Price Tag Badge (Top-Right) */}
                   {!isExpired && (
-                    <div className="absolute top-3 right-3 bg-white text-slate-900 px-3.5 py-1.5 rounded-2xl text-sm md:text-base font-semibold shadow-lg border border-slate-100 z-10 font-heading tracking-tight flex items-center justify-center">
+                    <div className="absolute top-3 right-3 bg-white text-slate-900 px-5 py-3 rounded-2xl text-xl md:text-2xl font-black shadow-xl border border-slate-100 z-10 font-heading tracking-tight flex items-center justify-center">
                       <span>{formatPriceString(deal.deal_price)}</span>
                     </div>
                   )}
@@ -234,15 +234,15 @@ export default function FlashSaleSection() {
                     </div>
                     
                     {deal.description && (
-                      <div className="text-[10px] text-slate-300 font-normal leading-normal font-sans">
+                      <div className="text-[10px] text-slate-350 font-normal leading-normal font-sans">
                         {deal.description}
                       </div>
                     )}
 
                     {deal.shipping_time && (
-                      <span className="inline-flex items-center gap-0.5 text-[9px] font-normal text-emerald-450 font-sans mt-0.5">
+                      <div className="text-[10px] font-normal text-white/80 font-sans mt-0.5 block">
                         {deal.shipping_time}
-                      </span>
+                      </div>
                     )}
                   </div>
                 </div>
