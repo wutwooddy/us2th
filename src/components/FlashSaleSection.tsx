@@ -178,108 +178,101 @@ export default function FlashSaleSection() {
             return (
               <div 
                 key={deal.id}
-                className={`bg-[#fbfbfb] border rounded-3xl overflow-hidden shadow-sm flex flex-col justify-between transition-all duration-300 hover:shadow-md ${
+                className={`flex flex-col bg-white border rounded-[32px] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 ${
                   isExpired 
                     ? 'border-slate-100 opacity-60' 
                     : 'border-slate-100 hover:border-slate-200'
                 }`}
               >
-                <div>
-                  {/* Image wrapper */}
-                  <div className="aspect-[4/3] relative overflow-hidden bg-slate-100">
-                    {deal.img_url ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img 
-                        src={deal.img_url} 
-                        alt={deal.title}
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center text-xs text-slate-400 font-semibold bg-slate-50">
-                        ไม่มีรูปภาพสินค้า
-                      </div>
-                    )}
-                    
-                    {/* Active Timer badge */}
-                    {deal.end_time && (
-                      <div className={`absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold shadow-md ${
-                        isExpired 
-                          ? 'bg-slate-900 text-white' 
-                          : 'bg-brand-green text-white animate-pulse'
-                      }`}>
-                        <Timer className="w-3.5 h-3.5" />
-                        <span>{countdown}</span>
-                      </div>
-                    )}
-                  </div>
+                {/* Poster Block (Image & Text Overlay) */}
+                <div className="aspect-[4/5] relative w-full overflow-hidden bg-slate-50">
+                  {deal.img_url ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img 
+                      src={deal.img_url} 
+                      alt={deal.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-xs text-slate-400 font-semibold bg-slate-50">
+                      ไม่มีรูปภาพสินค้า
+                    </div>
+                  )}
+                  
+                  {/* Active Timer badge */}
+                  {deal.end_time && (
+                    <div className={`absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold shadow-md ${
+                      isExpired 
+                        ? 'bg-slate-900 text-white' 
+                        : 'bg-brand-green text-white animate-pulse'
+                    }`}>
+                      <Timer className="w-3 h-3" />
+                      <span>{countdown}</span>
+                    </div>
+                  )}
 
-                  {/* Text details */}
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold text-slate-850 mb-3 leading-snug font-heading">
+                  {/* Dark Gradient Overlay with Text Details */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent flex flex-col justify-end p-5 text-white text-left">
+                    <h3 className="text-sm md:text-base font-bold leading-snug mb-1 text-white font-heading">
                       {deal.title}
                     </h3>
                     
-                    <div className="flex flex-wrap items-center gap-2 mb-3">
-                      {deal.shipping_time && (
-                        <span className="inline-flex items-center gap-1 bg-slate-100/80 px-2.5 py-1 rounded-lg text-xs font-bold text-slate-600 font-heading">
-                          {deal.shipping_time}
-                        </span>
-                      )}
-                    </div>
-
                     {deal.description && (
-                      <p className="text-xs text-slate-500 mb-4 font-semibold leading-relaxed whitespace-pre-line">
+                      <p className="text-[10.5px] text-slate-350 mb-2 font-medium leading-relaxed">
                         {deal.description}
                       </p>
                     )}
 
-                    {deal.sizes && (
-                      <div className="mb-4 text-xs font-bold font-heading flex flex-wrap items-baseline gap-1.5">
-                        <span className="text-slate-400 font-semibold font-sans">ไซส์ที่มี:</span>
-                        <span className="bg-brand-blue/5 text-brand-blue px-2.5 py-0.5 rounded-lg">
-                          {deal.sizes}
-                        </span>
-                      </div>
-                    )}
-                    
-                    <div className="flex items-baseline gap-3 mb-2">
-                      <span className="text-2xl font-black text-brand-blue font-heading">
+                    <div className="flex items-baseline gap-2 mb-1">
+                      <span className="text-2xl font-black text-brand-green tracking-tight font-heading">
                         {deal.deal_price}
                       </span>
                       {deal.original_price && (
-                        <span className="text-sm font-semibold text-slate-400 line-through">
+                        <span className="text-xs text-slate-400 line-through font-medium">
                           ปกติ {deal.original_price}
                         </span>
                       )}
                     </div>
-                    
-                    <p className="text-xs text-slate-400 font-semibold">
+
+                    <p className="text-[9px] text-slate-400 font-semibold leading-tight mb-2">
                       *ราคาเน็ตเหมาจ่ายเบ็ดเสร็จรวมส่งถึงหน้าบ้าน ไม่มีเก็บเงินเพิ่มภายหลัง
                     </p>
+
+                    {deal.sizes && (
+                      <div className="text-[10.5px] text-slate-200 font-bold mb-2 font-heading truncate">
+                        <span className="text-slate-400 font-normal font-sans">ไซส์:</span> {deal.sizes}
+                      </div>
+                    )}
+
+                    {deal.shipping_time && (
+                      <span className="inline-flex items-center gap-1 bg-emerald-950/40 border border-emerald-900/30 text-[9px] font-bold text-brand-green px-2 py-0.5 rounded w-fit font-heading">
+                        {deal.shipping_time}
+                      </span>
+                    )}
                   </div>
                 </div>
 
-                {/* Card Button */}
-                <div className="px-6 pb-6 pt-0 flex flex-col gap-2">
+                {/* Stacked Action Buttons */}
+                <div className="p-4 flex flex-col gap-1.5 bg-white">
                   <button
                     onClick={() => handleOrderDeal(deal)}
                     disabled={isExpired}
-                    className={`w-full h-12 rounded-xl text-sm font-bold flex items-center justify-center gap-1.5 transition-all shadow-sm ${
+                    className={`w-full h-11 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-sm ${
                       isExpired
                         ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
                         : 'bg-brand-green hover:bg-brand-green-hover text-white cursor-pointer hover:shadow'
                     }`}
                   >
-                    <Zap className="w-4 h-4" />
-                    {isExpired ? 'หมดเขตช่วงโปร' : 'ฝากสั่งด่วน'}
+                    <Zap className="w-3.5 h-3.5" />
+                    {isExpired ? 'หมดเขตช่วงโปร' : 'ฝากสั่งซื้อด่วน'}
                   </button>
                   
                   {!isExpired && (deal.affiliate_url || getSizeChartUrl(deal)) && (
-                    <div className="flex gap-2 w-full">
+                    <div className="flex gap-1.5 w-full">
                       {getSizeChartUrl(deal) && (
                         <button
                           onClick={() => setSizeChartModalUrl(getSizeChartUrl(deal))}
-                          className="flex-grow h-10 border border-slate-200 hover:border-slate-350 hover:bg-slate-50 text-slate-600 rounded-xl text-xs font-bold flex items-center justify-center transition-all cursor-pointer font-heading"
+                          className="flex-grow h-9 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-600 rounded-xl text-[10px] font-bold flex items-center justify-center transition-all cursor-pointer font-heading"
                         >
                           ตารางไซส์
                         </button>
@@ -290,7 +283,7 @@ export default function FlashSaleSection() {
                           href={deal.affiliate_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-grow h-10 border border-slate-200 hover:border-slate-350 hover:bg-slate-50 text-slate-600 rounded-xl text-xs font-bold flex items-center justify-center transition-all cursor-pointer font-heading text-center"
+                          className="flex-grow h-9 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-600 rounded-xl text-[10px] font-bold flex items-center justify-center transition-all cursor-pointer font-heading text-center"
                           title="ดูโพสต์ต้นฉบับ"
                         >
                           ดูโพสต์
