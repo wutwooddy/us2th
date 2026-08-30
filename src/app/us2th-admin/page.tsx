@@ -14,6 +14,7 @@ interface Promotion {
   affiliate_url: string | null;
   end_time: string | null;
   is_active: boolean;
+  shipping_time: string | null;
 }
 
 interface Article {
@@ -49,6 +50,7 @@ export default function AdminPage() {
   const [dealImgUrl, setDealImgUrl] = useState('');
   const [dealAffiliateUrl, setDealAffiliateUrl] = useState('');
   const [dealDurationHours, setDealDurationHours] = useState('24');
+  const [dealShippingTime, setDealShippingTime] = useState('✈️ พรีออเดอร์ 20-30 วัน');
   const [dealSaveLoading, setDealSaveLoading] = useState(false);
   const [dealSuccessMsg, setDealSuccessMsg] = useState('');
 
@@ -137,6 +139,7 @@ export default function AdminPage() {
         affiliate_url: dealAffiliateUrl || null,
         end_time: endTime,
         is_active: true,
+        shipping_time: dealShippingTime,
       });
 
       if (error) throw error;
@@ -148,6 +151,7 @@ export default function AdminPage() {
       setDealOrigPrice('');
       setDealImgUrl('');
       setDealAffiliateUrl('');
+      setDealShippingTime('✈️ พรีออเดอร์ 20-30 วัน');
       fetchData();
     } catch (err: any) {
       alert(`Error saving promotion: ${err.message}`);
@@ -451,6 +455,21 @@ export default function AdminPage() {
                     <option value="168">168 ชั่วโมง (7 วัน)</option>
                   </select>
                 </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-650 mb-1.5 uppercase tracking-wider font-heading">
+                    ระยะเวลาการจัดส่ง / ประเภทดีล
+                  </label>
+                  <select
+                    value={dealShippingTime}
+                    onChange={(e) => setDealShippingTime(e.target.value)}
+                    className="w-full h-11 bg-slate-50 border border-slate-200 focus:bg-white focus:border-brand-blue rounded-xl px-4 text-sm text-slate-800 outline-none transition-all font-semibold"
+                  >
+                    <option value="✈️ พรีออเดอร์ 20-30 วัน">✈️ พรีออเดอร์ 20-30 วัน (USA/UK/EU)</option>
+                    <option value="✈️ พรีออเดอร์ 15-20 วัน">✈️ พรีออเดอร์ 15-20 วัน (JP/KR/CN)</option>
+                    <option value="📦 พร้อมส่งในไทย 2-5 วัน">📦 พร้อมส่งในไทย 2-5 วัน (สินค้าอยู่ไทย)</option>
+                  </select>
+                </div>
               </div>
 
               <div>
@@ -649,9 +668,16 @@ export default function AdminPage() {
                               <span className="block text-xs font-bold text-slate-800 truncate leading-snug font-heading" title={deal.title}>
                                 {deal.title}
                               </span>
-                              <span className="text-[10px] font-black text-brand-blue font-heading mt-0.5 block">
-                                {deal.deal_price}
-                              </span>
+                              <div className="flex gap-2 items-center mt-0.5">
+                                <span className="text-[10px] font-black text-brand-blue font-heading">
+                                  {deal.deal_price}
+                                </span>
+                                {deal.shipping_time && (
+                                  <span className="text-[9px] font-bold text-slate-400">
+                                    • {deal.shipping_time}
+                                  </span>
+                                )}
+                              </div>
                             </div>
                           </div>
                           

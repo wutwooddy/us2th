@@ -13,6 +13,7 @@ interface Promotion {
   affiliate_url: string | null;
   end_time: string | null;
   is_active: boolean;
+  shipping_time: string | null;
 }
 
 export default function FlashSaleSection() {
@@ -180,9 +181,15 @@ export default function FlashSaleSection() {
 
                   {/* Text details */}
                   <div className="p-6">
-                    <h3 className="text-lg font-bold text-slate-850 mb-4 leading-snug font-heading">
+                    <h3 className="text-lg font-bold text-slate-850 mb-3 leading-snug font-heading">
                       {deal.title}
                     </h3>
+                    
+                    {deal.shipping_time && (
+                      <div className="mb-4 inline-flex items-center gap-1 bg-slate-100/80 px-2.5 py-1 rounded-lg text-xs font-bold text-slate-600 font-heading">
+                        {deal.shipping_time}
+                      </div>
+                    )}
                     
                     <div className="flex items-baseline gap-3 mb-2">
                       <span className="text-2xl font-black text-brand-blue font-heading">
