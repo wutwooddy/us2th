@@ -202,19 +202,31 @@ export default function FlashSaleSection() {
                 </div>
 
                 {/* Card Button */}
-                <div className="px-6 pb-6 pt-0">
+                <div className="px-6 pb-6 pt-0 flex gap-2">
                   <button
                     onClick={() => handleOrderDeal(deal)}
                     disabled={isExpired}
-                    className={`w-full h-12 rounded-xl text-sm font-bold flex items-center justify-center gap-1.5 transition-all shadow-sm ${
+                    className={`flex-grow h-12 rounded-xl text-sm font-bold flex items-center justify-center gap-1.5 transition-all shadow-sm ${
                       isExpired
-                        ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                        ? 'bg-slate-200 text-slate-400 cursor-not-allowed w-full'
                         : 'bg-brand-green hover:bg-brand-green-hover text-white cursor-pointer hover:shadow'
                     }`}
                   >
                     <Zap className="w-4 h-4" />
-                    {isExpired ? 'หมดเขตช่วงโปรโมชั่น' : 'ฝากสั่งซื้อด่วน'}
+                    {isExpired ? 'หมดเขตช่วงโปร' : 'ฝากสั่งด่วน'}
                   </button>
+                  
+                  {deal.affiliate_url && !isExpired && (
+                    <a
+                      href={deal.affiliate_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 h-12 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-550 rounded-xl text-xs font-bold flex items-center justify-center transition-all cursor-pointer font-heading"
+                      title="ดูโพสต์ต้นฉบับ"
+                    >
+                      ดูโพสต์
+                    </a>
+                  )}
                 </div>
               </div>
             );
