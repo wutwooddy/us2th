@@ -56,18 +56,18 @@ export default function HeroSection() {
             <div className="flex items-center gap-2 text-xs font-bold text-slate-400 mb-6">
               <span>[ บริการนำเข้าสินค้า ]</span>
               <span>✦</span>
-              <span className="text-brand-orange">SNEAKERS & STREETWEAR SOURCING</span>
+              <span className="text-brand-blue font-heading">SNEAKERS & STREETWEAR SOURCING</span>
             </div>
 
-            {/* Title with Kanit */}
-            <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold tracking-tight text-slate-900 mb-6 leading-tight">
+            {/* Title with Prompt */}
+            <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold tracking-tight text-slate-900 mb-6 leading-tight font-heading">
               รับสั่งซื้อและนำเข้า <br />
-              <span className="text-brand-orange font-extrabold">ของหายากจากทั่วโลก</span> <br />
+              <span className="text-brand-blue font-extrabold">ของหายากจากทั่วโลก</span> <br />
               ส่งถึงหน้าบ้านคุณ
             </h1>
 
             {/* Sub-headline */}
-            <p className="max-w-lg text-sm md:text-base text-slate-600 leading-relaxed mb-8">
+            <p className="max-w-lg text-sm md:text-base text-slate-600 leading-relaxed mb-8 font-semibold">
               บริการรับกดและนำเข้า รองเท้าสนีกเกอร์ เสื้อผ้าสตรีทแวร์ และของสะสมหายากจากทุกมุมโลก (US, JP, UK, EU, KR, HK, SG) ราคาเหมาจ่ายเบ็ดเสร็จรวมส่งถึงหน้าบ้านคุณ ไม่มีเก็บเพิ่มภายหลัง ปลอดภัย มั่นใจได้ของแท้ 100%
             </p>
 
@@ -75,16 +75,16 @@ export default function HeroSection() {
             <div className="w-full max-w-xl bg-white border border-slate-100 rounded-2xl p-6 shadow-sm relative overflow-hidden">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
                 <div className="flex items-center gap-2">
-                  <Terminal className="w-4 h-4 text-brand-orange" />
-                  <span className="text-sm font-bold text-slate-800">
+                  <Terminal className="w-4 h-4 text-brand-blue" />
+                  <span className="text-sm font-bold text-slate-800 font-heading">
                     เช็คราคาเหมาจ่ายนำเข้าฟรี
                   </span>
                 </div>
-                <span className="w-2 h-2 rounded-full bg-brand-emerald animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-brand-green animate-pulse" />
               </div>
 
               <div className="space-y-4">
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-500 font-semibold">
                   วางลิงก์สินค้าจากเว็บต่างประเทศ (เช่น StockX, Nike, JP Web) ด้านล่างเพื่อประเมินราคาเหมาจ่าย
                 </p>
 
@@ -98,11 +98,11 @@ export default function HeroSection() {
                         setUrl(e.target.value);
                         setError('');
                       }}
-                      className="flex-grow h-12 bg-slate-50/50 border border-slate-200 text-slate-800 rounded-xl px-4 text-sm focus:border-brand-orange focus:bg-white outline-none transition-colors placeholder:text-slate-400 font-medium"
+                      className="flex-grow h-12 bg-slate-50/50 border border-slate-200 text-slate-800 rounded-xl px-4 text-sm focus:border-brand-blue focus:bg-white outline-none transition-colors placeholder:text-slate-400 font-medium"
                     />
                     <button
                       type="submit"
-                      className="h-12 px-6 bg-slate-900 hover:bg-slate-850 text-white text-sm font-bold rounded-xl flex items-center justify-center gap-1.5 transition-all flex-shrink-0"
+                      className="h-12 px-6 bg-slate-900 hover:bg-slate-850 text-white text-sm font-bold rounded-xl flex items-center justify-center gap-1.5 transition-all flex-shrink-0 cursor-pointer font-heading"
                     >
                       {copied ? <Check className="w-4 h-4" /> : <Search className="w-4 h-4" />}
                       {copied ? 'คัดลอกแล้ว' : 'ส่งเช็คราคา'}
@@ -116,7 +116,7 @@ export default function HeroSection() {
                   </p>
                 )}
 
-                <div className="text-xs text-slate-400 leading-normal border-t border-slate-100 pt-3">
+                <div className="text-xs text-slate-400 leading-normal border-t border-slate-100 pt-3 font-semibold">
                   *ระบบจะคัดลอกข้อความเพื่อทักแชทคุยกับแอดมินเพื่อประเมินราคาได้สะดวกรวดเร็วที่สุดครับ
                 </div>
               </div>
@@ -128,15 +128,15 @@ export default function HeroSection() {
           <div className="grid grid-cols-3 border-t border-slate-100 pt-8 gap-4">
             <div>
               <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">รับประกันสินค้า</span>
-              <span className="block text-sm md:text-base font-bold text-slate-800 mt-1">ของแท้ 100%</span>
+              <span className="block text-sm md:text-base font-bold text-slate-800 mt-1 font-heading">ของแท้ 100%</span>
             </div>
             <div>
               <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">ระยะเวลานำเข้า</span>
-              <span className="block text-sm md:text-base font-bold text-slate-800 mt-1">20 - 30 วัน</span>
+              <span className="block text-sm md:text-base font-bold text-slate-800 mt-1 font-heading">20 - 30 วัน</span>
             </div>
             <div>
               <span className="block text-xs text-slate-400 font-bold uppercase tracking-wider">ราคาบริการ</span>
-              <span className="block text-sm md:text-base font-bold text-slate-800 mt-1">เหมาจ่ายเบ็ดเสร็จ</span>
+              <span className="block text-sm md:text-base font-bold text-slate-800 mt-1 font-heading">เหมาจ่ายเบ็ดเสร็จ</span>
             </div>
           </div>
 
@@ -183,7 +183,7 @@ export default function HeroSection() {
               {`สวัสดีครับ อยากเช็กราคานำเข้าสินค้านี้ครับ:\n${url}`}
             </div>
 
-            <p className="text-xs font-bold text-brand-orange uppercase tracking-wider mb-4">
+            <p className="text-xs font-bold text-brand-blue uppercase tracking-wider mb-4">
               ➔ เลือกช่องทางแชทคุยกับแอดมิน
             </p>
             

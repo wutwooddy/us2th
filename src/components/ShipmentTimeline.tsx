@@ -63,19 +63,19 @@ export default function ShipmentTimeline() {
         <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-100 pb-8 mb-16">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="w-2 h-2 rounded-full bg-brand-emerald animate-pulse" />
-              <span className="text-xs font-bold text-brand-emerald uppercase tracking-wider">[ ติดตามสถานะการนำเข้า ]</span>
+              <span className="w-2 h-2 rounded-full bg-brand-blue animate-pulse" />
+              <span className="text-xs font-bold text-brand-blue uppercase tracking-widest">[ ติดตามสถานะการนำเข้า ]</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 font-heading">
               สถานะตู้สินค้าล่าสุด
             </h2>
-            <p className="text-sm md:text-base text-slate-500 mt-2 max-w-lg leading-relaxed">
+            <p className="text-sm md:text-base text-slate-500 mt-2 max-w-lg leading-relaxed font-semibold">
               ติดตามเส้นทางการขนส่งสินค้าของแต่ละรอบบิน/รอบเรือจากต่างประเทศแบบเรียลไทม์
             </p>
           </div>
 
-          <div className="mt-6 md:mt-0 border border-emerald-100 bg-emerald-50/50 rounded-2xl px-4 py-2.5 text-xs md:text-sm text-emerald-800 flex items-center gap-2 font-semibold">
-            <ShieldCheck className="w-4 h-4 text-emerald-600" />
+          <div className="mt-6 md:mt-0 border border-brand-green/20 bg-brand-green/5 rounded-2xl px-4 py-2.5 text-xs md:text-sm text-brand-green flex items-center gap-2 font-bold font-heading">
+            <ShieldCheck className="w-4 h-4 text-brand-green" />
             <span>ดำเนินการนำเข้าอย่างเป็นระบบ // เคลียร์จบทุกขั้นตอนไม่มีบวกเพิ่ม</span>
           </div>
         </div>
@@ -86,12 +86,12 @@ export default function ShipmentTimeline() {
             return (
               <div 
                 key={shipment.id}
-                className="bg-slate-50/50 border border-slate-100 p-6 flex flex-col justify-between hover:border-slate-200 transition-colors rounded-3xl shadow-sm"
+                className="bg-white border border-slate-100 p-6 flex flex-col justify-between hover:border-slate-200 transition-colors rounded-3xl shadow-sm"
               >
                 <div>
                   {/* Top Bar */}
                   <div className="flex justify-between items-center mb-6">
-                    <span className="text-sm font-bold text-brand-orange">
+                    <span className="text-sm font-bold text-brand-blue font-heading">
                       // {shipment.id}
                     </span>
                     <span className="text-xs text-slate-500 border border-slate-200 px-2.5 py-0.5 rounded-full uppercase tracking-wider bg-white font-semibold">

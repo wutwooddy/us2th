@@ -13,24 +13,27 @@ export default function Header() {
           href="#" 
           className="px-6 md:px-8 flex flex-col justify-center border-r border-slate-100 select-none group"
         >
-          <span className="text-xl md:text-2xl font-bold tracking-tight text-slate-900">
-            US<span className="text-brand-orange group-hover:text-brand-orange transition-colors">2</span>TH
+          <span className="text-xl md:text-2xl font-bold tracking-tight text-slate-900 font-heading">
+            US<span className="text-brand-blue group-hover:text-brand-blue-hover transition-colors">2</span>TH
           </span>
-          <span className="text-[10px] tracking-wider text-slate-400 font-bold -mt-0.5">
+          <span className="text-[10px] tracking-wider text-slate-400 font-bold -mt-0.5 font-heading">
             SNEAKERS & STREETWEAR
           </span>
         </a>
 
-        {/* Navigation - Desktop (Spans middle column of grid) */}
-        <nav className="hidden md:flex flex-grow items-center px-10 text-sm font-semibold tracking-wide text-slate-600 gap-8">
-          <a href="#showcase" className="hover:text-brand-orange transition-colors relative py-5">
+        {/* Navigation - Desktop */}
+        <nav className="hidden md:flex flex-grow items-center px-10 text-sm font-bold tracking-wide text-slate-500 gap-8">
+          <a href="#showcase" className="hover:text-brand-blue transition-colors relative py-5">
             ผลงานล่าสุด
           </a>
-          <a href="#tracker" className="hover:text-brand-orange transition-colors relative py-5">
-            สถานะการจัดส่ง
+          <a href="#magazine" className="hover:text-brand-blue transition-colors relative py-5">
+            US2TH Journal
           </a>
-          <a href="#inquiry" className="hover:text-brand-orange transition-colors relative py-5">
-            เช็คราคา / สั่งของ
+          <a href="#tracker" className="hover:text-brand-blue transition-colors relative py-5">
+            สถานะขนส่ง
+          </a>
+          <a href="#inquiry" className="hover:text-brand-blue transition-colors relative py-5">
+            ฝากหาของ / เช็คราคา
           </a>
         </nav>
 
@@ -41,7 +44,7 @@ export default function Header() {
             href="https://lin.ee/ByS27YW"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 px-4 py-2 bg-[#06C755] hover:bg-[#05b34c] text-white text-xs font-bold rounded-full transition-all tracking-wide"
+            className="flex items-center justify-center gap-1.5 px-4 py-2 bg-brand-green hover:bg-brand-green-hover text-white text-xs font-bold rounded-full transition-all tracking-wide shadow-sm"
           >
             <MessageCircle className="w-4 h-4 text-white" />
             <span>LINE OA</span>
@@ -52,7 +55,7 @@ export default function Header() {
             href="https://www.facebook.com/us2th"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 px-4 py-2 bg-[#1877F2] hover:bg-[#166fe5] text-white text-xs font-bold rounded-full transition-all tracking-wide"
+            className="flex items-center justify-center gap-1.5 px-4 py-2 bg-brand-blue hover:bg-brand-blue-hover text-white text-xs font-bold rounded-full transition-all tracking-wide shadow-sm"
           >
             <Send className="w-4 h-4 text-white" />
             <span>FACEBOOK</span>

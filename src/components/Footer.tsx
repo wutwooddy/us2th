@@ -13,11 +13,11 @@ export default function Footer() {
           
           {/* Terms 1: Authenticity */}
           <div className="flex gap-4 p-6 bg-white border border-slate-100 rounded-2xl shadow-sm">
-            <div className="w-10 h-10 rounded-full bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center text-brand-orange flex-shrink-0">
+            <div className="w-10 h-10 rounded-full bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-brand-blue flex-shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-base font-bold text-slate-850 mb-1.5">
+              <h4 className="text-base font-bold text-slate-850 mb-1.5 font-heading">
                 รับประกันของแท้ 100%
               </h4>
               <p className="text-sm text-slate-500 leading-relaxed font-semibold">
@@ -26,13 +26,13 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Terms 2: Import Timeline */}
+          {/* Terms 2: Import Sourcing Spped */}
           <div className="flex gap-4 p-6 bg-white border border-slate-100 rounded-2xl shadow-sm">
-            <div className="w-10 h-10 rounded-full bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center text-brand-orange flex-shrink-0">
+            <div className="w-10 h-10 rounded-full bg-brand-green/10 border border-brand-green/20 flex items-center justify-center text-brand-green flex-shrink-0">
               <Calendar className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-base font-bold text-slate-850 mb-1.5">
+              <h4 className="text-base font-bold text-slate-850 mb-1.5 font-heading">
                 ระยะเวลานำเข้าที่รวดเร็ว
               </h4>
               <p className="text-sm text-slate-500 leading-relaxed font-semibold">
@@ -43,11 +43,11 @@ export default function Footer() {
 
           {/* Terms 3: Import Sourcing Care */}
           <div className="flex gap-4 p-6 bg-white border border-slate-100 rounded-2xl shadow-sm">
-            <div className="w-10 h-10 rounded-full bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center text-brand-orange flex-shrink-0">
+            <div className="w-10 h-10 rounded-full bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-brand-blue flex-shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-base font-bold text-slate-850 mb-1.5">
+              <h4 className="text-base font-bold text-slate-850 mb-1.5 font-heading">
                 ราคาเหมาจ่ายเบ็ดเสร็จ
               </h4>
               <p className="text-sm text-slate-500 leading-relaxed font-semibold">
@@ -62,10 +62,10 @@ export default function Footer() {
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
           <div>
             <div className="flex flex-col mb-4">
-              <span className="text-2xl font-bold tracking-tight text-slate-900">
-                US<span className="text-brand-orange">2</span>TH
+              <span className="text-2xl font-bold tracking-tight text-slate-900 font-heading">
+                US<span className="text-brand-blue">2</span>TH
               </span>
-              <span className="text-xs tracking-wider text-slate-400 font-bold -mt-0.5">
+              <span className="text-[10px] tracking-wider text-slate-400 font-bold -mt-0.5 font-heading">
                 GLOBAL SOURCING PLATFORM
               </span>
             </div>
@@ -76,12 +76,12 @@ export default function Footer() {
           </div>
 
           {/* Direct Social Links */}
-          <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs md:text-sm font-bold text-slate-500">
+          <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs md:text-sm font-bold text-slate-550">
             <a
               href="https://lin.ee/ByS27YW"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-brand-orange flex items-center gap-1 transition-colors tracking-wide"
+              className="hover:text-brand-green flex items-center gap-1 transition-colors tracking-wide"
             >
               LINE OA @hij2541a <ArrowUpRight className="w-4 h-4 text-slate-400" />
             </a>
@@ -89,7 +89,7 @@ export default function Footer() {
               href="https://www.facebook.com/us2th"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-brand-orange flex items-center gap-1 transition-colors tracking-wide"
+              className="hover:text-brand-blue flex items-center gap-1 transition-colors tracking-wide"
             >
               FACEBOOK <ArrowUpRight className="w-4 h-4 text-slate-400" />
             </a>
@@ -97,7 +97,7 @@ export default function Footer() {
               href="https://bit.ly/3FFICJz"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-brand-orange flex items-center gap-1 transition-colors tracking-wide"
+              className="hover:text-brand-green flex items-center gap-1 transition-colors tracking-wide"
             >
               OPENCHAT <ArrowUpRight className="w-4 h-4 text-slate-400" />
             </a>

@@ -3,6 +3,7 @@ import SafetyBanner from '@/components/SafetyBanner';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import DeliveredGallery from '@/components/DeliveredGallery';
+import MagazineSection from '@/components/MagazineSection';
 import ShipmentTimeline from '@/components/ShipmentTimeline';
 import OpenChatBanner from '@/components/OpenChatBanner';
 import InquiryForm from '@/components/InquiryForm';
@@ -11,7 +12,7 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-dark-bg font-sans selection:bg-brand-orange selection:text-white antialiased">
+    <div className="flex flex-col min-h-screen bg-dark-bg font-sans selection:bg-brand-emerald selection:text-white antialiased">
       {/* Scam alert warning banner at the top */}
       <SafetyBanner />
 
@@ -22,6 +23,7 @@ export default function Home() {
       <main className="flex-grow">
         <HeroSection />
         <DeliveredGallery />
+        <MagazineSection />
         <ShipmentTimeline />
         <OpenChatBanner />
         <InquiryForm />
