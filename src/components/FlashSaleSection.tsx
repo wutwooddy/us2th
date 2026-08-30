@@ -20,10 +20,18 @@ interface Promotion {
 }
 
 const BRAND_SIZE_CHARTS: Record<string, string> = {
-  nike: 'https://static.nike.com/a/images/w_1920,c_limit/fb70f073-d334-4bf4-b21d-bd9c68a4bf0d/image.jpg',
-  jordan: 'https://static.nike.com/a/images/w_1920,c_limit/fb70f073-d334-4bf4-b21d-bd9c68a4bf0d/image.jpg',
-  adidas: 'https://www.soleracks.com/wp-content/uploads/2019/10/adidas-shoe-size-chart.png',
-  'new balance': 'https://www.soleracks.com/wp-content/uploads/2019/10/New-Balance-Shoe-Size-Chart.png',
+  nike: 'https://ftzmepexrmwiwhfjtgvp.supabase.co/storage/v1/object/public/assets/sizechart/nike.jpg',
+  jordan: 'https://ftzmepexrmwiwhfjtgvp.supabase.co/storage/v1/object/public/assets/sizechart/nike.jpg',
+  adidas: 'https://ftzmepexrmwiwhfjtgvp.supabase.co/storage/v1/object/public/assets/sizechart/adidas.jpg',
+  newbalance: 'https://ftzmepexrmwiwhfjtgvp.supabase.co/storage/v1/object/public/assets/sizechart/newbalance.jpg',
+  'new balance': 'https://ftzmepexrmwiwhfjtgvp.supabase.co/storage/v1/object/public/assets/sizechart/newbalance.jpg',
+  asics: 'https://ftzmepexrmwiwhfjtgvp.supabase.co/storage/v1/object/public/assets/sizechart/asics.jpg',
+  converse: 'https://ftzmepexrmwiwhfjtgvp.supabase.co/storage/v1/object/public/assets/sizechart/converse.jpg',
+  diadora: 'https://ftzmepexrmwiwhfjtgvp.supabase.co/storage/v1/object/public/assets/sizechart/diadora.jpg',
+  hoka: 'https://ftzmepexrmwiwhfjtgvp.supabase.co/storage/v1/object/public/assets/sizechart/hoka.jpg',
+  mizuno: 'https://ftzmepexrmwiwhfjtgvp.supabase.co/storage/v1/object/public/assets/sizechart/mizuno.jpg',
+  salomon: 'https://ftzmepexrmwiwhfjtgvp.supabase.co/storage/v1/object/public/assets/sizechart/salomon.jpg',
+  vans: 'https://ftzmepexrmwiwhfjtgvp.supabase.co/storage/v1/object/public/assets/sizechart/vans.jpg',
   'on running': 'https://www.soleracks.com/wp-content/uploads/2021/04/on-running-shoe-size-chart.png',
   on: 'https://www.soleracks.com/wp-content/uploads/2021/04/on-running-shoe-size-chart.png'
 };
