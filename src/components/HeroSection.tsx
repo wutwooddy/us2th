@@ -66,7 +66,7 @@ export default function HeroSection() {
 
             {/* Sub-headline */}
             <p className="max-w-lg text-sm md:text-base text-slate-600 leading-relaxed mb-8 font-semibold">
-              บริการรับกดและนำเข้า รองเท้าสนีกเกอร์ เสื้อผ้าสตรีทแวร์ และของสะสมหายากจากทุกมุมโลก (US, JP, UK, EU, KR, HK, SG) ราคาเหมาจ่ายเบ็ดเสร็จรวมส่งถึงหน้าบ้านคุณ ไม่มีเก็บเพิ่มภายหลัง ปลอดภัย มั่นใจได้ของแท้ 100%
+              รองเท้าสนีกเกอร์ เสื้อผ้าสตรีทแวร์ และของสะสมหายากจากทุกมุมโลก (US, JP, UK, EU, KR, HK, SG) ราคาเหมาจ่ายเบ็ดเสร็จรวมส่งถึงหน้าบ้านคุณ ไม่มีเก็บเพิ่มภายหลัง ปลอดภัย มั่นใจได้ของแท้ 100%
             </p>
 
             {/* Sourcing Price Checker Card */}
@@ -150,7 +150,7 @@ export default function HeroSection() {
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
             />
             <div className="absolute bottom-4 left-4 bg-white text-slate-800 border border-slate-100 px-3 py-1.5 rounded-xl text-xs font-bold shadow-md z-10 font-heading">
-              ✈️ รับสั่งซื้อและนำเข้า
+              ✈️ รับสั่ง รับกดสินค้า
             </div>
           </div>
           

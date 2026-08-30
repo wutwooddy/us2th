@@ -234,7 +234,7 @@ export default function FlashSaleSection() {
                     </div>
                     
                     {deal.description && (
-                      <div className="text-[10px] text-slate-350 font-normal leading-normal font-sans">
+                      <div className="text-[10px] text-white/70 font-normal leading-normal font-sans">
                         {deal.description}
                       </div>
                     )}
@@ -252,14 +252,14 @@ export default function FlashSaleSection() {
                   {deal.sizes && (
                     <div className="text-[11px] text-slate-500 font-normal leading-relaxed font-sans flex items-baseline gap-1.5">
                       <span className="text-slate-400 font-normal flex-shrink-0 font-sans">ไซส์:</span>
-                      <span className="text-slate-650 font-normal font-sans">{deal.sizes}</span>
+                      <span className="text-slate-600 font-normal font-sans">{deal.sizes}</span>
                     </div>
                   )}
 
                   {deal.original_price && (
                     <div className="text-[11px] text-slate-500 font-normal leading-relaxed font-sans flex items-baseline gap-1.5">
                       <span className="text-slate-400 font-normal flex-shrink-0 font-sans">ราคาปกติ:</span>
-                      <span className="text-slate-450 line-through font-normal font-sans">{deal.original_price}</span>
+                      <span className="text-slate-500 line-through font-normal font-sans">{deal.original_price}</span>
                     </div>
                   )}
 
@@ -326,7 +326,7 @@ export default function FlashSaleSection() {
               ระบบได้คัดลอกรายละเอียดดีลนี้เรียบร้อยแล้ว กรุณาทักแชทคุยกับแอดมินเพื่อจองสั่งซื้อสินค้าต่อได้ทันทีครับ:
             </p>
             
-            <div className="bg-slate-50 border border-slate-100 p-4 rounded-xl text-xs text-slate-650 break-all mb-5 font-mono">
+            <div className="bg-slate-50 border border-slate-100 p-4 rounded-xl text-xs text-slate-600 break-all mb-5 font-mono">
               {`สวัสดีครับ สนใจฝากกดดีลพิเศษนี้ครับ:\n[ ${activeDealTitle} ]\nราคาดีล: ${activeDealPrice}`}
             </div>
 
