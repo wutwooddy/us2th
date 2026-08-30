@@ -222,26 +222,25 @@ export default function FlashSaleSection() {
 
                   {/* Price Tag Badge (Top-Right) */}
                   {!isExpired && (
-                    <div className="absolute top-3 right-3 bg-slate-900/95 text-brand-green px-4 py-2.5 rounded-2xl text-lg md:text-xl font-black shadow-md border border-slate-800 z-10 font-heading tracking-tighter text-center flex flex-col items-center justify-center">
-                      <span className="text-[8px] text-slate-450 font-bold uppercase tracking-wider mb-0.5 leading-none">NET PRICE</span>
-                      <span className="text-brand-green leading-tight">{formatPriceString(deal.deal_price)}</span>
+                    <div className="absolute top-3 right-3 bg-white text-slate-900 px-3.5 py-1.5 rounded-2xl text-sm md:text-base font-semibold shadow-lg border border-slate-100 z-10 font-heading tracking-tight flex items-center justify-center">
+                      <span>{formatPriceString(deal.deal_price)}</span>
                     </div>
                   )}
 
                   {/* Bottom Semi-transparent Title Band */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-slate-950/75 backdrop-blur-xs p-3 text-left flex flex-col gap-0.5 z-10 border-t border-white/5 font-sans">
-                    <h3 className="text-xs md:text-sm font-normal leading-relaxed text-white font-sans">
+                  <div className="absolute bottom-0 left-0 right-0 bg-slate-950/80 backdrop-blur-xs p-3.5 text-left flex flex-col gap-0.5 z-10 border-t border-white/5 font-sans">
+                    <div className="text-xs md:text-sm font-normal leading-relaxed text-white font-sans">
                       {deal.title}
-                    </h3>
+                    </div>
                     
                     {deal.description && (
-                      <p className="text-[10px] text-slate-300 font-normal leading-normal font-sans">
+                      <div className="text-[10px] text-slate-300 font-normal leading-normal font-sans">
                         {deal.description}
-                      </p>
+                      </div>
                     )}
 
                     {deal.shipping_time && (
-                      <span className="inline-flex items-center gap-0.5 text-[9px] font-normal text-emerald-400 font-sans mt-0.5">
+                      <span className="inline-flex items-center gap-0.5 text-[9px] font-normal text-emerald-450 font-sans mt-0.5">
                         {deal.shipping_time}
                       </span>
                     )}
