@@ -38,6 +38,15 @@ const BRAND_SIZE_CHARTS: Record<string, string> = {
   on: 'https://ftzmepexrmwiwhfjtgvp.supabase.co/storage/v1/object/public/assets/sizechart/on.jpg'
 };
 
+const formatPriceString = (price: string) => {
+  // Strip non-digits to get raw value
+  const num = price.replace(/[^0-9]/g, '');
+  if (!num) return price;
+  // Format with comma
+  const formatted = parseInt(num).toLocaleString('th-TH');
+  return `฿${formatted}`;
+};
+
 export default function FlashSaleSection() {
   const [promotions, setPromotions] = useState<Promotion[]>([]);
   const [loading, setLoading] = useState(true);
@@ -184,8 +193,8 @@ export default function FlashSaleSection() {
                     : 'border-slate-100 hover:border-slate-200'
                 }`}
               >
-                {/* Poster Block (Image & Text Overlay) */}
-                <div className="aspect-[4/5] relative w-full overflow-hidden bg-slate-50">
+                {/* Poster Block (Aspect 4/3) */}
+                <div className="aspect-[4/3] relative w-full overflow-hidden bg-slate-50 border-b border-slate-100">
                   {deal.img_url ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img 
@@ -199,9 +208,9 @@ export default function FlashSaleSection() {
                     </div>
                   )}
                   
-                  {/* Active Timer badge */}
+                  {/* Active Timer badge (Top-Left) */}
                   {deal.end_time && (
-                    <div className={`absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold shadow-md ${
+                    <div className={`absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-lg text-[9px] font-bold shadow-md z-10 ${
                       isExpired 
                         ? 'bg-slate-900 text-white' 
                         : 'bg-brand-green text-white animate-pulse'
@@ -211,49 +220,54 @@ export default function FlashSaleSection() {
                     </div>
                   )}
 
-                  {/* Dark Gradient Overlay with Text Details */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent flex flex-col justify-end p-5 text-white text-left">
-                    <h3 className="text-sm md:text-base font-bold leading-snug mb-1 text-white font-heading">
+                  {/* Price Tag Badge (Top-Right) */}
+                  {!isExpired && (
+                    <div className="absolute top-3 right-3 bg-slate-900/90 text-brand-green px-3 py-1.5 rounded-2xl text-xs md:text-sm font-black shadow-md border border-slate-800 z-10 font-heading tracking-tight text-right flex flex-col items-end justify-center">
+                      <span className="text-brand-green leading-tight">{formatPriceString(deal.deal_price)}</span>
+                      {deal.original_price && (
+                        <span className="text-[9px] text-slate-400 line-through font-bold leading-none mt-0.5">
+                          {deal.original_price}
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Bottom Semi-transparent Title Band */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-slate-950/70 backdrop-blur-xs p-3.5 text-left flex flex-col gap-1 z-10 border-t border-white/5">
+                    <h3 className="text-xs md:text-sm font-extrabold leading-snug text-white font-heading">
                       {deal.title}
                     </h3>
                     
                     {deal.description && (
-                      <p className="text-[10.5px] text-slate-350 mb-2 font-medium leading-relaxed">
+                      <p className="text-[10px] text-slate-300 font-semibold leading-normal">
                         {deal.description}
                       </p>
                     )}
 
-                    <div className="flex items-baseline gap-2 mb-1">
-                      <span className="text-2xl font-black text-brand-green tracking-tight font-heading">
-                        {deal.deal_price}
-                      </span>
-                      {deal.original_price && (
-                        <span className="text-xs text-slate-400 line-through font-medium">
-                          ปกติ {deal.original_price}
-                        </span>
-                      )}
-                    </div>
-
-                    <p className="text-[9px] text-slate-400 font-semibold leading-tight mb-2">
-                      *ราคาเน็ตเหมาจ่ายเบ็ดเสร็จรวมส่งถึงหน้าบ้าน ไม่มีเก็บเงินเพิ่มภายหลัง
-                    </p>
-
-                    {deal.sizes && (
-                      <div className="text-[10.5px] text-slate-200 font-bold mb-2 font-heading truncate">
-                        <span className="text-slate-400 font-normal font-sans">ไซส์:</span> {deal.sizes}
-                      </div>
-                    )}
-
                     {deal.shipping_time && (
-                      <span className="inline-flex items-center gap-1 bg-emerald-950/40 border border-emerald-900/30 text-[9px] font-bold text-brand-green px-2 py-0.5 rounded w-fit font-heading">
+                      <span className="inline-flex items-center gap-0.5 text-[9px] font-bold text-emerald-400 font-heading mt-0.5">
                         {deal.shipping_time}
                       </span>
                     )}
                   </div>
                 </div>
 
+                {/* Below Image Details Block */}
+                <div className="p-4 pb-0 text-left flex flex-col gap-2 bg-white">
+                  {deal.sizes && (
+                    <div className="text-[11px] text-slate-500 font-medium leading-relaxed font-sans flex items-baseline gap-1.5">
+                      <span className="text-slate-400 font-semibold flex-shrink-0">ไซส์:</span>
+                      <span className="text-slate-700 font-bold font-heading">{deal.sizes}</span>
+                    </div>
+                  )}
+
+                  <p className="text-[10px] text-slate-400 font-semibold leading-relaxed">
+                    *ราคารวมส่งถึงหน้าบ้าน ไม่มีเก็บเงินเพิ่มภายหลัง
+                  </p>
+                </div>
+
                 {/* Stacked Action Buttons */}
-                <div className="p-4 flex flex-col gap-1.5 bg-white">
+                <div className="p-4 pt-2 flex flex-col gap-1.5 bg-white">
                   <button
                     onClick={() => handleOrderDeal(deal)}
                     disabled={isExpired}
@@ -272,7 +286,7 @@ export default function FlashSaleSection() {
                       {getSizeChartUrl(deal) && (
                         <button
                           onClick={() => setSizeChartModalUrl(getSizeChartUrl(deal))}
-                          className="flex-grow h-9 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-600 rounded-xl text-[10px] font-bold flex items-center justify-center transition-all cursor-pointer font-heading"
+                          className="flex-grow h-9 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-[10px] font-bold flex items-center justify-center transition-all cursor-pointer font-heading"
                         >
                           ตารางไซส์
                         </button>
@@ -283,7 +297,7 @@ export default function FlashSaleSection() {
                           href={deal.affiliate_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-grow h-9 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-600 rounded-xl text-[10px] font-bold flex items-center justify-center transition-all cursor-pointer font-heading text-center"
+                          className="flex-grow h-9 bg-brand-blue hover:bg-brand-blue-hover text-white rounded-xl text-[10px] font-bold flex items-center justify-center transition-all cursor-pointer font-heading text-center"
                           title="ดูโพสต์ต้นฉบับ"
                         >
                           ดูโพสต์
