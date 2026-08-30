@@ -222,30 +222,26 @@ export default function FlashSaleSection() {
 
                   {/* Price Tag Badge (Top-Right) */}
                   {!isExpired && (
-                    <div className="absolute top-3 right-3 bg-slate-900/90 text-brand-green px-3 py-1.5 rounded-2xl text-xs md:text-sm font-black shadow-md border border-slate-800 z-10 font-heading tracking-tight text-right flex flex-col items-end justify-center">
+                    <div className="absolute top-3 right-3 bg-slate-900/95 text-brand-green px-4 py-2.5 rounded-2xl text-lg md:text-xl font-black shadow-md border border-slate-800 z-10 font-heading tracking-tighter text-center flex flex-col items-center justify-center">
+                      <span className="text-[8px] text-slate-450 font-bold uppercase tracking-wider mb-0.5 leading-none">NET PRICE</span>
                       <span className="text-brand-green leading-tight">{formatPriceString(deal.deal_price)}</span>
-                      {deal.original_price && (
-                        <span className="text-[9px] text-slate-400 line-through font-bold leading-none mt-0.5">
-                          {deal.original_price}
-                        </span>
-                      )}
                     </div>
                   )}
 
                   {/* Bottom Semi-transparent Title Band */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-slate-950/70 backdrop-blur-xs p-3.5 text-left flex flex-col gap-1 z-10 border-t border-white/5">
-                    <h3 className="text-xs md:text-sm font-extrabold leading-snug text-white font-heading">
+                  <div className="absolute bottom-0 left-0 right-0 bg-slate-950/75 backdrop-blur-xs p-3 text-left flex flex-col gap-0.5 z-10 border-t border-white/5 font-sans">
+                    <h3 className="text-xs md:text-sm font-normal leading-relaxed text-white font-sans">
                       {deal.title}
                     </h3>
                     
                     {deal.description && (
-                      <p className="text-[10px] text-slate-300 font-semibold leading-normal">
+                      <p className="text-[10px] text-slate-300 font-normal leading-normal font-sans">
                         {deal.description}
                       </p>
                     )}
 
                     {deal.shipping_time && (
-                      <span className="inline-flex items-center gap-0.5 text-[9px] font-bold text-emerald-400 font-heading mt-0.5">
+                      <span className="inline-flex items-center gap-0.5 text-[9px] font-normal text-emerald-400 font-sans mt-0.5">
                         {deal.shipping_time}
                       </span>
                     )}
@@ -253,15 +249,22 @@ export default function FlashSaleSection() {
                 </div>
 
                 {/* Below Image Details Block */}
-                <div className="p-4 pb-0 text-left flex flex-col gap-2 bg-white">
+                <div className="p-4 pb-0 text-left flex flex-col gap-1.5 bg-white font-sans">
                   {deal.sizes && (
-                    <div className="text-[11px] text-slate-500 font-medium leading-relaxed font-sans flex items-baseline gap-1.5">
-                      <span className="text-slate-400 font-semibold flex-shrink-0">ไซส์:</span>
-                      <span className="text-slate-700 font-bold font-heading">{deal.sizes}</span>
+                    <div className="text-[11px] text-slate-500 font-normal leading-relaxed font-sans flex items-baseline gap-1.5">
+                      <span className="text-slate-400 font-normal flex-shrink-0 font-sans">ไซส์:</span>
+                      <span className="text-slate-650 font-normal font-sans">{deal.sizes}</span>
                     </div>
                   )}
 
-                  <p className="text-[10px] text-slate-400 font-semibold leading-relaxed">
+                  {deal.original_price && (
+                    <div className="text-[11px] text-slate-500 font-normal leading-relaxed font-sans flex items-baseline gap-1.5">
+                      <span className="text-slate-400 font-normal flex-shrink-0 font-sans">ราคาปกติ:</span>
+                      <span className="text-slate-450 line-through font-normal font-sans">{deal.original_price}</span>
+                    </div>
+                  )}
+
+                  <p className="text-[10px] text-slate-400 font-normal leading-relaxed font-sans">
                     *ราคารวมส่งถึงหน้าบ้าน ไม่มีเก็บเงินเพิ่มภายหลัง
                   </p>
                 </div>
