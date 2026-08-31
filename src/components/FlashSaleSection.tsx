@@ -387,7 +387,7 @@ export default function FlashSaleSection() {
 
       {/* Sizing Chart Modal */}
       {sizeChartModalUrl && (
-        <div className="fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-start p-4 md:p-8 overflow-auto animate-fade-in">
+        <div className="fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-center p-4 md:p-8 animate-fade-in">
           {/* Sticky/Fixed Close Button */}
           <button
             onClick={() => setSizeChartModalUrl(null)}
@@ -397,12 +397,12 @@ export default function FlashSaleSection() {
           </button>
           
           {/* Image Container */}
-          <div className="w-full flex items-center justify-center p-2 min-h-screen">
+          <div className="max-w-full max-h-[85vh] flex items-center justify-center p-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={sizeChartModalUrl}
               alt="Brand Size Chart"
-              className="max-w-full h-auto md:max-w-none md:h-auto select-none rounded-xl"
+              className="max-w-full max-h-[85vh] object-contain select-none rounded-2xl shadow-2xl bg-white"
             />
           </div>
         </div>
