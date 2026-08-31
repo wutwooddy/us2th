@@ -1,8 +1,34 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Search, MessageCircle, Send, Check, Terminal } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Search, MessageCircle, Send, Check, Terminal, Zap, ExternalLink, ShieldAlert } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
+
+interface Promotion {
+  id: number;
+  title: string;
+  deal_price: string;
+  original_price: string | null;
+  img_url: string | null;
+  affiliate_url: string | null;
+  end_time: string | null;
+  is_active: boolean;
+  shipping_time: string | null;
+  description: string | null;
+  sizes: string | null;
+  size_chart_url: string | null;
+}
+
+const BRAND_SIZE_CHARTS: Record<string, string> = {
+  'nike': 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&q=80&w=800',
+  'jordan': 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&q=80&w=800',
+  'adidas': 'https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=800',
+  'new balance': 'https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?auto=format&fit=crop&q=80&w=800',
+  'on running': 'https://images.unsplash.com/photo-1482967037757-555fc2989857?auto=format&fit=crop&q=80&w=800',
+  'on cloud': 'https://images.unsplash.com/photo-1482967037757-555fc2989857?auto=format&fit=crop&q=80&w=800',
+  'reebok': 'https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=800',
+  'puma': 'https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=800'
+};
 
 export default function HeroSection() {
   const [url, setUrl] = useState('');
@@ -12,9 +38,59 @@ export default function HeroSection() {
   
   // Sourcing Inquiry State
   const [contactInfo, setContactInfo] = useState('');
-  const [step, setStep] = useState(1); // 1 = enter contact, 2 = success summary
+  const [step, setStep] = useState(1); // 1 = enter contact, 2 = success summary, 3 = deal order success
   const [submitting, setSubmitting] = useState(false);
   const [modalError, setModalError] = useState('');
+
+  // Latest Promotion State
+  const [latestDeal, setLatestDeal] = useState<Promotion | null>(null);
+  const [loadingDeal, setLoadingDeal] = useState(true);
+  const [sizeChartModalUrl, setSizeChartModalUrl] = useState<string | null>(null);
+
+  // Deal order copy details
+  const [orderedDealTitle, setOrderedDealTitle] = useState('');
+  const [orderedDealPrice, setOrderedDealPrice] = useState('');
+
+  useEffect(() => {
+    async function fetchLatestDeal() {
+      try {
+        const { data, error } = await supabase
+          .from('promotions')
+          .select('*')
+          .eq('is_active', true)
+          .order('created_at', { ascending: false })
+          .limit(1);
+        if (!error && data && data.length > 0) {
+          setLatestDeal(data[0]);
+        }
+      } catch (err) {
+        console.error('Error fetching latest deal for Hero:', err);
+      } finally {
+        setLoadingDeal(false);
+      }
+    }
+    fetchLatestDeal();
+  }, []);
+
+  const getSizeChartUrl = (deal: Promotion) => {
+    if (deal.size_chart_url) return deal.size_chart_url;
+    const titleLower = deal.title.toLowerCase();
+    const brandsSorted = Object.keys(BRAND_SIZE_CHARTS).sort((a, b) => b.length - a.length);
+    for (const brand of brandsSorted) {
+      const escapedBrand = brand.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+      const regex = new RegExp(`\\b${escapedBrand}\\b`, 'i');
+      if (regex.test(titleLower)) {
+        return BRAND_SIZE_CHARTS[brand];
+      }
+    }
+    return null;
+  };
+
+  const formatPriceString = (price: string) => {
+    const clean = price.replace(/[^0-9]/g, '');
+    if (!clean) return price;
+    return `฿${Number(clean).toLocaleString('th-TH')}`;
+  };
 
   const handleCheckPrice = (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,7 +121,6 @@ export default function HeroSection() {
     setSubmitting(true);
     setModalError('');
 
-    // 1. Try to save to Supabase sourcing_inquiries table (graceful fail-safe fallback)
     try {
       const { error: dbError } = await supabase
         .from('sourcing_inquiries')
@@ -59,7 +134,6 @@ export default function HeroSection() {
       console.warn('Supabase insert failed:', err);
     }
 
-    // 2. Format message and copy to clipboard
     const fullText = `สวัสดีครับ สนใจส่งเช็คราคานำเข้าสินค้าครับ\nลิงก์สินค้า: ${url}\nช่องทางติดต่อกลับ: ${contactInfo}`;
     navigator.clipboard.writeText(fullText)
       .then(() => {
@@ -74,18 +148,34 @@ export default function HeroSection() {
     setStep(2); // Go to success summary screen
   };
 
+  const handleOrderDeal = (deal: Promotion) => {
+    const text = `สวัสดีครับ สนใจสั่งซื้อสินค้าดีลโปรโมชั่นนี้ครับ:\n\n${deal.title}\nราคาพิเศษ: ${deal.deal_price}\n${deal.sizes ? `ไซส์: ${deal.sizes}\n` : ''}${deal.shipping_time ? `ระยะเวลาจัดส่ง: ${deal.shipping_time}\n` : ''}`;
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        setOrderedDealTitle(deal.title);
+        setOrderedDealPrice(deal.deal_price);
+        setStep(3); // Go to deal order success summary
+        setShowModal(true);
+      })
+      .catch((err) => {
+        console.error('Failed to copy deal text:', err);
+      });
+  };
+
   const closeModal = () => {
     setShowModal(false);
     setUrl('');
     setContactInfo('');
     setStep(1);
     setModalError('');
+    setOrderedDealTitle('');
+    setOrderedDealPrice('');
   };
 
   return (
     <section className="relative w-full bg-white border-b border-slate-100">
       
-      {/* 2-Column Split Lookbook Grid */}
+      {/* 2-Column Split Layout */}
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[600px] items-stretch">
         
         {/* Left Column: Sourcing Terminal & Copy */}
@@ -169,7 +259,7 @@ export default function HeroSection() {
               <span className="block text-sm md:text-base font-bold text-slate-800 mt-1 font-heading">ของแท้ 100%</span>
             </div>
             <div>
-              <span className="block text-xs text-slate-400 font-bold tracking-wider">ระยะเวลานำเข้า</span>
+              <span className="block text-xs text-slate-400 font-bold tracking-wider">ระยะเวลาโดยประมาณ</span>
               <span className="block text-sm md:text-base font-bold text-slate-800 mt-1 font-heading">ตามรอบทวีป</span>
             </div>
             <div>
@@ -180,55 +270,151 @@ export default function HeroSection() {
 
           {/* Detailed wait times per region */}
           <div className="mt-8 border-t border-slate-100 pt-6 text-left">
-            <span className="block text-[11px] text-slate-400 font-bold uppercase tracking-wider mb-3">
+            <span className="block text-xs md:text-sm font-bold text-slate-800 uppercase tracking-wider mb-3">
               ✈️ ระยะเวลารอของโดยประมาณนับแต่สั่งให้
             </span>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] text-slate-500 font-medium leading-relaxed font-sans">
-              <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                <span className="font-bold text-slate-800 block mb-0.5">🇺🇸 🇪🇺 🇬🇧 ตะวันตก</span>
-                อเมริกา, ยุโรป, อังกฤษ <br />
-                <span className="text-brand-blue font-bold">20-30 วัน</span>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs md:text-sm font-semibold leading-relaxed font-sans">
+              <div className="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+                <span className="font-extrabold text-slate-900 block mb-0.5">🇺🇸 🇪🇺 🇬🇧 ตะวันตก</span>
+                <span className="text-slate-500 font-medium block mb-1">อเมริกา, ยุโรป, อังกฤษ</span>
+                <span className="text-brand-blue font-black text-sm">20-30 วัน</span>
               </div>
-              <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                <span className="font-bold text-slate-800 block mb-0.5">🇯🇵 🇰🇷 🇨🇳 เอเชีย</span>
-                ญี่ปุ่น, เกาหลี, จีน, ไต้หวัน, ฮ่องกง <br />
-                <span className="text-brand-blue font-bold">10-20 วัน</span>
+              <div className="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+                <span className="font-extrabold text-slate-900 block mb-0.5">🇯🇵 🇰🇷 🇨🇳 เอเชีย</span>
+                <span className="text-slate-500 font-medium block mb-1">ญี่ปุ่น, เกาหลี, จีน, ไต้หวัน, ฮ่องกง</span>
+                <span className="text-brand-blue font-black text-sm">10-20 วัน</span>
               </div>
-              <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                <span className="font-bold text-slate-800 block mb-0.5">🇸🇬 🇲🇾 เอเชียใต้</span>
-                สิงคโปร์, มาเลเซีย <br />
-                <span className="text-brand-blue font-bold">7-14 วัน</span>
+              <div className="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
+                <span className="font-extrabold text-slate-900 block mb-0.5">🇸🇬 🇲🇾 เอเชียใต้</span>
+                <span className="text-slate-500 font-medium block mb-1">สิงคโปร์, มาเลเซีย</span>
+                <span className="text-brand-blue font-black text-sm">7-14 วัน</span>
               </div>
             </div>
           </div>
 
         </div>
 
-        {/* Right Column: Split grid lookbook images */}
-        <div className="lg:col-span-5 grid grid-cols-2 bg-slate-50 min-h-[400px] lg:min-h-0 border-t border-slate-100 lg:border-t-0 p-4 md:p-8 gap-4">
-          <div className="relative overflow-hidden group rounded-2xl shadow-sm">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&q=80&w=600" 
-              alt="Streetwear Lookbook 1"
-              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
-            />
-            <div className="absolute bottom-4 left-4 bg-white text-slate-800 border border-slate-100 px-3 py-1.5 rounded-xl text-xs font-bold shadow-md z-10 font-heading">
-              ✈️ รับสั่ง รับกดสินค้า
-            </div>
-          </div>
+        {/* Right Column: Banners + Latest Live Deal Card */}
+        <div className="lg:col-span-5 flex flex-col justify-center bg-slate-50 border-t border-slate-100 lg:border-t-0 p-4 md:p-8 gap-4">
           
-          <div className="relative overflow-hidden group rounded-2xl shadow-sm">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=600" 
-              alt="Streetwear Lookbook 2"
-              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
-            />
-            <div className="absolute bottom-4 left-4 bg-white text-slate-800 border border-slate-100 px-3 py-1.5 rounded-xl text-xs font-bold shadow-md z-10 font-heading">
-              📦 ส่งตรงถึงหน้าบ้านคุณ
+          {/* Top white text badges */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white border border-slate-100 p-3 rounded-2xl text-xs font-bold text-slate-800 shadow-sm flex items-center justify-center gap-1.5 font-heading">
+              <span>✈️ รับสั่ง รับกดสินค้า</span>
+            </div>
+            <div className="bg-white border border-slate-100 p-3 rounded-2xl text-xs font-bold text-slate-800 shadow-sm flex items-center justify-center gap-1.5 font-heading">
+              <span>📦 ส่งตรงถึงหน้าบ้านคุณ</span>
             </div>
           </div>
+
+          {/* Live active deal display */}
+          {loadingDeal ? (
+            <div className="w-full aspect-[4/3] bg-slate-200 animate-pulse rounded-3xl" />
+          ) : latestDeal ? (
+            <div className="w-full bg-white border border-slate-200/80 rounded-3xl shadow-md overflow-hidden flex flex-col transition-all">
+              
+              {/* Product Poster Image Container */}
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-900 flex-shrink-0">
+                {latestDeal.img_url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img 
+                    src={latestDeal.img_url} 
+                    alt={latestDeal.title} 
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-slate-800 flex items-center justify-center text-slate-550 text-xs">
+                    ไม่มีรูปภาพประกอบ
+                  </div>
+                )}
+
+                {/* Badge top-left */}
+                <div className="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-lg shadow-md z-10 flex items-center gap-1 font-heading">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  🔥 ดีลล่าสุดแนะนำ
+                </div>
+
+                {/* Large white price label top-right */}
+                <div className="absolute top-3 right-3 bg-white text-brand-green border border-slate-100 px-3.5 py-1.5 rounded-2xl shadow-lg z-10 flex flex-col items-center justify-center font-heading">
+                  <span className="text-[10px] text-slate-450 font-bold uppercase tracking-wider -mb-0.5 font-sans">THB PRICE</span>
+                  <span className="text-lg font-black tracking-tight">{formatPriceString(latestDeal.deal_price)}</span>
+                </div>
+
+                {/* Bottom title text overlay */}
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-transparent p-4 pt-12 text-left">
+                  <div className="text-white text-sm font-bold tracking-wide font-sans mb-1 leading-snug line-clamp-1">
+                    {latestDeal.title}
+                  </div>
+                  {latestDeal.description && (
+                    <p className="text-white/70 text-[11px] font-medium leading-relaxed font-sans line-clamp-1 mb-0.5">
+                      {latestDeal.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {/* Sizes and info display details block */}
+              <div className="p-4 bg-white text-left space-y-2 flex-grow">
+                <div className="text-[11px] text-slate-500 font-normal leading-relaxed font-sans">
+                  <span className="text-slate-400 font-normal flex-shrink-0 font-sans">ไซส์ที่มี:</span>{' '}
+                  <span className="text-slate-800 font-bold font-sans">{latestDeal.sizes || 'Free Size / One Size'}</span>
+                </div>
+                <div className="text-[11px] text-slate-500 font-normal leading-relaxed font-sans">
+                  <span className="text-slate-400 font-normal flex-shrink-0 font-sans">การส่ง:</span>{' '}
+                  <span className="text-brand-blue font-bold font-sans">{latestDeal.shipping_time || '✈️ พรีออเดอร์ 20-30 วัน'}</span>
+                </div>
+                {latestDeal.original_price && (
+                  <div className="text-[11px] text-slate-500 font-normal leading-relaxed font-sans flex items-baseline gap-1.5">
+                    <span className="text-slate-400 font-normal flex-shrink-0 font-sans">ราคาปกติ:</span>
+                    <span className="text-slate-550 line-through font-normal font-sans">{latestDeal.original_price}</span>
+                  </div>
+                )}
+                <p className="text-[10px] text-slate-400 font-normal leading-relaxed font-sans border-t border-slate-100 pt-2 mt-1">
+                  *ราคาเหมาจ่ายเบ็ดเสร็จรวมส่งถึงหน้าบ้าน ไม่มีเก็บเงินเพิ่มภายหลัง
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="p-4 pt-0 flex flex-col gap-1.5 bg-white rounded-b-3xl">
+                <button
+                  onClick={() => handleOrderDeal(latestDeal)}
+                  className="w-full h-12 bg-brand-green hover:bg-brand-green-hover text-white text-sm font-extrabold rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-sm cursor-pointer font-heading"
+                >
+                  <Zap className="w-3.5 h-3.5" />
+                  ฝากสั่งซื้อด่วน
+                </button>
+                
+                {(latestDeal.affiliate_url || getSizeChartUrl(latestDeal)) && (
+                  <div className="flex gap-1.5 w-full">
+                    {getSizeChartUrl(latestDeal) && (
+                      <button
+                        onClick={() => setSizeChartModalUrl(getSizeChartUrl(latestDeal))}
+                        className="flex-grow h-9 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-[10px] font-bold flex items-center justify-center transition-all cursor-pointer font-heading"
+                      >
+                        ตารางไซส์
+                      </button>
+                    )}
+                    {latestDeal.affiliate_url && (
+                      <a
+                        href={latestDeal.affiliate_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-grow h-9 bg-brand-blue hover:bg-brand-blue-hover text-white rounded-xl text-[10px] font-bold flex items-center justify-center transition-all shadow-sm font-heading"
+                      >
+                        ดูโพสต์เดิม <ExternalLink className="w-3 h-3 ml-0.5" />
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+
+            </div>
+          ) : (
+            <div className="w-full aspect-[4/3] border border-dashed border-slate-200 rounded-3xl flex items-center justify-center text-slate-400 text-sm bg-white">
+              ไม่มีดีลลดราคาแสดงในขณะนี้
+            </div>
+          )}
+
         </div>
 
       </div>
@@ -281,7 +467,7 @@ export default function HeroSection() {
                   </button>
                 </div>
               </form>
-            ) : (
+            ) : step === 2 ? (
               <div className="space-y-4">
                 <h3 className="text-base font-bold text-slate-900 flex items-center gap-2 font-heading">
                   <Check className="w-5 h-5 text-emerald-500" />
@@ -339,11 +525,89 @@ export default function HeroSection() {
                   ปิดหน้าต่างนี้
                 </button>
               </div>
+            ) : (
+              <div className="space-y-4">
+                <h3 className="text-base font-bold text-slate-900 flex items-center gap-2 font-heading">
+                  <Check className="w-5 h-5 text-emerald-500" />
+                  คัดลอกรายละเอียดดีลสำเร็จ!
+                </h3>
+                <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                  ระบบได้คัดลอกรายละเอียดข้อมูลดีลส่วนลดนี้ลงคลิปบอร์ดของคุณแล้ว กรุณาทักคุยกับแอดมินเพื่อยืนยันขนาดไซส์และแจ้งความประสงค์สั่งซื้อได้เลยครับ:
+                </p>
+
+                {/* Deal Order Summary Block */}
+                <div className="bg-slate-50 border border-slate-100 p-4 rounded-2xl text-xs text-slate-600 break-all space-y-2 font-sans font-medium">
+                  <div>
+                    <span className="text-slate-400 block font-semibold mb-0.5 font-sans">สินค้าดีลที่เลือก:</span>
+                    <span className="text-slate-800 font-bold block">{orderedDealTitle}</span>
+                  </div>
+                  <div>
+                    <span className="text-slate-400 block font-semibold mb-0.5 font-sans">ราคาสุทธิ:</span>
+                    <span className="text-brand-green font-black text-sm block">{formatPriceString(orderedDealPrice)}</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-2 pt-2">
+                  <a
+                    href="https://lin.ee/ByS27YW"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={closeModal}
+                    className="w-full h-12 bg-[#06C755] hover:bg-[#05b34c] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm font-heading"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    ส่งดีลสั่งซื้อทาง LINE OA
+                  </a>
+                  <a
+                    href="https://m.me/us2th"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={closeModal}
+                    className="w-full h-12 bg-[#1877F2] hover:bg-[#166fe5] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm font-heading"
+                  >
+                    <Send className="w-4 h-4" />
+                    ส่งดีลสั่งซื้อทาง FB Messenger
+                  </a>
+                </div>
+
+                <button
+                  onClick={closeModal}
+                  className="w-full text-center text-xs font-semibold text-slate-400 hover:text-slate-600 transition-colors mt-4 py-1 uppercase tracking-wider font-heading"
+                >
+                  ปิดหน้าต่างนี้
+                </button>
+              </div>
             )}
 
           </div>
         </div>
       )}
+
+      {/* Brand Size Chart Modal */}
+      {sizeChartModalUrl && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
+          <div className="w-full max-w-lg bg-white border border-slate-200 p-6 rounded-2xl shadow-2xl relative text-left">
+            <h3 className="text-base font-bold text-slate-900 mb-4 flex items-center gap-2 font-heading">
+              📐 ตารางเทียบขนาดมาตรฐาน
+            </h3>
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-slate-100">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={sizeChartModalUrl}
+                alt="Brand Size Chart"
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <button
+              onClick={() => setSizeChartModalUrl(null)}
+              className="w-full h-11 bg-slate-900 hover:bg-slate-850 text-white text-sm font-bold rounded-xl mt-4 cursor-pointer font-heading"
+            >
+              ปิดหน้าต่างนี้
+            </button>
+          </div>
+        </div>
+      )}
+
     </section>
   );
 }
