@@ -87,7 +87,12 @@ export default function FlashSaleSection() {
 
         if (error) throw error;
         if (data) {
-          setPromotions(data);
+          // Skip the first promotion since it is already displayed in the Hero section
+          if (data.length > 1) {
+            setPromotions(data.slice(1));
+          } else {
+            setPromotions([]);
+          }
         }
       } catch (err) {
         console.error('Error fetching promotions from Supabase: ', err);
@@ -185,7 +190,12 @@ export default function FlashSaleSection() {
         </div>
 
         {/* Promotions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {promotions.length === 0 ? (
+          <div className="text-center py-16 border border-dashed border-slate-200 rounded-[32px] bg-slate-50 text-slate-500 font-semibold text-xs md:text-sm font-sans max-w-xl mx-auto w-full">
+            ✨ ดีลจำกัดเวลาเพิ่มรอบอื่นอยู่ระหว่างการอัปเดต หรือสามารถชม "ดีลล่าสุดแนะนำ" ได้ในส่วนหน้าเว็บบนสุดครับ
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {promotions.map((deal) => {
             const countdown = getCountdown(deal.end_time);
             const isExpired = countdown === 'EXPIRED (หมดเขตดีล)';
@@ -318,6 +328,7 @@ export default function FlashSaleSection() {
             );
           })}
         </div>
+        )}
 
       </div>
 

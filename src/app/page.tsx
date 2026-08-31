@@ -2,6 +2,7 @@ import React from 'react';
 import SafetyBanner from '@/components/SafetyBanner';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
+import SoftSellHeader from '@/components/SoftSellHeader';
 import FlashSaleSection from '@/components/FlashSaleSection';
 import DeliveredGallery from '@/components/DeliveredGallery';
 import TestimonialsSection from '@/components/TestimonialsSection';
@@ -23,6 +24,7 @@ export default function Home() {
       {/* Main page content sections */}
       <main className="flex-grow">
         <HeroSection />
+        <SoftSellHeader />
         <FlashSaleSection />
         <MagazineSection />
         <InquiryForm />
