@@ -59,8 +59,14 @@ export default function FlashSaleSection() {
   const getSizeChartUrl = (deal: Promotion) => {
     if (deal.size_chart_url) return deal.size_chart_url;
     const titleLower = deal.title.toLowerCase();
-    for (const brand in BRAND_SIZE_CHARTS) {
-      if (titleLower.includes(brand)) {
+    
+    // Sort brands by length descending to match longer strings first
+    const brandsSorted = Object.keys(BRAND_SIZE_CHARTS).sort((a, b) => b.length - a.length);
+    for (const brand of brandsSorted) {
+      const escapedBrand = brand.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+      // Use word boundary to prevent partial matches like 'on' matching inside 'moncler'
+      const regex = new RegExp(`\\b${escapedBrand}\\b`, 'i');
+      if (regex.test(titleLower)) {
         return BRAND_SIZE_CHARTS[brand];
       }
     }
@@ -168,13 +174,13 @@ export default function FlashSaleSection() {
               โปรโมชั่นวันนี้ & Flash Sale
             </h2>
             <p className="text-sm md:text-base text-slate-500 mt-2 max-w-lg leading-relaxed font-semibold">
-              ดีลพิเศษนำเข้าสินค้าแฟชั่นแบรนด์เนมและสนีกเกอร์ยอดนิยม ราคาเหมาจ่ายเบ็ดเสร็จ รีบตัดสินใจก่อนหมดเวลาโปรโมชั่น
+              ดีลพิเศษแบรนด์และสนีกเกอร์ ราคาเหมาจ่ายเบ็ดเสร็จ รีบตัดสินใจก่อนหมดเวลาโปรโมชั่น
             </p>
           </div>
 
           <div className="mt-6 md:mt-0 flex items-center gap-1.5 text-xs md:text-sm font-bold text-slate-400">
             <Zap className="w-4 h-4 text-brand-green" />
-            <span>ดีลด่วนฝากกดราคาเน็ต</span>
+            <span>ดีลด่วนราคาเน็ต</span>
           </div>
         </div>
 
@@ -273,7 +279,7 @@ export default function FlashSaleSection() {
                   <button
                     onClick={() => handleOrderDeal(deal)}
                     disabled={isExpired}
-                    className={`w-full h-11 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-sm ${
+                    className={`w-full h-12 rounded-xl text-sm font-extrabold flex items-center justify-center gap-1.5 transition-all shadow-sm ${
                       isExpired
                         ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
                         : 'bg-brand-green hover:bg-brand-green-hover text-white cursor-pointer hover:shadow'

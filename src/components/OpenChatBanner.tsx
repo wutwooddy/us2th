@@ -31,7 +31,7 @@ export default function OpenChatBanner() {
                 </div>
                 <div className="flex items-center gap-3 border border-slate-100 p-4 bg-white rounded-2xl shadow-sm">
                   <AlertCircle className="w-4 h-4 text-brand-orange flex-shrink-0" />
-                  <span className="text-xs md:text-sm font-semibold text-slate-700">แนะนำไซส์และการตรวจคุณภาพสินค้า (QC)</span>
+                  <span className="text-xs md:text-sm font-semibold text-slate-700">ติดตามข่าวรองเท้าออกใหม่</span>
                 </div>
               </div>
             </div>

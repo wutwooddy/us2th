@@ -80,11 +80,15 @@ export default async function ArticlePage({ params }: PageProps) {
     notFound();
   }
 
-  const formattedDate = new Date(article.created_at).toLocaleDateString('th-TH', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  });
+  const date = new Date(article.created_at);
+  const day = date.getDate();
+  const thaiMonthsShort = [
+    'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.',
+    'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'
+  ];
+  const month = thaiMonthsShort[date.getMonth()];
+  const year = date.getFullYear() + 543;
+  const formattedDate = `${day} ${month} ${year}`;
 
   return (
     <div className="flex flex-col min-h-screen bg-[#fbfbfb] font-sans antialiased">

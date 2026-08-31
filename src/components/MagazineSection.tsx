@@ -36,12 +36,16 @@ export default function MagazineSection() {
   const normalArticles = articles.filter(a => a.id !== (featuredArticle?.id));
 
   const formatDate = (dateStr: string, mockDateStr?: string) => {
-    if (mockDateStr) return mockDateStr;
-    return new Date(dateStr).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric'
-    }).toUpperCase();
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime())) return mockDateStr || '';
+    const day = date.getDate();
+    const thaiMonthsShort = [
+      'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.',
+      'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'
+    ];
+    const month = thaiMonthsShort[date.getMonth()];
+    const year = date.getFullYear() + 543;
+    return `${day} ${month} ${year}`;
   };
 
   return (
@@ -65,7 +69,7 @@ export default function MagazineSection() {
 
           <div className="mt-6 md:mt-0 flex items-center gap-1.5 text-xs md:text-sm font-bold text-slate-400">
             <BookOpen className="w-4 h-4 text-slate-400" />
-            <span>นิตยสารออนไลน์เพื่อคนรักของหายาก</span>
+            <span>นิตยสารออนไลน์เพื่อคนชอบช้อปปิ้ง</span>
           </div>
         </div>
 

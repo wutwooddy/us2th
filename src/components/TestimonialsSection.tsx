@@ -53,11 +53,8 @@ export default function TestimonialsSection() {
             <span className="text-xs font-bold text-brand-green uppercase tracking-widest font-heading">[ เสียงตอบรับจากผู้ใช้บริการ ]</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 font-heading">
-            ความพึงพอใจจากลูกค้าจริง
+            ความพึงพอใจจากลูกค้า
           </h2>
-          <p className="text-sm md:text-base text-slate-500 mt-2 leading-relaxed font-semibold">
-            ร่วมฟังความเห็นจากนักสะสมและคนรักสินค้าต่างประเทศที่วางใจให้เราช่วยจัดหาพรีออร์เดอร์นำส่งถึงไทย
-          </p>
         </div>
 
         {/* Testimonials Layout Grid */}

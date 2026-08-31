@@ -69,9 +69,8 @@ export default function Footer() {
                 GLOBAL SOURCING PLATFORM
               </span>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed max-w-sm font-medium">
-              &copy; {new Date().getFullYear()} US2TH. สงวนลิขสิทธิ์ทั้งหมด. <br />
-              บริการจัดหาและนำเข้าสินค้าแฟชั่นแบรนด์เนมยอดนิยม
+            <p className="text-xs text-slate-400 leading-relaxed max-w-sm font-medium font-sans">
+              &copy; 2026 US2TH.รับสั่ง รับกดสินค้าทั่วโลก
             </p>
           </div>
 
