@@ -685,23 +685,21 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
 
       {/* Brand Size Chart Modal */}
       {sizeChartModalUrl && (
-        <div className="fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-center p-4 md:p-8 animate-fade-in">
-          {/* Sticky/Fixed Close Button */}
-          <button
-            onClick={() => setSizeChartModalUrl(null)}
-            className="fixed top-4 right-4 z-50 bg-white hover:bg-slate-105 text-slate-900 text-xs font-black px-4 py-2.5 rounded-full shadow-2xl cursor-pointer flex items-center gap-1 font-heading border border-slate-200"
-          >
-            ปิดหน้าต่างนี้ [X]
-          </button>
-          
-          {/* Image Container */}
-          <div className="max-w-full max-h-[85vh] flex items-center justify-center p-2">
+        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 md:p-8 animate-fade-in">
+          {/* Relative wrapper around the image to place close button in its top-right */}
+          <div className="relative max-w-full max-h-screen">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={sizeChartModalUrl}
               alt="Brand Size Chart"
-              className="max-w-full max-h-[85vh] object-contain select-none rounded-2xl shadow-2xl bg-white"
+              className="max-w-full max-h-screen object-contain select-none rounded-2xl shadow-2xl bg-white"
             />
+            <button
+              onClick={() => setSizeChartModalUrl(null)}
+              className="absolute top-4 right-4 z-50 bg-slate-950/85 hover:bg-slate-950 text-white text-xs font-black px-3.5 py-2 rounded-full shadow-lg border border-white/10 backdrop-blur-xs flex items-center gap-1 font-heading cursor-pointer"
+            >
+              ปิด [X]
+            </button>
           </div>
         </div>
       )}
