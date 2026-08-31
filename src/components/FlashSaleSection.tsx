@@ -387,28 +387,37 @@ export default function FlashSaleSection() {
 
       {/* Sizing Chart Modal */}
       {sizeChartModalUrl && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fade-in">
-          <div className="w-full max-w-2xl bg-white border border-slate-100 p-6 rounded-2xl shadow-2xl relative text-left">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
+          <div className="w-full max-w-4xl bg-white border border-slate-200 p-6 rounded-2xl shadow-2xl relative text-left">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-base font-bold text-slate-900 font-heading">
-                ตารางเทียบไซส์สินค้า (Sizing Guide)
+              <h3 className="text-base font-bold text-slate-900 flex flex-col md:flex-row md:items-center gap-1 font-heading">
+                <span>📐 ตารางเทียบขนาดมาตรฐาน</span>
+                <span className="hidden md:inline text-slate-300">/</span>
+                <span className="text-xs md:text-sm font-semibold text-slate-400">Brand Size Chart</span>
               </h3>
               <button
                 onClick={() => setSizeChartModalUrl(null)}
-                className="text-xs font-bold text-slate-400 hover:text-slate-700 transition-colors bg-slate-100 hover:bg-slate-200 px-3 py-1 rounded-lg cursor-pointer font-heading"
+                className="text-xs font-bold text-slate-400 hover:text-slate-700 transition-colors bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg cursor-pointer font-heading"
               >
-                ปิด
+                ปิด [X]
               </button>
             </div>
             
-            <div className="w-full overflow-auto max-h-[75vh] flex justify-center bg-slate-50 border border-slate-100 rounded-xl p-2">
+            <div className="w-full overflow-auto max-h-[70vh] border border-slate-150 rounded-xl p-2 bg-slate-50 flex justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={sizeChartModalUrl}
-                alt="Sizing Chart"
-                className="max-w-full h-auto object-contain rounded-lg shadow-sm"
+                alt="Brand Size Chart"
+                className="max-w-full h-auto object-contain rounded-lg shadow-xs"
               />
             </div>
+
+            <button
+              onClick={() => setSizeChartModalUrl(null)}
+              className="w-full h-12 bg-slate-900 hover:bg-slate-850 text-white text-sm font-bold rounded-xl mt-4 cursor-pointer font-heading"
+            >
+              ปิดหน้าต่างนี้
+            </button>
           </div>
         </div>
       )}

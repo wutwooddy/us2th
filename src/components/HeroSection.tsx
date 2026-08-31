@@ -686,21 +686,31 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
       {/* Brand Size Chart Modal */}
       {sizeChartModalUrl && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
-          <div className="w-full max-w-lg bg-white border border-slate-200 p-6 rounded-2xl shadow-2xl relative text-left">
-            <h3 className="text-base font-bold text-slate-900 mb-4 flex items-center gap-2 font-heading">
-              📐 ตารางเทียบขนาดมาตรฐาน
-            </h3>
-            <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-slate-100">
+          <div className="w-full max-w-4xl bg-white border border-slate-200 p-6 rounded-2xl shadow-2xl relative text-left">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-base font-bold text-slate-900 flex flex-col md:flex-row md:items-center gap-1 font-heading">
+                <span>📐 ตารางเทียบขนาดมาตรฐาน</span>
+                <span className="hidden md:inline text-slate-300">/</span>
+                <span className="text-xs md:text-sm font-semibold text-slate-400">Brand Size Chart</span>
+              </h3>
+              <button
+                onClick={() => setSizeChartModalUrl(null)}
+                className="text-xs font-bold text-slate-400 hover:text-slate-700 transition-colors bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg cursor-pointer font-heading"
+              >
+                ปิด [X]
+              </button>
+            </div>
+            <div className="w-full overflow-auto max-h-[70vh] border border-slate-150 rounded-xl p-2 bg-slate-50 flex justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={sizeChartModalUrl}
                 alt="Brand Size Chart"
-                className="w-full h-full object-contain"
+                className="max-w-full h-auto object-contain rounded-lg shadow-xs"
               />
             </div>
             <button
               onClick={() => setSizeChartModalUrl(null)}
-              className="w-full h-11 bg-slate-900 hover:bg-slate-850 text-white text-sm font-bold rounded-xl mt-4 cursor-pointer font-heading"
+              className="w-full h-12 bg-slate-900 hover:bg-slate-850 text-white text-sm font-bold rounded-xl mt-4 cursor-pointer font-heading"
             >
               ปิดหน้าต่างนี้
             </button>
