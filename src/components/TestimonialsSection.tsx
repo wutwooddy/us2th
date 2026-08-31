@@ -3,45 +3,46 @@
 import React from 'react';
 import { Star, Quote, ShieldCheck } from 'lucide-react';
 
-const testimonials = [
+export const testimonials = [
   {
     id: 1,
     name: 'คุณธีรวัฒน์ S.',
     role: 'สัตวแพทย์ (นักสะสมสนีกเกอร์)',
     stars: 5,
-    comment: 'ฝากหาสนีกเกอร์รุ่นวินเทจใน eBay ที่ตามหามาหลายปี แอดมินตอบเร็วมาก เช็คเครดิตคนขายให้ละเอียดจนมั่นใจ ปลายทางนำเข้าและส่งมอบเคลียร์ราคาเบ็ดเสร็จ ส่งถึงคลินิกในงวดเดียว ประทับใจมากครับ',
+    comment: 'ฝากหาสนีกเกอร์ eBay แอดมินตอบเร็วมาก เช็คเครดิตคนขายให้ละเอียด นำเข้าและส่งมอบเคลียร์ราคาเบ็ดเสร็จ ส่งถึงคลินิกงวดเดียวจบเลยครับ',
   },
   {
     id: 2,
     name: 'คุณเก็จมณี P.',
     role: 'ดีไซเนอร์แฟชั่นอิสระ',
     stars: 5,
-    comment: 'พรีออร์เดอร์เสื้อแจ็คเก็ตและเสื้อผ้าสตรีทแวร์ลายกราฟิกยากๆ จากโตเกียวกับ US2TH ตลอดค่ะ ได้ราคาดีและเคลียร์ยอดจบทีเดียวตั้งแต่แรก ไม่มีค่าธรรมเนียมอื่นใดมาเรียกบวกเพิ่มทีหลัง แนะนำเลยค่ะ',
+    comment: 'พรีออร์เดอร์เสื้อผ้าสตรีทแวร์จากโตเกียวกับ US2TH ตลอดค่ะ ได้ราคาดีและเคลียร์ยอดจบทีเดียวตั้งแต่แรก ไม่มีค่าธรรมเนียมอื่นบวกเพิ่มแน่นอน',
   },
   {
     id: 3,
     name: 'คุณณพัต P.',
     role: 'นักสะสมของเล่นระดับพรีเมียม',
     stars: 5,
-    comment: 'ฝากหาโมเดล Bearbrick Karimoku ไม้แท้ ราคาหลักแสน แอดมินดูแลเป็นอย่างดี แพ็คของและห่อกันกระแทกส่งตรงจากฮ่องกงมาเนี๊ยบมาก ปลอดภัย ไว้ใจได้ล้านเปอร์เซ็นต์ครับสำหรับของสะสมราคาแพง',
+    comment: 'ฝากหา Bearbrick Karimoku ไม้แท้หลักแสน แอดมินแพ็คของและห่อกันกระแทกส่งตรงเนี๊ยบมาก ปลอดภัย ไว้ใจได้ล้านเปอร์เซ็นต์ครับ',
   },
   {
     id: 4,
     name: 'คุณศรัณย์ K.',
     role: 'วิศวกรระบบ',
     stars: 5,
-    comment: 'สั่งของแบรนด์เนมลดราคาจากห้าง Nordstrom ไปสองรอบ บริการดีและช่วยกดจองขนาดไซส์ได้ทันเวลาโปรโมชั่น มีระบบแจ้งสถานะพรีที่ดี คุ้มค่าและสบายใจกว่ากดเองเยอะครับ',
+    comment: 'สั่งของแบรนด์เนมลดราคาจากห้าง Nordstrom ไปสองรอบ บริการดีช่วยกดจองไซส์ทันเวลาโปร มีระบบแจ้งสถานะพรีที่ดี คุ้มค่าและสบายใจมากครับ',
   },
   {
     id: 5,
     name: 'คุณวรัญญา A.',
     role: 'นักศึกษาการออกแบบดีไซน์',
     stars: 5,
-    comment: 'เคยฝากสั่งรองเท้ารุ่นพิเศษจากเว็บยุโรปหลายครั้ง แอดมินช่วยประเมินราคาเหมานำส่งรวดเร็วมาก ราคาเน็ตจบที่หน้าบ้านจริงและไม่ต้องกังวลเรื่องขั้นตอนเอกสารนำเข้าหน้าประตูบ้านค่ะ',
+    comment: 'ฝากสั่งรองเท้ารุ่นพิเศษจากเว็บยุโรปหลายครั้ง แอดมินประเมินราคาเหมานำส่งรวดเร็ว ราคาเน็ตจบที่หน้าบ้านจริงไม่ต้องห่วงเรื่องภาษีนำเข้าเลยค่ะ',
   },
 ];
 
-export default function TestimonialsSection() {
+export default function TestimonialsSection({ testimonialsData }: { testimonialsData?: typeof testimonials }) {
+  const listToRender = testimonialsData || testimonials;
   return (
     <section id="testimonials" className="w-full bg-white py-20 px-4 md:px-8 border-b border-slate-100">
       <div className="max-w-[1400px] mx-auto">
@@ -58,8 +59,8 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Testimonials Layout Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-          {testimonials.map((t) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {listToRender.map((t) => (
             <div 
               key={t.id}
               className="bg-[#fbfbfb] border border-slate-100 p-6 rounded-3xl flex flex-col justify-between hover:border-slate-200 transition-colors shadow-sm"
@@ -85,7 +86,6 @@ export default function TestimonialsSection() {
               <div className="border-t border-slate-100 pt-4 flex items-center justify-between">
                 <div>
                   <span className="block text-xs font-bold text-slate-800 font-heading">{t.name}</span>
-                  <span className="block text-[10px] text-slate-400 font-bold mt-0.5 font-heading">{t.role}</span>
                 </div>
                 <div className="text-brand-green bg-brand-green/5 p-1 rounded-full" title="Verified Customer">
                   <ShieldCheck className="w-4 h-4" />

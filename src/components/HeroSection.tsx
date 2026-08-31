@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Search, MessageCircle, Send, Check, Terminal, Zap, ExternalLink, ShieldAlert } from 'lucide-react';
+import { Search, MessageCircle, Send, Check, Terminal, Zap, ExternalLink, Star, Quote } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
 
 interface Promotion {
@@ -30,7 +30,7 @@ const BRAND_SIZE_CHARTS: Record<string, string> = {
   'puma': 'https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=800'
 };
 
-export default function HeroSection() {
+export default function HeroSection({ selectedTestimonial }: { selectedTestimonial?: any }) {
   const [url, setUrl] = useState('');
   const [copied, setCopied] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -184,7 +184,7 @@ export default function HeroSection() {
           <div className="mb-10">
             {/* Meta Tags */}
             <div className="flex items-center gap-2 text-xs font-bold text-slate-400 mb-6">
-              <span>[ บริการนำเข้าสินค้า ]</span>
+              <span>[ บริการจัดหาและสั่งกด ]</span>
               <span>✦</span>
               <span className="text-brand-blue font-heading">SNEAKERS & STREETWEAR SOURCING</span>
             </div>
@@ -194,10 +194,49 @@ export default function HeroSection() {
               รับสั่ง รับกดสินค้า
             </h1>
 
-            {/* Sub-headline */}
-            <p className="max-w-lg text-sm md:text-base text-slate-600 leading-relaxed mb-8 font-semibold">
-              รองเท้าสนีกเกอร์ เสื้อผ้าสตรีทแวร์ และของสะสมหายากจากทุกมุมโลก (US, JP, UK, EU, KR, HK, SG) ราคาเหมาจ่ายเบ็ดเสร็จรวมส่งถึงหน้าบ้านคุณ ไม่มีเก็บเพิ่มภายหลัง ปลอดภัย มั่นใจได้ของแท้ 100%
-            </p>
+            {/* Sub-headline with Cross-Platform Friendly Flags */}
+            <div className="max-w-lg text-sm md:text-base text-slate-600 leading-relaxed mb-8 font-semibold">
+              <span className="block mb-2">รองเท้าสนีกเกอร์ เสื้อผ้าสตรีทแวร์ และของสะสมหายากจากทุกมุมโลก:</span>
+              <div className="flex flex-wrap items-center gap-2 mb-3 bg-white p-2.5 rounded-2xl border border-slate-200/60 shadow-xs w-fit">
+                <div className="flex items-center gap-1.5">
+                  <img src="https://flagcdn.com/16x12/us.png" alt="US" className="w-4.5 h-3 rounded-xs object-cover border border-slate-200" title="United States" />
+                  <span className="text-[10px] font-black text-slate-400 font-heading">US</span>
+                </div>
+                <span className="text-slate-200">|</span>
+                <div className="flex items-center gap-1.5">
+                  <img src="https://flagcdn.com/16x12/jp.png" alt="JP" className="w-4.5 h-3 rounded-xs object-cover border border-slate-200" title="Japan" />
+                  <span className="text-[10px] font-black text-slate-400 font-heading">JP</span>
+                </div>
+                <span className="text-slate-200">|</span>
+                <div className="flex items-center gap-1.5">
+                  <img src="https://flagcdn.com/16x12/gb.png" alt="UK" className="w-4.5 h-3 rounded-xs object-cover border border-slate-200" title="United Kingdom" />
+                  <span className="text-[10px] font-black text-slate-400 font-heading">UK</span>
+                </div>
+                <span className="text-slate-200">|</span>
+                <div className="flex items-center gap-1.5">
+                  <img src="https://flagcdn.com/16x12/eu.png" alt="EU" className="w-4.5 h-3 rounded-xs object-cover border border-slate-200" title="Europe" />
+                  <span className="text-[10px] font-black text-slate-400 font-heading">EU</span>
+                </div>
+                <span className="text-slate-200">|</span>
+                <div className="flex items-center gap-1.5">
+                  <img src="https://flagcdn.com/16x12/kr.png" alt="KR" className="w-4.5 h-3 rounded-xs object-cover border border-slate-200" title="South Korea" />
+                  <span className="text-[10px] font-black text-slate-400 font-heading">KR</span>
+                </div>
+                <span className="text-slate-200">|</span>
+                <div className="flex items-center gap-1.5">
+                  <img src="https://flagcdn.com/16x12/hk.png" alt="HK" className="w-4.5 h-3 rounded-xs object-cover border border-slate-200" title="Hong Kong" />
+                  <span className="text-[10px] font-black text-slate-400 font-heading">HK</span>
+                </div>
+                <span className="text-slate-200">|</span>
+                <div className="flex items-center gap-1.5">
+                  <img src="https://flagcdn.com/16x12/sg.png" alt="SG" className="w-4.5 h-3 rounded-xs object-cover border border-slate-200" title="Singapore" />
+                  <span className="text-[10px] font-black text-slate-400 font-heading">SG</span>
+                </div>
+              </div>
+              <p className="leading-relaxed">
+                ราคาเหมาจ่ายเบ็ดเสร็จรวมส่งถึงหน้าบ้านคุณ ไม่มีเก็บเพิ่มภายหลัง ปลอดภัย มั่นใจได้ของแท้ 100%
+              </p>
+            </div>
 
             {/* Sourcing Price Checker Card */}
             <div className="w-full max-w-xl bg-white border border-slate-100 rounded-2xl p-6 shadow-sm relative overflow-hidden">
@@ -260,7 +299,7 @@ export default function HeroSection() {
             </div>
             <div>
               <span className="block text-xs text-slate-400 font-bold tracking-wider">ระยะเวลาโดยประมาณ</span>
-              <span className="block text-sm md:text-base font-bold text-slate-800 mt-1 font-heading">ตามรอบทวีป</span>
+              <span className="block text-sm md:text-base font-bold text-slate-800 mt-1 font-heading">ตามรอบประเทศ</span>
             </div>
             <div>
               <span className="block text-xs text-slate-400 font-bold tracking-wider">ราคาบริการ</span>
@@ -268,46 +307,98 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Detailed wait times per region */}
+          {/* Detailed wait times per region with Cross-Platform CDN flags */}
           <div className="mt-8 border-t border-slate-100 pt-6 text-left">
             <span className="block text-xs md:text-sm font-bold text-slate-800 uppercase tracking-wider mb-3">
               ✈️ ระยะเวลารอของโดยประมาณนับแต่สั่งให้
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs md:text-sm font-semibold leading-relaxed font-sans">
-              <div className="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
-                <span className="font-extrabold text-slate-900 block mb-0.5">🇺🇸 🇪🇺 🇬🇧 ตะวันตก</span>
-                <span className="text-slate-500 font-medium block mb-1">อเมริกา, ยุโรป, อังกฤษ</span>
-                <span className="text-brand-blue font-black text-sm">20-30 วัน</span>
+              
+              <div className="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-xs">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <span className="font-extrabold text-slate-900 block font-sans">ตะวันตก</span>
+                  <div className="flex items-center gap-1">
+                    <img src="https://flagcdn.com/16x12/us.png" alt="US" className="w-4.5 h-3 rounded-xs object-cover border border-slate-100" />
+                    <img src="https://flagcdn.com/16x12/eu.png" alt="EU" className="w-4.5 h-3 rounded-xs object-cover border border-slate-100" />
+                    <img src="https://flagcdn.com/16x12/gb.png" alt="GB" className="w-4.5 h-3 rounded-xs object-cover border border-slate-100" />
+                  </div>
+                </div>
+                <span className="text-slate-500 font-semibold block text-[11px] mb-1 leading-snug">อเมริกา, ยุโรป, อังกฤษ</span>
+                <span className="text-brand-blue font-black text-sm block">20-30 วัน</span>
               </div>
-              <div className="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
-                <span className="font-extrabold text-slate-900 block mb-0.5">🇯🇵 🇰🇷 🇨🇳 เอเชีย</span>
-                <span className="text-slate-500 font-medium block mb-1">ญี่ปุ่น, เกาหลี, จีน, ไต้หวัน, ฮ่องกง</span>
-                <span className="text-brand-blue font-black text-sm">10-20 วัน</span>
+
+              <div className="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-xs">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <span className="font-extrabold text-slate-900 block font-sans">เอเชีย</span>
+                  <div className="flex items-center gap-1">
+                    <img src="https://flagcdn.com/16x12/jp.png" alt="JP" className="w-4.5 h-3 rounded-xs object-cover border border-slate-100" />
+                    <img src="https://flagcdn.com/16x12/kr.png" alt="KR" className="w-4.5 h-3 rounded-xs object-cover border border-slate-100" />
+                    <img src="https://flagcdn.com/16x12/cn.png" alt="CN" className="w-4.5 h-3 rounded-xs object-cover border border-slate-100" />
+                    <img src="https://flagcdn.com/16x12/hk.png" alt="HK" className="w-4.5 h-3 rounded-xs object-cover border border-slate-100" />
+                  </div>
+                </div>
+                <span className="text-slate-500 font-semibold block text-[11px] mb-1 leading-snug">ญี่ปุ่น, เกาหลี, จีน, ฮ่องกง</span>
+                <span className="text-brand-blue font-black text-sm block">10-20 วัน</span>
               </div>
-              <div className="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
-                <span className="font-extrabold text-slate-900 block mb-0.5">🇸🇬 🇲🇾 เอเชียใต้</span>
-                <span className="text-slate-500 font-medium block mb-1">สิงคโปร์, มาเลเซีย</span>
-                <span className="text-brand-blue font-black text-sm">7-14 วัน</span>
+
+              <div className="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-xs">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <span className="font-extrabold text-slate-900 block font-sans">เอเชียใต้</span>
+                  <div className="flex items-center gap-1">
+                    <img src="https://flagcdn.com/16x12/sg.png" alt="SG" className="w-4.5 h-3 rounded-xs object-cover border border-slate-100" />
+                    <img src="https://flagcdn.com/16x12/my.png" alt="MY" className="w-4.5 h-3 rounded-xs object-cover border border-slate-100" />
+                  </div>
+                </div>
+                <span className="text-slate-500 font-semibold block text-[11px] mb-1 leading-snug">สิงคโปร์, มาเลเซีย</span>
+                <span className="text-brand-blue font-black text-sm block">7-14 วัน</span>
               </div>
+
             </div>
           </div>
 
         </div>
 
-        {/* Right Column: Banners + Latest Live Deal Card */}
+        {/* Right Column: Dynamic Testimonial + Banners + Latest Live Deal Card */}
         <div className="lg:col-span-5 flex flex-col justify-center bg-slate-50 border-t border-slate-100 lg:border-t-0 p-4 md:p-8 gap-4">
           
-          {/* Top white text badges */}
+          {/* Top Testimonial Quote display (Deduplicated, Client Role Omitted) */}
+          {selectedTestimonial && (
+            <div className="bg-white border border-slate-200/60 p-5 rounded-3xl shadow-xs text-left flex flex-col justify-between font-sans">
+              <div>
+                <div className="flex justify-between items-center mb-3">
+                  <div className="flex gap-0.5">
+                    {[...Array(selectedTestimonial.stars || 5)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <Quote className="w-5 h-5 text-slate-200 flex-shrink-0" />
+                </div>
+                <p className="text-xs md:text-sm text-slate-650 leading-relaxed font-semibold mb-4 font-sans">
+                  "{selectedTestimonial.comment}"
+                </p>
+              </div>
+              <div className="border-t border-slate-100 pt-3 flex items-center justify-between">
+                <span className="block text-xs font-bold text-slate-800 font-heading">
+                  {selectedTestimonial.name}
+                </span>
+                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider bg-slate-50 px-2.5 py-0.5 rounded-lg border border-slate-150">
+                  รีวิวจริงจากลูกค้า
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* Top white text badges banner tags */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="bg-white border border-slate-100 p-3 rounded-2xl text-xs font-bold text-slate-800 shadow-sm flex items-center justify-center gap-1.5 font-heading">
+            <div className="bg-white border border-slate-100 p-3 rounded-2xl text-xs font-bold text-slate-850 shadow-sm flex items-center justify-center gap-1.5 font-heading">
               <span>✈️ รับสั่ง รับกดสินค้า</span>
             </div>
-            <div className="bg-white border border-slate-100 p-3 rounded-2xl text-xs font-bold text-slate-800 shadow-sm flex items-center justify-center gap-1.5 font-heading">
+            <div className="bg-white border border-slate-100 p-3 rounded-2xl text-xs font-bold text-slate-850 shadow-sm flex items-center justify-center gap-1.5 font-heading">
               <span>📦 ส่งตรงถึงหน้าบ้านคุณ</span>
             </div>
           </div>
 
-          {/* Live active deal display */}
+          {/* Live active deal display card */}
           {loadingDeal ? (
             <div className="w-full aspect-[4/3] bg-slate-200 animate-pulse rounded-3xl" />
           ) : latestDeal ? (
@@ -323,7 +414,7 @@ export default function HeroSection() {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full bg-slate-800 flex items-center justify-center text-slate-550 text-xs">
+                  <div className="w-full h-full bg-slate-800 flex items-center justify-center text-slate-500 text-xs">
                     ไม่มีรูปภาพประกอบ
                   </div>
                 )}
@@ -334,7 +425,7 @@ export default function HeroSection() {
                   🔥 ดีลล่าสุดแนะนำ
                 </div>
 
-                {/* Large white price label top-right */}
+                {/* Large price badge top-right */}
                 <div className="absolute top-3 right-3 bg-white text-brand-green border border-slate-100 px-3.5 py-1.5 rounded-2xl shadow-lg z-10 flex flex-col items-center justify-center font-heading">
                   <span className="text-[10px] text-slate-450 font-bold uppercase tracking-wider -mb-0.5 font-sans">THB PRICE</span>
                   <span className="text-lg font-black tracking-tight">{formatPriceString(latestDeal.deal_price)}</span>
@@ -410,7 +501,7 @@ export default function HeroSection() {
 
             </div>
           ) : (
-            <div className="w-full aspect-[4/3] border border-dashed border-slate-200 rounded-3xl flex items-center justify-center text-slate-400 text-sm bg-white">
+            <div className="w-full aspect-[4/3] border border-dashed border-slate-200 rounded-3xl flex items-center justify-center text-slate-400 text-sm bg-white font-sans">
               ไม่มีดีลลดราคาแสดงในขณะนี้
             </div>
           )}
