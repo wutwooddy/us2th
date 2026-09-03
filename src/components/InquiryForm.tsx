@@ -17,11 +17,11 @@ export default function InquiryForm() {
     e.preventDefault();
     
     if (!productDetails.trim()) {
-      setErrorMsg('[ERROR: FIELD_DETAILS_EMPTY] กรุณากรอกรายละเอียดสินค้า');
+      setErrorMsg('กรุณากรอกรายละเอียดสินค้า เช่น ชื่อรุ่น ไซส์ หรือวางลิงก์สินค้าครับ');
       return;
     }
     if (!contactInfo.trim()) {
-      setErrorMsg('[ERROR: FIELD_CONTACT_EMPTY] กรุณากรอกข้อมูลสำหรับติดต่อกลับ');
+      setErrorMsg('กรุณากรอกข้อมูลสำหรับติดต่อกลับ (LINE ID, เบอร์โทร หรือ Facebook) ด้วยครับ');
       return;
     }
 
@@ -48,7 +48,7 @@ export default function InquiryForm() {
     } catch (err: any) {
       console.error('Error inserting into Supabase: ', err);
       setErrorMsg(
-        '[ERROR: DB_CONNECTION_FAILED] ไม่สามารถส่งข้อมูลผ่านระบบอัตโนมัติได้ชั่วคราว คุณสามารถทักแชทหลักด้านล่างเพื่อแจ้งความต้องการหาของได้โดยตรงครับ'
+        'ระบบไม่สามารถส่งข้อมูลได้ชั่วคราว คุณสามารถทักแชท LINE OA (@hij2541a) ด้านล่างเพื่อแจ้งความต้องการหาของกับแอดมินได้โดยตรงครับ'
       );
     } finally {
       setLoading(false);
@@ -132,7 +132,7 @@ export default function InquiryForm() {
                   className="py-3 px-6 bg-[#23A55A] hover:bg-[#1F924F] text-white text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-md font-heading tracking-wide"
                 >
                   <MessageCircle className="w-4 h-4 text-white" />
-                  ทักแชทสอบถามทาง LINE OA
+                  ทักแชทสอบถามทาง LINE OA (@hij2541a)
                 </a>
                 <button
                   onClick={() => setSuccess(false)}
@@ -211,7 +211,7 @@ export default function InquiryForm() {
                   <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5 text-[#ED4245]" />
                   <div>
                     <p className="leading-relaxed">{errorMsg}</p>
-                    {errorMsg.includes('DB_CONNECTION_FAILED') && (
+                    {errorMsg.includes('LINE OA') && (
                       <div className="mt-3">
                         <a
                           href="https://lin.ee/ByS27YW"
@@ -219,7 +219,7 @@ export default function InquiryForm() {
                           rel="noopener noreferrer"
                           className="px-4 py-2 bg-[#23A55A] text-white text-xs font-bold rounded-lg inline-flex items-center gap-1.5 hover:bg-[#1F924F] transition-colors shadow-sm font-heading"
                         >
-                          <MessageCircle className="w-3.5 h-3.5" /> ทัก LINE OA แทน
+                          <MessageCircle className="w-3.5 h-3.5" /> ทัก LINE OA (@hij2541a) แทน
                         </a>
                       </div>
                     )}

@@ -11,6 +11,7 @@ export default function Header() {
         {/* Logo Section */}
         <a 
           href="#" 
+          aria-label="หน้าแรก US2TH Sourcing Hub"
           className="flex items-center gap-2.5 pr-6 md:pr-8 border-r border-[#5865F2]/20 select-none group"
         >
           <div className="w-9 h-9 rounded-xl bg-[#5865F2] flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">

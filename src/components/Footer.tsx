@@ -83,9 +83,9 @@ export default function Footer() {
               href="https://lin.ee/ByS27YW"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#35ED7E] hover:text-white flex items-center gap-1 transition-colors tracking-wide bg-[#23A55A]/10 border border-[#23A55A]/25 px-3 py-1.5 rounded-xl"
+              className="text-[#35ED7E] hover:text-white flex items-center gap-1.5 transition-colors tracking-wide bg-[#23A55A]/10 border border-[#23A55A]/25 px-3 py-1.5 rounded-xl"
             >
-              LINE OA @us2th <ArrowUpRight className="w-4 h-4 text-[#35ED7E]" />
+              LINE OA @hij2541a <ArrowUpRight className="w-4 h-4 text-[#35ED7E]" />
             </a>
             <a
               href="https://www.facebook.com/us2th"

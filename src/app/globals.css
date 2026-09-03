@@ -162,3 +162,11 @@ h1, h2, h3, h4, h5, h6 {
 .discord-embed-magenta {
   border-left: 4px solid #EC48BD;
 }
+
+/* Accessibility: Intentional reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-pulse {
+    animation: none !important;
+  }
+}

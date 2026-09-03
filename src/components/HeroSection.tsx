@@ -97,6 +97,17 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
     fetchLatestDeal();
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (showModal) closeModal();
+        if (sizeChartModalUrl) setSizeChartModalUrl(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [showModal, sizeChartModalUrl]);
+
   const getSizeChartUrl = (deal: Promotion) => {
     if (deal.size_chart_url) return deal.size_chart_url;
     const titleLower = deal.title.toLowerCase();
@@ -120,13 +131,13 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
   const handleCheckPrice = (e: React.FormEvent) => {
     e.preventDefault();
     if (!url || !url.trim()) {
-      setError('[ERROR: LINK_FIELD_EMPTY] กรุณาป้อนลิงก์สินค้า');
+      setError('กรุณาระบุลิงก์สินค้าที่ต้องการเช็คราคาครับ');
       return;
     }
     
     const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/i;
     if (!urlPattern.test(url.trim()) && !url.includes('.')) {
-      setError('[ERROR: INVALID_URL_FORMAT] รูปแบบลิงก์ไม่ถูกต้อง');
+      setError('กรุณาระบุเป็นลิงก์เว็บไซต์ เช่น https://www.ebay.com/... หรือชื่อเว็บที่ถูกต้องครับ');
       return;
     }
 
@@ -225,7 +236,7 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
             {/* Title with Kanit Discord Display Font */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#F2F3F5] mb-4 font-heading leading-[1.15]">
               รับสั่ง รับกดสินค้า
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#5865F2] via-[#00B0F4] to-[#35ED7E]">
+              <span className="block text-[#00B0F4]">
                 แบรนด์เนมทั่วโลก
               </span>
             </h1>
@@ -274,12 +285,12 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
             <div className="w-full max-w-xl bg-[#1E1F22] border border-[#5865F2]/35 rounded-2xl p-6 shadow-2xl relative overflow-hidden discord-embed-blurple">
               <div className="flex items-center justify-between border-b border-[#35373C] pb-3 mb-4">
                 <div className="flex items-center gap-2">
-                  <span className="bg-[#5865F2] text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded font-heading">
-                    BOT
+                  <span className="bg-[#5865F2]/20 border border-[#5865F2]/50 text-[#F2F3F5] text-[10px] font-extrabold px-2 py-0.5 rounded-md font-heading">
+                    CONCIERGE
                   </span>
                   <Hash className="w-4 h-4 text-[#5865F2]" />
                   <span className="text-sm font-bold text-[#F2F3F5] font-heading tracking-wide">
-                    เช็คราคาเหมาจ่ายฟรี (PRICE CHECKER)
+                    เช็คราคาเหมาจ่ายฟรี (CONCIERGE QUOTE)
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px] text-[#23A55A] font-bold">
@@ -291,7 +302,7 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
               <div className="space-y-4">
                 <p className="text-xs text-[#949BA4] font-medium font-sans flex items-center gap-1.5">
                   <Terminal className="w-3.5 h-3.5 text-[#5865F2]" />
-                  <span>วางลิงก์สินค้าจากต่างประเทศเพื่อประเมินราคาเหมาจ่ายรวมส่งถึงบ้าน:</span>
+                  <span>วางลิงก์สินค้าจากต่างประเทศเพื่อให้ทีมงานประเมินราคาเหมาจ่ายรวมส่งถึงบ้าน:</span>
                 </p>
 
                 <form onSubmit={handleCheckPrice} className="space-y-3">
@@ -310,6 +321,7 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
                       {url && (
                         <button
                           type="button"
+                          aria-label="ล้างข้อความในช่องค้นหา"
                           onClick={() => setUrl('')}
                           className="absolute right-3 top-1/2 -translate-y-1/2 text-[#80848E] hover:text-white text-xs font-bold px-1.5 py-0.5 rounded cursor-pointer"
                         >
@@ -613,8 +625,14 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
 
       {/* Pricing Checker Discord Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
-          <div className="w-full max-w-md bg-[#1E1F22] border border-[#5865F2]/40 p-6 rounded-3xl shadow-2xl relative text-left font-sans text-[#F2F3F5]">
+        <div 
+          onClick={closeModal}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-md bg-[#1E1F22] border border-[#5865F2]/40 p-6 rounded-3xl shadow-2xl relative text-left font-sans text-[#F2F3F5]"
+          >
             
             {step === 1 ? (
               <form onSubmit={handleConfirmInquiry} className="space-y-4">
@@ -696,7 +714,7 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
                     className="w-full h-12 bg-[#23A55A] hover:bg-[#1F924F] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-md font-heading tracking-wider"
                   >
                     <MessageCircle className="w-4 h-4" />
-                    ทักถามทาง LINE OA
+                    ทักถามทาง LINE OA (@hij2541a)
                   </a>
                   <a
                     href="https://m.me/us2th"

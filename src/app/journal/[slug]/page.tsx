@@ -143,7 +143,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
           {/* Excerpt */}
           {article.excerpt && (
-            <div className="border-l-4 border-[#5865F2] bg-[#111214] p-4 rounded-r-xl text-[#DBDEE1] text-sm md:text-base italic leading-relaxed mb-8 font-medium font-sans">
+            <div className="border border-[#5865F2]/30 bg-[#111214]/80 px-6 py-4 rounded-2xl text-[#DBDEE1] text-sm md:text-base leading-relaxed mb-8 font-medium font-sans">
               {article.excerpt}
             </div>
           )}
