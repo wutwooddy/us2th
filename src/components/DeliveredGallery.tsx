@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Package, MapPin } from 'lucide-react';
+import { MapPin, CheckCircle } from 'lucide-react';
 
 const deliveredItems = [
   {
@@ -15,7 +15,7 @@ const deliveredItems = [
   {
     id: 2,
     name: 'Supreme Box Logo Sweatshirt',
-    category: 'เสื้อผ้าแฟชั่น',
+    category: 'เสื้อผ้าสตรีทแวร์',
     country: 'USA 🇺🇸',
     price: '28,900 THB',
     imgUrl: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=400',
@@ -56,39 +56,37 @@ const deliveredItems = [
 
 export default function DeliveredGallery() {
   return (
-    <section id="showcase" className="w-full bg-[#0A0D3A] py-20 px-4 md:px-8 border-b border-[#5865F2]/20 text-[#F2F3F5] relative overflow-hidden">
+    <section id="showcase" className="w-full bg-[#090A0C] py-20 px-4 md:px-8 border-b border-white/[0.07] text-[#F4F4F2] relative">
       <div className="max-w-[1400px] mx-auto">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#5865F2]/20 pb-6 mb-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/[0.08] pb-6 mb-10">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="w-2 h-2 rounded-full bg-[#5865F2] animate-pulse" />
-              <span className="text-xs font-bold text-[#5865F2] uppercase tracking-widest font-heading">
-                [ #SHOWCASE-DROPS // DELIVERED ARCHIVE ]
+              <span className="text-[11px] font-semibold text-[#10B981] uppercase tracking-[0.15em] font-mono">
+                DELIVERED ARCHIVE
               </span>
             </div>
-            <h2 className="text-2xl md:text-3xl font-black tracking-tight text-[#F2F3F5] font-heading">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[#F4F4F2] font-heading">
               ผลงานจัดส่งล่าสุด
             </h2>
           </div>
           
-          <div className="mt-4 md:mt-0 text-xs font-bold text-[#949BA4] font-heading flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#23A55A]" />
-            <span>จัดส่งสำเร็จแล้วกว่า 1,240+ รายการทั่วไทย</span>
+          <div className="mt-4 md:mt-0 text-xs font-medium text-[#9B9FA8] font-sans flex items-center gap-1.5">
+            <CheckCircle className="w-4 h-4 text-[#10B981]" />
+            <span>จัดส่งสำเร็จแล้วกว่า 1,240 รายการทั่วไทย</span>
           </div>
         </div>
 
-        {/* Small Gallery Grid - Discord Drops */}
+        {/* Gallery Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {deliveredItems.map((item) => (
             <div 
               key={item.id}
-              className="bg-[#1E1F22] border border-[#5865F2]/20 hover:border-[#5865F2]/50 hover:bg-[#232529] rounded-2xl overflow-hidden shadow-md flex flex-col justify-between transition-all group discord-embed-blurple"
+              className="bg-[#12141A] border border-white/[0.08] hover:border-white/[0.16] rounded-2xl overflow-hidden shadow-md flex flex-col justify-between transition-all group"
             >
-              {/* Thumbnail square image */}
-              <div className="aspect-square relative overflow-hidden bg-[#111214]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
+              {/* Thumbnail image */}
+              <div className="aspect-square relative overflow-hidden bg-[#090A0C]">
                 <img
                   src={item.imgUrl}
                   alt={item.name}
@@ -96,18 +94,18 @@ export default function DeliveredGallery() {
                 />
                 
                 {/* Origin tag */}
-                <div className="absolute bottom-2 left-2 bg-[#111214]/85 backdrop-blur-xs text-[#F2F3F5] text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 border border-[#5865F2]/30 font-heading">
-                  <MapPin className="w-2.5 h-2.5 text-[#00B0F4]" />
-                  <span>{item.country.match(/🇺🇸|🇯🇵|🇬🇧|🇭🇰|🇰🇷|🇸🇬/g)}</span>
+                <div className="absolute bottom-2 left-2 bg-[#090A0C]/90 backdrop-blur-xs text-[#F4F4F2] text-[10px] font-mono px-2 py-0.5 rounded-sm flex items-center gap-1 border border-white/[0.1]">
+                  <MapPin className="w-2.5 h-2.5 text-[#10B981]" />
+                  <span>{item.country}</span>
                 </div>
               </div>
 
-              {/* Minimal Text info */}
+              {/* Text info */}
               <div className="p-3 text-left">
-                <span className="text-[10px] font-black text-[#35ED7E] uppercase tracking-wider block mb-0.5 font-heading">
+                <span className="text-[10px] font-mono text-[#10B981] uppercase tracking-wider block mb-0.5">
                   {item.category}
                 </span>
-                <h3 className="text-xs font-bold text-[#F2F3F5] line-clamp-1 leading-tight font-sans" title={item.name}>
+                <h3 className="text-xs font-medium text-[#F4F4F2] line-clamp-1 leading-snug font-sans" title={item.name}>
                   {item.name}
                 </h3>
               </div>

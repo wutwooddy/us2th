@@ -1,98 +1,90 @@
 'use client';
 
 import React from 'react';
-import { Send, MessageCircle, Hash, Sparkles } from 'lucide-react';
+import { MessageCircle, Send, ArrowUpRight } from 'lucide-react';
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#0A0D3A]/85 backdrop-blur-xl border-b border-[#5865F2]/20">
-      <div className="max-w-[1400px] mx-auto flex items-stretch h-16 px-4 md:px-6">
+    <header className="sticky top-0 z-40 w-full bg-[#090A0C]/90 backdrop-blur-xl border-b border-white/[0.07]">
+      <div className="max-w-[1400px] mx-auto flex items-center justify-between h-16 px-4 md:px-6">
         
         {/* Logo Section */}
-        <a 
-          href="#" 
-          aria-label="หน้าแรก US2TH Sourcing Hub"
-          className="flex items-center gap-2.5 pr-6 md:pr-8 border-r border-[#5865F2]/20 select-none group"
-        >
-          <div className="w-9 h-9 rounded-xl bg-[#5865F2] flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
-            <Sparkles className="w-5 h-5 text-white" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-xl md:text-2xl font-black tracking-tight text-[#F2F3F5] font-heading leading-none">
-              US<span className="text-[#5865F2] group-hover:text-[#4752C4] transition-colors">2</span>TH
-            </span>
-            <span className="text-[9px] tracking-widest text-[#949BA4] font-bold mt-0.5 font-heading uppercase">
-              GLOBAL SOURCING // HUB
-            </span>
-          </div>
-        </a>
+        <div className="flex items-center">
+          <a 
+            href="#" 
+            aria-label="หน้าแรก US2TH Concierge"
+            className="flex items-center gap-3 pr-6 md:pr-8 border-r border-white/[0.08] select-none group"
+          >
+            <div className="w-8 h-8 rounded-sm bg-[#F4F4F2] text-[#090A0C] flex items-center justify-center font-heading font-black text-xs tracking-tighter transition-transform group-hover:scale-105">
+              2TH
+            </div>
+            <div className="flex flex-col">
+              <span className="text-base md:text-lg font-bold tracking-tight text-[#F4F4F2] font-heading leading-none">
+                US2TH
+              </span>
+              <span className="text-[9px] tracking-[0.2em] text-[#60646E] font-medium mt-1 font-heading uppercase">
+                CONCIERGE SOURCING
+              </span>
+            </div>
+          </a>
 
-        {/* Navigation - Discord Channels Style */}
-        <nav className="hidden lg:flex flex-grow items-center px-8 text-xs font-bold tracking-wide text-[#949BA4] gap-6 font-heading">
-          <a 
-            href="#showcase" 
-            className="flex items-center gap-1 hover:text-[#F2F3F5] hover:bg-[#1E2353]/60 px-3 py-1.5 rounded-lg transition-all"
-          >
-            <Hash className="w-3.5 h-3.5 text-[#5865F2]" />
-            <span>ผลงานจัดส่ง</span>
-          </a>
-          <a 
-            href="#flashsale" 
-            className="flex items-center gap-1 hover:text-[#F2F3F5] hover:bg-[#1E2353]/60 px-3 py-1.5 rounded-lg transition-all"
-          >
-            <Hash className="w-3.5 h-3.5 text-[#EC48BD]" />
-            <span>ดีลพิเศษวันนี้</span>
-          </a>
-          <a 
-            href="#tracker" 
-            className="flex items-center gap-1 hover:text-[#F2F3F5] hover:bg-[#1E2353]/60 px-3 py-1.5 rounded-lg transition-all"
-          >
-            <Hash className="w-3.5 h-3.5 text-[#00B0F4]" />
-            <span>สถานะตู้สินค้า</span>
-          </a>
-          <a 
-            href="#magazine" 
-            className="flex items-center gap-1 hover:text-[#F2F3F5] hover:bg-[#1E2353]/60 px-3 py-1.5 rounded-lg transition-all"
-          >
-            <Hash className="w-3.5 h-3.5 text-[#949BA4]" />
-            <span>US2TH Journal</span>
-          </a>
-          <a 
-            href="#inquiry" 
-            className="flex items-center gap-1.5 text-[#35ED7E] bg-[#23A55A]/15 border border-[#23A55A]/30 hover:bg-[#23A55A]/25 px-3 py-1.5 rounded-lg transition-all ml-auto"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#35ED7E] animate-pulse" />
-            <span>ฝากหาของ / เช็คราคา</span>
-          </a>
-        </nav>
+          {/* Navigation - Exact Labels Preserved */}
+          <nav className="hidden lg:flex items-center px-6 gap-6 text-xs font-medium tracking-wide text-[#9B9FA8] font-sans">
+            <a 
+              href="#showcase" 
+              className="hover:text-[#F4F4F2] transition-colors py-1.5"
+            >
+              ผลงานจัดส่ง
+            </a>
+            <a 
+              href="#flashsale" 
+              className="hover:text-[#F4F4F2] transition-colors py-1.5"
+            >
+              ดีลพิเศษวันนี้
+            </a>
+            <a 
+              href="#tracker" 
+              className="hover:text-[#F4F4F2] transition-colors py-1.5"
+            >
+              สถานะตู้สินค้า
+            </a>
+            <a 
+              href="#magazine" 
+              className="hover:text-[#F4F4F2] transition-colors py-1.5"
+            >
+              US2TH Journal
+            </a>
+            <a 
+              href="#inquiry" 
+              className="flex items-center gap-1.5 text-[#F4F4F2] bg-white/[0.05] border border-white/[0.1] hover:border-white/20 hover:bg-white/[0.08] px-3 py-1 rounded-full transition-all"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+              <span>ฝากหาของ / เช็คราคา</span>
+            </a>
+          </nav>
+        </div>
 
         {/* Action CTAs Column */}
-        <div className="flex items-center gap-2.5 ml-auto lg:ml-0 pl-4 md:pl-6 text-sm">
-          {/* Live Community Status Pill */}
-          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1E2353]/50 border border-[#5865F2]/20 text-[11px] font-bold text-[#DBDEE1]">
-            <span className="w-2 h-2 rounded-full bg-[#23A55A] animate-pulse" />
-            <span className="font-heading">2,490 ออนไลน์</span>
-          </div>
-
-          {/* LINE Button (Discord Green) */}
+        <div className="flex items-center gap-2.5 text-xs">
+          {/* LINE Button */}
           <a
             href="https://lin.ee/ByS27YW"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 px-4 py-2 bg-[#23A55A] hover:bg-[#1F924F] text-white text-xs font-bold rounded-xl transition-all tracking-wide shadow-md hover:shadow-[#23A55A]/20 font-heading cursor-pointer"
+            className="flex items-center justify-center gap-1.5 px-3.5 py-1.5 bg-[#10B981] hover:bg-[#059669] text-black text-xs font-bold rounded-full transition-all tracking-wide shadow-sm font-heading cursor-pointer tactile-btn"
           >
-            <MessageCircle className="w-3.5 h-3.5 text-white" />
+            <MessageCircle className="w-3.5 h-3.5" />
             <span>LINE OA</span>
           </a>
           
-          {/* FB Button (Discord Blurple) */}
+          {/* FB Button */}
           <a
             href="https://www.facebook.com/us2th"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-1.5 px-4 py-2 bg-[#5865F2] hover:bg-[#4752C4] text-white text-xs font-bold rounded-xl transition-all tracking-wide shadow-md hover:shadow-[#5865F2]/20 font-heading cursor-pointer"
+            className="hidden sm:flex items-center justify-center gap-1.5 px-3.5 py-1.5 bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] text-[#F4F4F2] text-xs font-semibold rounded-full transition-all tracking-wide font-heading cursor-pointer tactile-btn"
           >
-            <Send className="w-3.5 h-3.5 text-white" />
+            <Send className="w-3.5 h-3.5 text-[#9B9FA8]" />
             <span>FACEBOOK</span>
           </a>
         </div>

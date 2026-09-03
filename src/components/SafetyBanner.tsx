@@ -1,26 +1,28 @@
 'use client';
 
 import React from 'react';
-import { ShieldAlert, Sparkles } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 
 export default function SafetyBanner() {
   return (
-    <aside aria-label="System announcement" className="w-full bg-[#0E1128]/95 backdrop-blur-md text-[#DBDEE1] py-2.5 px-4 border-b border-[#5865F2]/20 select-none text-xs md:text-sm relative z-50">
+    <aside
+      aria-label="Official verification advisory"
+      className="w-full bg-[#0D0E12] border-b border-white/[0.07] text-[#9B9FA8] py-2 px-4 select-none text-xs relative z-50"
+    >
       <div className="max-w-[1400px] mx-auto flex items-center justify-center gap-2 text-center font-sans font-medium flex-wrap">
         <div className="flex items-center gap-1.5 flex-shrink-0">
-          <ShieldAlert className="w-4 h-4 text-[#FEE75C] animate-pulse" />
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#5865F2]/20 border border-[#5865F2]/40 text-[#F2F3F5] text-[11px] font-black tracking-wider uppercase font-heading">
-            <Sparkles className="w-3 h-3 text-[#5865F2]" />
-            @everyone // SYSTEM ALERT
+          <ShieldCheck className="w-3.5 h-3.5 text-[#10B981]" />
+          <span className="inline-flex items-center px-2 py-0.5 rounded-sm bg-white/[0.05] border border-white/[0.1] text-[#F4F4F2] text-[10px] font-semibold tracking-wider uppercase font-heading">
+            VERIFIED CHANNELS
           </span>
         </div>
-        <span className="text-[#DBDEE1] leading-relaxed">
-          โปรดระวังมิจฉาชีพแอบอ้าง! ติดต่อและสั่งซื้อผ่าน{' '}
+        <span className="leading-relaxed text-[#9B9FA8]">
+          โปรดระวังมิจฉาชีพแอบอ้าง ติดต่อและสั่งซื้อผ่าน{' '}
           <a
             href="https://lin.ee/ByS27YW"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#35ED7E] font-bold hover:underline"
+            className="text-[#F4F4F2] font-semibold underline underline-offset-4 decoration-white/20 hover:text-[#10B981] hover:decoration-[#10B981] transition-colors"
           >
             LINE OA (@hij2541a)
           </a>{' '}
@@ -29,9 +31,9 @@ export default function SafetyBanner() {
             href="https://www.facebook.com/us2th"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#00B0F4] font-bold hover:underline"
+            className="text-[#F4F4F2] font-semibold underline underline-offset-4 decoration-white/20 hover:text-[#10B981] hover:decoration-[#10B981] transition-colors"
           >
-            FB Messenger US2TH
+            Facebook Messenger US2TH
           </a>{' '}
           ทางการเท่านั้น
         </span>

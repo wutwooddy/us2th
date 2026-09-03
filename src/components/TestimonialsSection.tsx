@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Star, Quote, ShieldCheck } from 'lucide-react';
+import { Star, ShieldCheck } from 'lucide-react';
 
 export const testimonials = [
   {
@@ -44,70 +44,64 @@ export const testimonials = [
 export default function TestimonialsSection({ testimonialsData }: { testimonialsData?: typeof testimonials }) {
   const listToRender = testimonialsData || testimonials;
   return (
-    <section id="testimonials" className="w-full bg-[#0A0D3A] py-24 px-4 md:px-8 border-b border-[#5865F2]/20 text-[#F2F3F5] relative overflow-hidden">
-      {/* Background ambient glow */}
-      <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-[#5865F2]/10 rounded-full blur-[130px] pointer-events-none" />
-
-      <div className="max-w-[1400px] mx-auto relative z-10">
+    <section id="testimonials" className="w-full bg-[#090A0C] py-20 md:py-24 px-4 md:px-8 border-b border-white/[0.07] text-[#F4F4F2] relative">
+      <div className="max-w-[1400px] mx-auto">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-2 h-2 rounded-full bg-[#23A55A] animate-pulse" />
-            <span className="text-xs font-bold text-[#35ED7E] uppercase tracking-widest font-heading">
-              [ #CUSTOMER-VOUCHES // REAL REVIEWS ]
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 mb-2">
+            <span className="text-[11px] font-semibold text-[#10B981] uppercase tracking-[0.15em] font-mono">
+              CLIENT TESTIMONIALS
             </span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-[#F2F3F5] font-heading">
+          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-[#F4F4F2] font-heading">
             ความพึงพอใจจากลูกค้าจริง
           </h2>
-          <p className="text-sm md:text-base text-[#DBDEE1] mt-2 leading-relaxed font-medium font-sans">
-            รีวิวและเสียงตอบรับจากนักสะสมและลูกค้าที่ใช้บริการนำเข้าสินค้ากับเราอย่างต่อเนื่อง
+          <p className="text-xs md:text-sm text-[#9B9FA8] mt-1.5 leading-relaxed font-sans">
+            เสียงตอบรับจากนักสะสมและผู้ที่ใช้บริการนำเข้าสินค้าหายากกับเราอย่างต่อเนื่อง
           </p>
         </div>
 
         {/* Testimonials Layout Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {listToRender.map((t, idx) => {
-            const avatarColors = ['bg-[#5865F2]', 'bg-[#23A55A]', 'bg-[#EC48BD]', 'bg-[#00B0F4]', 'bg-[#FEE75C]'];
-            const avatarColor = avatarColors[idx % avatarColors.length];
+          {listToRender.map((t) => {
             const initial = t.name.replace('คุณ', '').trim().charAt(0);
 
             return (
               <div 
                 key={t.id}
-                className="bg-[#1E1F22] border border-[#5865F2]/20 hover:border-[#5865F2]/50 hover:bg-[#232529] p-6 rounded-3xl flex flex-col justify-between transition-all shadow-lg discord-embed-blurple font-sans"
+                className="bg-[#12141A] border border-white/[0.08] hover:border-white/[0.16] p-6 rounded-2xl flex flex-col justify-between transition-all shadow-md font-sans"
               >
                 <div>
-                  {/* Stars & Verified Role Header */}
-                  <div className="flex justify-between items-center mb-5">
-                    <div className="flex gap-1">
+                  {/* Stars & Verified Header */}
+                  <div className="flex justify-between items-center mb-4">
+                    <div className="flex gap-0.5">
                       {[...Array(t.stars)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-[#FEE75C] text-[#FEE75C]" />
+                        <Star key={i} className="w-3.5 h-3.5 fill-[#F59E0B] text-[#F59E0B]" />
                       ))}
                     </div>
-                    <span className="inline-flex items-center gap-1 bg-[#23A55A]/15 border border-[#23A55A]/30 text-[#35ED7E] text-[10px] font-black px-2.5 py-0.5 rounded-full font-heading uppercase tracking-wider">
+                    <span className="inline-flex items-center gap-1 bg-white/[0.05] border border-white/[0.08] text-[#10B981] text-[10px] font-mono font-medium px-2 py-0.5 rounded-sm">
                       <ShieldCheck className="w-3 h-3" />
-                      VERIFIED
+                      VERIFIED CLIENT
                     </span>
                   </div>
 
                   {/* Comment */}
-                  <p className="text-[#DBDEE1] text-xs md:text-sm leading-relaxed mb-6 font-medium font-sans">
+                  <p className="text-[#9B9FA8] text-xs md:text-sm leading-relaxed mb-6 font-normal font-sans">
                     "{t.comment}"
                   </p>
                 </div>
 
-                {/* Customer Profile Discord Style */}
-                <div className="border-t border-[#35373C] pt-4 flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-full ${avatarColor} text-white font-black flex items-center justify-center text-sm font-heading shadow-md flex-shrink-0`}>
+                {/* Customer Profile */}
+                <div className="border-t border-white/[0.06] pt-4 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-white/[0.08] text-[#F4F4F2] font-semibold flex items-center justify-center text-xs font-mono flex-shrink-0">
                     {initial}
                   </div>
                   <div className="text-left overflow-hidden">
-                    <span className="block text-xs md:text-sm font-bold text-[#F2F3F5] font-heading truncate">
+                    <span className="block text-xs font-semibold text-[#F4F4F2] font-heading truncate">
                       {t.name}
                     </span>
-                    <span className="block text-[11px] text-[#949BA4] font-sans truncate">
+                    <span className="block text-[10px] text-[#60646E] font-sans truncate">
                       {t.role}
                     </span>
                   </div>

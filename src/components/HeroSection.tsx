@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Search, MessageCircle, Send, Check, Terminal, Zap, ExternalLink, Star, Quote, Sparkles, Clipboard, Bot, Hash, ShieldCheck, ArrowRight } from 'lucide-react';
+import { Search, MessageCircle, Send, Check, ExternalLink, Star, Quote, ShieldCheck, ArrowRight, X } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
 
 interface Promotion {
@@ -59,22 +59,6 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
   // Deal order copy details
   const [orderedDealTitle, setOrderedDealTitle] = useState('');
   const [orderedDealPrice, setOrderedDealPrice] = useState('');
-
-  // Discord-style Reactions State
-  const [reactions, setReactions] = useState<{ fire: number; gem: number; heart: number }>({
-    fire: 48,
-    gem: 19,
-    heart: 32,
-  });
-  const [userReacted, setUserReacted] = useState<Record<string, boolean>>({});
-
-  const toggleReaction = (type: 'fire' | 'gem' | 'heart') => {
-    setReactions((prev) => ({
-      ...prev,
-      [type]: userReacted[type] ? prev[type] - 1 : prev[type] + 1,
-    }));
-    setUserReacted((prev) => ({ ...prev, [type]: !prev[type] }));
-  };
 
   useEffect(() => {
     async function fetchLatestDeal() {
@@ -142,7 +126,7 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
     }
 
     setError('');
-    setStep(1); // Start modal at contact entry step
+    setStep(1);
     setModalError('');
     setShowModal(true);
   };
@@ -181,7 +165,7 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
       });
 
     setSubmitting(false);
-    setStep(2); // Go to success summary screen
+    setStep(2);
   };
 
   const handleOrderDeal = (deal: Promotion) => {
@@ -190,7 +174,7 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
       .then(() => {
         setOrderedDealTitle(deal.title);
         setOrderedDealPrice(deal.deal_price);
-        setStep(3); // Go to deal order success summary
+        setStep(3);
         setShowModal(true);
       })
       .catch((err) => {
@@ -209,211 +193,160 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
   };
 
   return (
-    <section className="relative w-full bg-[#0A0D3A] border-b border-[#5865F2]/20 text-[#F2F3F5] overflow-hidden">
+    <section className="relative w-full bg-[#090A0C] border-b border-white/[0.07] text-[#F4F4F2] overflow-hidden pt-10 md:pt-16 pb-16 md:pb-20">
       
-      {/* Discord Ambient Animated Gradient Mesh Glows */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#5865F2]/25 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/4 -right-32 w-96 h-96 bg-[#EC48BD]/20 rounded-full blur-[130px] pointer-events-none" />
-      <div className="absolute -bottom-20 left-1/3 w-96 h-80 bg-[#23A55A]/15 rounded-full blur-[120px] pointer-events-none" />
-
       {/* 2-Column Split Layout */}
-      <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[640px] items-stretch relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start relative z-10">
         
-        {/* Left Column: Sourcing Terminal & Discord Copy */}
-        <div className="lg:col-span-7 flex flex-col justify-between p-6 md:p-12 lg:border-r lg:border-[#5865F2]/20 relative bg-[#0E122B]/75 backdrop-blur-sm">
+        {/* Left Column: Value Proposition & Sourcing Concierge Form */}
+        <div className="lg:col-span-7 flex flex-col justify-between">
           
-          <div className="mb-10">
-            {/* Meta Tags - Discord Channel Tag style */}
-            <div className="flex items-center gap-2 text-xs font-bold text-[#949BA4] mb-6 font-heading flex-wrap">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#5865F2]/20 border border-[#5865F2]/40 text-[#F2F3F5] font-black tracking-wider">
-                <Sparkles className="w-3.5 h-3.5 text-[#5865F2]" />
-                [ SOURCING // DISCORD HUB ]
+          <div>
+            {/* Eyebrow: Max 1 text element */}
+            <div className="flex items-center gap-2.5 mb-5">
+              <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-sm bg-white/[0.05] border border-white/[0.1] text-[#F4F4F2] text-[11px] font-semibold tracking-[0.15em] uppercase font-heading">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+                GLOBAL SOURCING CONCIERGE
               </span>
-              <span className="text-white/20">✦</span>
-              <span className="text-[#DBDEE1] uppercase tracking-wider text-[11px]">PREMIUM STREETWEAR & RARE ARCHIVES</span>
+              <span className="text-[#60646E] text-xs font-mono">•</span>
+              <span className="text-[#9B9FA8] text-xs tracking-wider uppercase font-sans">100% AUTHENTIC GUARANTEE</span>
             </div>
 
-            {/* Title with Kanit Discord Display Font */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#F2F3F5] mb-4 font-heading leading-[1.15]">
-              รับสั่ง รับกดสินค้า
-              <span className="block text-[#00B0F4]">
-                แบรนด์เนมทั่วโลก
-              </span>
+            {/* Headline: Max 2 lines desktop */}
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F4F4F2] mb-4 font-heading leading-[1.12]">
+              สั่งซื้อและนำเข้าของสะสมหายาก
+              <span className="block text-[#9B9FA8] font-normal">สนีกเกอร์ลิมิเต็ดทั่วโลก</span>
             </h1>
 
-            {/* Sub-headline with Cross-Platform Friendly Flags in Discord Dark Cards */}
-            <div className="max-w-xl text-sm md:text-base text-[#DBDEE1] leading-relaxed mb-8 font-normal font-sans">
-              <span className="block mb-2 text-[#F2F3F5] font-semibold">
-                สนีกเกอร์รุ่นลิมิเต็ด เสื้อผ้าสตรีทแวร์ และของสะสมหายากส่งตรงถึงหน้าบ้านคุณ:
-              </span>
-              <div className="flex flex-wrap items-center gap-2 mb-3 bg-[#1E2353]/60 p-2.5 rounded-2xl border border-[#5865F2]/25 shadow-lg w-fit">
-                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-[#0A0D3A]/60">
-                  <img src="https://flagcdn.com/16x12/us.png" alt="US" className="w-4.5 h-3 rounded-xs object-cover" title="United States" />
-                  <span className="text-[10px] font-black text-[#F2F3F5] font-heading">US</span>
-                </div>
-                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-[#0A0D3A]/60">
-                  <img src="https://flagcdn.com/16x12/jp.png" alt="JP" className="w-4.5 h-3 rounded-xs object-cover" title="Japan" />
-                  <span className="text-[10px] font-black text-[#F2F3F5] font-heading">JP</span>
-                </div>
-                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-[#0A0D3A]/60">
-                  <img src="https://flagcdn.com/16x12/gb.png" alt="UK" className="w-4.5 h-3 rounded-xs object-cover" title="United Kingdom" />
-                  <span className="text-[10px] font-black text-[#F2F3F5] font-heading">UK</span>
-                </div>
-                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-[#0A0D3A]/60">
-                  <img src="https://flagcdn.com/16x12/eu.png" alt="EU" className="w-4.5 h-3 rounded-xs object-cover" title="Europe" />
-                  <span className="text-[10px] font-black text-[#F2F3F5] font-heading">EU</span>
-                </div>
-                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-[#0A0D3A]/60">
-                  <img src="https://flagcdn.com/16x12/kr.png" alt="KR" className="w-4.5 h-3 rounded-xs object-cover" title="South Korea" />
-                  <span className="text-[10px] font-black text-[#F2F3F5] font-heading">KR</span>
-                </div>
-                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-[#0A0D3A]/60">
-                  <img src="https://flagcdn.com/16x12/hk.png" alt="HK" className="w-4.5 h-3 rounded-xs object-cover" title="Hong Kong" />
-                  <span className="text-[10px] font-black text-[#F2F3F5] font-heading">HK</span>
-                </div>
-                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-[#0A0D3A]/60">
-                  <img src="https://flagcdn.com/16x12/sg.png" alt="SG" className="w-4.5 h-3 rounded-xs object-cover" title="Singapore" />
-                  <span className="text-[10px] font-black text-[#F2F3F5] font-heading">SG</span>
-                </div>
-              </div>
-              <p className="text-[#DBDEE1] leading-relaxed">
-                ราคาเหมาจ่ายเบ็ดเสร็จรวมส่งถึงหน้าบ้านคุณ ไม่มีเก็บเพิ่มภายหลัง ปลอดภัย มั่นใจได้ของแท้ 100%
-              </p>
-            </div>
+            {/* Subtext: Max 20 words */}
+            <p className="max-w-xl text-sm md:text-base text-[#9B9FA8] leading-relaxed mb-8 font-sans">
+              บริการจัดซื้อและเคลียร์ภาษีเบ็ดเสร็จ ส่งตรงถึงหน้าบ้านคุณในราคาเหมาจ่ายยอดเดียวจบ การันตีของแท้ทุกชิ้น
+            </p>
 
-            {/* Sourcing Price Checker Discord Terminal Card */}
-            <div className="w-full max-w-xl bg-[#1E1F22] border border-[#5865F2]/35 rounded-2xl p-6 shadow-2xl relative overflow-hidden discord-embed-blurple">
-              <div className="flex items-center justify-between border-b border-[#35373C] pb-3 mb-4">
+            {/* Sourcing Concierge Quote Box */}
+            <div className="w-full max-w-xl bg-[#12141A] border border-white/[0.1] rounded-2xl p-5 md:p-6 shadow-xl relative mb-10">
+              <div className="flex items-center justify-between border-b border-white/[0.08] pb-3.5 mb-4">
                 <div className="flex items-center gap-2">
-                  <span className="bg-[#5865F2]/20 border border-[#5865F2]/50 text-[#F2F3F5] text-[10px] font-extrabold px-2 py-0.5 rounded-md font-heading">
-                    CONCIERGE
+                  <span className="text-xs font-bold tracking-wider text-[#F4F4F2] uppercase font-heading">
+                    เช็คราคาเหมาจ่ายฟรี
                   </span>
-                  <Hash className="w-4 h-4 text-[#5865F2]" />
-                  <span className="text-sm font-bold text-[#F2F3F5] font-heading tracking-wide">
-                    เช็คราคาเหมาจ่ายฟรี (CONCIERGE QUOTE)
+                  <span className="text-[10px] text-[#60646E] font-mono tracking-widest uppercase">
+                    CONCIERGE QUOTE
                   </span>
                 </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-[#23A55A] font-bold">
-                  <span className="w-2 h-2 rounded-full bg-[#23A55A] animate-pulse" />
+                <div className="flex items-center gap-1.5 text-[11px] text-[#10B981] font-medium font-mono">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
                   <span>ONLINE</span>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <p className="text-xs text-[#949BA4] font-medium font-sans flex items-center gap-1.5">
-                  <Terminal className="w-3.5 h-3.5 text-[#5865F2]" />
-                  <span>วางลิงก์สินค้าจากต่างประเทศเพื่อให้ทีมงานประเมินราคาเหมาจ่ายรวมส่งถึงบ้าน:</span>
-                </p>
-
-                <form onSubmit={handleCheckPrice} className="space-y-3">
-                  <div className="flex flex-col sm:flex-row gap-2">
-                    <div className="relative flex-grow">
-                      <input
-                        type="text"
-                        placeholder="วางลิงก์สินค้าที่นี่ (เช่น https://stockx.com/...)"
-                        value={url}
-                        onChange={(e) => {
-                          setUrl(e.target.value);
-                          setError('');
-                        }}
-                        className="w-full h-12 bg-[#111214] border border-[#383A40] text-[#F2F3F5] rounded-xl px-4 text-sm focus:border-[#5865F2] focus:bg-[#111214] focus:ring-1 focus:ring-[#5865F2] outline-none transition-all placeholder:text-[#80848E] font-medium font-sans"
-                      />
-                      {url && (
-                        <button
-                          type="button"
-                          aria-label="ล้างข้อความในช่องค้นหา"
-                          onClick={() => setUrl('')}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#80848E] hover:text-white text-xs font-bold px-1.5 py-0.5 rounded cursor-pointer"
-                        >
-                          ✕
-                        </button>
-                      )}
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="h-12 px-6 bg-[#5865F2] hover:bg-[#4752C4] text-white text-sm font-black rounded-xl flex items-center justify-center gap-1.5 transition-all flex-shrink-0 cursor-pointer font-heading tracking-wide shadow-md hover:shadow-[#5865F2]/30 active:scale-98"
-                    >
-                      {copied ? <Check className="w-4 h-4 text-[#35ED7E]" /> : <Search className="w-4 h-4" />}
-                      <span>{copied ? 'คัดลอกแล้ว' : 'ส่งเช็คราคา'}</span>
-                    </button>
+              <form onSubmit={handleCheckPrice} className="space-y-3">
+                <div className="flex flex-col sm:flex-row gap-2.5">
+                  <div className="relative flex-grow">
+                    <input
+                      type="text"
+                      placeholder="วางลิงก์สินค้าที่นี่ (เช่น StockX, GOAT, eBay)"
+                      value={url}
+                      onChange={(e) => {
+                        setUrl(e.target.value);
+                        setError('');
+                      }}
+                      className="w-full h-12 bg-[#090A0C] border border-white/[0.12] text-[#F4F4F2] rounded-xl px-4 text-sm focus:border-[#10B981] outline-none transition-all placeholder:text-[#60646E] font-medium font-sans"
+                    />
+                    {url && (
+                      <button
+                        type="button"
+                        aria-label="ล้างข้อความในช่องค้นหา"
+                        onClick={() => setUrl('')}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#60646E] hover:text-[#F4F4F2] text-xs font-bold px-1.5 py-0.5 rounded cursor-pointer"
+                      >
+                        ✕
+                      </button>
+                    )}
                   </div>
-                </form>
 
-                {error && (
-                  <p className="text-xs text-[#ED4245] font-bold bg-[#ED4245]/10 p-2.5 rounded-lg border border-[#ED4245]/20 font-sans">
-                    {error}
-                  </p>
-                )}
-
-                <div className="text-[11px] text-[#949BA4] leading-relaxed border-t border-[#35373C] pt-3 font-medium font-sans">
-                  💡 *ระบบจะคัดลอกข้อความสรุป เพื่อให้คุณส่งแชทปรึกษาแอดมินทาง LINE หรือ FB ได้ทันที สะดวกรวดเร็วที่สุดครับ
+                  <button
+                    type="submit"
+                    className="h-12 px-6 bg-[#F4F4F2] hover:bg-white text-[#090A0C] text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-all flex-shrink-0 cursor-pointer font-heading tracking-wider uppercase tactile-btn shadow-sm"
+                  >
+                    {copied ? <Check className="w-4 h-4 text-[#10B981]" /> : <Search className="w-4 h-4" />}
+                    <span>{copied ? 'คัดลอกแล้ว' : 'ส่งเช็คราคา'}</span>
+                  </button>
                 </div>
-              </div>
+              </form>
+
+              {error && (
+                <p className="text-xs text-[#EF4444] font-medium bg-[#EF4444]/10 p-2.5 rounded-lg border border-[#EF4444]/20 font-sans mt-3">
+                  {error}
+                </p>
+              )}
+
+              <p className="text-[11px] text-[#60646E] leading-relaxed pt-3 border-t border-white/[0.06] mt-3 font-sans">
+                ระบบจะสรุปข้อมูลเพื่อส่งต่อให้แอดมินประเมินราคาเหมาจ่ายทาง LINE OA หรือ Facebook ได้ทันที
+              </p>
             </div>
 
           </div>
 
-          {/* Operational Quick stats */}
-          <div className="grid grid-cols-3 border-t border-[#5865F2]/20 pt-8 gap-4">
+          {/* Operational Quick Stats */}
+          <div className="grid grid-cols-3 border-t border-white/[0.08] pt-6 gap-4">
             <div>
-              <span className="block text-xs text-[#949BA4] font-bold tracking-wider font-heading uppercase">รับประกันสินค้า</span>
-              <span className="block text-sm md:text-base font-bold text-[#F2F3F5] mt-1 font-heading">ของแท้ 100%</span>
+              <span className="block text-[11px] text-[#60646E] font-medium tracking-wider font-heading uppercase">รับประกันสินค้า</span>
+              <span className="block text-sm md:text-base font-semibold text-[#F4F4F2] mt-0.5 font-heading">ของแท้ 100%</span>
             </div>
             <div>
-              <span className="block text-xs text-[#949BA4] font-bold tracking-wider font-heading uppercase">ระยะเวลาโดยประมาณ</span>
-              <span className="block text-sm md:text-base font-bold text-[#F2F3F5] mt-1 font-heading">ตามรอบประเทศ</span>
+              <span className="block text-[11px] text-[#60646E] font-medium tracking-wider font-heading uppercase">ระยะเวลานำเข้า</span>
+              <span className="block text-sm md:text-base font-semibold text-[#F4F4F2] mt-0.5 font-heading">ตามรอบประเทศ</span>
             </div>
             <div>
-              <span className="block text-xs text-[#949BA4] font-bold tracking-wider font-heading uppercase">ราคาบริการ</span>
-              <span className="block text-sm md:text-base font-bold text-[#35ED7E] mt-1 font-heading">เหมาจ่ายเบ็ดเสร็จ</span>
+              <span className="block text-[11px] text-[#60646E] font-medium tracking-wider font-heading uppercase">ราคาบริการ</span>
+              <span className="block text-sm md:text-base font-semibold text-[#10B981] mt-0.5 font-heading">เหมาจ่ายเบ็ดเสร็จ</span>
             </div>
           </div>
 
-          {/* Detailed wait times per region in Discord Ping Server Cards */}
-          <div className="mt-8 border-t border-[#5865F2]/20 pt-6 text-left">
-            <span className="block text-xs md:text-sm font-bold text-[#DBDEE1] uppercase tracking-wider mb-3 font-heading flex items-center gap-1.5">
-              ✈️ ระยะเวลารอของโดยประมาณนับแต่สั่งให้ (REGIONAL HUBS)
+          {/* Regional Hubs Wait Times */}
+          <div className="mt-8 border-t border-white/[0.08] pt-6">
+            <span className="block text-xs font-semibold text-[#9B9FA8] uppercase tracking-wider mb-3 font-heading">
+              ระยะเวลารอของโดยประมาณนับแต่สั่งซื้อ
             </span>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs md:text-sm font-medium font-sans">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-sans">
               
-              <div className="bg-[#1E2353]/60 p-3.5 rounded-2xl border border-[#5865F2]/20 shadow-md hover:border-[#5865F2]/50 transition-all">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="font-bold text-[#F2F3F5] block font-heading">โซนตะวันตก</span>
+              <div className="bg-[#12141A] p-3.5 rounded-xl border border-white/[0.08]">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-semibold text-[#F4F4F2] font-heading">โซนตะวันตก</span>
                   <div className="flex items-center gap-1">
                     <img src="https://flagcdn.com/16x12/us.png" alt="US" className="w-4 h-2.5 rounded-xs object-cover" />
                     <img src="https://flagcdn.com/16x12/eu.png" alt="EU" className="w-4 h-2.5 rounded-xs object-cover" />
                     <img src="https://flagcdn.com/16x12/gb.png" alt="GB" className="w-4 h-2.5 rounded-xs object-cover" />
                   </div>
                 </div>
-                <span className="text-[#949BA4] font-medium block text-[11px] mb-1 leading-snug">อเมริกา, ยุโรป, อังกฤษ</span>
-                <span className="text-[#35ED7E] font-black text-sm block font-heading">20-30 วัน</span>
+                <span className="text-[#60646E] block text-[11px] mb-1">อเมริกา, ยุโรป, อังกฤษ</span>
+                <span className="text-[#F4F4F2] font-semibold text-xs font-mono">20-30 วัน</span>
               </div>
 
-              <div className="bg-[#1E2353]/60 p-3.5 rounded-2xl border border-[#5865F2]/20 shadow-md hover:border-[#5865F2]/50 transition-all">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="font-bold text-[#F2F3F5] block font-heading">โซนเอเชีย</span>
+              <div className="bg-[#12141A] p-3.5 rounded-xl border border-white/[0.08]">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-semibold text-[#F4F4F2] font-heading">โซนเอเชีย</span>
                   <div className="flex items-center gap-1">
                     <img src="https://flagcdn.com/16x12/jp.png" alt="JP" className="w-4 h-2.5 rounded-xs object-cover" />
                     <img src="https://flagcdn.com/16x12/kr.png" alt="KR" className="w-4 h-2.5 rounded-xs object-cover" />
-                    <img src="https://flagcdn.com/16x12/cn.png" alt="CN" className="w-4 h-2.5 rounded-xs object-cover" />
                     <img src="https://flagcdn.com/16x12/hk.png" alt="HK" className="w-4 h-2.5 rounded-xs object-cover" />
                   </div>
                 </div>
-                <span className="text-[#949BA4] font-medium block text-[11px] mb-1 leading-snug">ญี่ปุ่น, เกาหลี, จีน, ฮ่องกง</span>
-                <span className="text-[#35ED7E] font-black text-sm block font-heading">10-20 วัน</span>
+                <span className="text-[#60646E] block text-[11px] mb-1">ญี่ปุ่น, เกาหลี, ฮ่องกง</span>
+                <span className="text-[#F4F4F2] font-semibold text-xs font-mono">10-20 วัน</span>
               </div>
 
-              <div className="bg-[#1E2353]/60 p-3.5 rounded-2xl border border-[#5865F2]/20 shadow-md hover:border-[#5865F2]/50 transition-all">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="font-bold text-[#F2F3F5] block font-heading">โซนเอเชียใต้</span>
+              <div className="bg-[#12141A] p-3.5 rounded-xl border border-white/[0.08]">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-semibold text-[#F4F4F2] font-heading">โซนเอเชียใต้</span>
                   <div className="flex items-center gap-1">
                     <img src="https://flagcdn.com/16x12/sg.png" alt="SG" className="w-4 h-2.5 rounded-xs object-cover" />
                     <img src="https://flagcdn.com/16x12/my.png" alt="MY" className="w-4 h-2.5 rounded-xs object-cover" />
                   </div>
                 </div>
-                <span className="text-[#949BA4] font-medium block text-[11px] mb-1 leading-snug">สิงคโปร์, มาเลเซีย</span>
-                <span className="text-[#35ED7E] font-black text-sm block font-heading">7-14 วัน</span>
+                <span className="text-[#60646E] block text-[11px] mb-1">สิงคโปร์, มาเลเซีย</span>
+                <span className="text-[#F4F4F2] font-semibold text-xs font-mono">7-14 วัน</span>
               </div>
 
             </div>
@@ -421,200 +354,140 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
 
         </div>
 
-        {/* Right Column: Dynamic Testimonial + Banners + Latest Live Deal Card */}
-        <div className="lg:col-span-5 flex flex-col justify-center bg-[#0B0E24]/85 border-t border-[#5865F2]/20 lg:border-t-0 p-4 md:p-8 gap-4">
+        {/* Right Column: Dynamic Testimonial + Featured Deal Preview */}
+        <div className="lg:col-span-5 flex flex-col gap-5">
           
-          {/* Top Testimonial Quote - Discord Chat Bubble format */}
+          {/* Top Testimonial Quote */}
           {selectedTestimonial && (
-            <div className="bg-[#1E2353]/70 border border-[#5865F2]/30 p-5 rounded-3xl shadow-xl text-left flex flex-col justify-between font-sans">
+            <div className="bg-[#12141A] border border-white/[0.08] p-5 rounded-2xl shadow-lg text-left flex flex-col justify-between font-sans">
               <div>
                 <div className="flex justify-between items-center mb-3">
                   <div className="flex gap-0.5">
                     {[...Array(selectedTestimonial.stars || 5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-[#FEE75C] text-[#FEE75C]" />
+                      <Star key={i} className="w-3.5 h-3.5 fill-[#F59E0B] text-[#F59E0B]" />
                     ))}
                   </div>
-                  <Quote className="w-4 h-4 text-[#5865F2]/60 flex-shrink-0" />
+                  <Quote className="w-4 h-4 text-[#60646E] flex-shrink-0" />
                 </div>
-                <p className="text-xs md:text-sm text-[#DBDEE1] leading-relaxed font-medium mb-4 font-sans">
+                <p className="text-xs md:text-sm text-[#9B9FA8] leading-relaxed font-normal mb-4 font-sans">
                   "{selectedTestimonial.comment}"
                 </p>
               </div>
-              <div className="border-t border-[#5865F2]/20 pt-3 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-[#5865F2] text-white flex items-center justify-center text-[10px] font-bold">
+              <div className="border-t border-white/[0.06] pt-3 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-6 h-6 rounded-full bg-white/[0.08] text-[#F4F4F2] flex items-center justify-center text-[10px] font-bold font-mono">
                     {selectedTestimonial.name.charAt(0)}
                   </div>
-                  <span className="block text-xs font-bold text-[#F2F3F5] font-heading">
-                    {selectedTestimonial.name}
-                  </span>
+                  <div>
+                    <span className="block text-xs font-semibold text-[#F4F4F2] font-heading">
+                      {selectedTestimonial.name}
+                    </span>
+                    <span className="block text-[10px] text-[#60646E] font-sans">
+                      {selectedTestimonial.role}
+                    </span>
+                  </div>
                 </div>
-                <span className="text-[10px] text-[#35ED7E] font-bold uppercase tracking-wider bg-[#23A55A]/15 px-2.5 py-0.5 rounded-lg border border-[#23A55A]/30 font-heading">
-                  @VERIFIED CLIENT
+                <span className="text-[10px] font-mono text-[#10B981] flex items-center gap-1">
+                  <ShieldCheck className="w-3 h-3" /> VERIFIED
                 </span>
               </div>
             </div>
           )}
 
-          {/* Top Discord feature tags */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="bg-[#1E2353]/50 border border-[#5865F2]/20 p-3 rounded-2xl text-xs font-bold text-[#DBDEE1] shadow-md flex items-center justify-center gap-1.5 font-heading">
-              <span>✈️ รับสั่ง รับกดสินค้า</span>
-            </div>
-            <div className="bg-[#1E2353]/50 border border-[#5865F2]/20 p-3 rounded-2xl text-xs font-bold text-[#DBDEE1] shadow-md flex items-center justify-center gap-1.5 font-heading">
-              <span>📦 ส่งตรงถึงหน้าบ้านคุณ</span>
-            </div>
-          </div>
-
-          {/* Live active deal display card - Discord Rich Embed */}
+          {/* Featured Deal Card */}
           {loadingDeal ? (
-            <div className="w-full aspect-[4/3] bg-white/5 animate-pulse rounded-3xl" />
+            <div className="w-full aspect-[4/3] border border-white/[0.08] rounded-2xl flex items-center justify-center text-[#60646E] text-xs bg-[#12141A] font-sans">
+              กำลังโหลดข้อมูลดีลล่าสุด...
+            </div>
           ) : latestDeal ? (
-            <div className="w-full bg-[#1E1F22] border border-[#5865F2]/30 rounded-3xl shadow-2xl overflow-hidden flex flex-col transition-all discord-embed-blurple">
+            <div className="bg-[#12141A] border border-white/[0.08] rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between">
               
-              {/* Product Poster Image Container */}
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#111214] flex-shrink-0">
+              {/* Product Poster Block */}
+              <div className="aspect-[16/10] relative w-full overflow-hidden bg-[#090A0C]">
                 {latestDeal.img_url ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img 
-                    src={latestDeal.img_url} 
-                    alt={latestDeal.title} 
+                  <img
+                    src={latestDeal.img_url}
+                    alt={latestDeal.title}
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full bg-[#111214] flex items-center justify-center text-[#80848E] text-xs">
-                    ไม่มีรูปภาพประกอบ
+                  <div className="w-full h-full flex items-center justify-center text-[#60646E] text-xs">
+                    ไม่มีรูปภาพ
                   </div>
                 )}
-
-                {/* Badge top-left - Discord Nitro Magenta */}
-                <div className="absolute top-3 left-3 bg-[#EC48BD] text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-lg shadow-lg z-10 flex items-center gap-1 font-heading">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                  🔥 ดีลล่าสุดแนะนำ
+                
+                {/* Deal Tag */}
+                <div className="absolute top-3 left-3 bg-[#090A0C]/90 backdrop-blur-md px-2.5 py-1 rounded-sm border border-white/[0.1] text-[10px] font-semibold tracking-wider text-[#F4F4F2] uppercase font-heading">
+                  FEATURED DEAL
                 </div>
 
-                {/* Large price badge top-right */}
-                <div className="absolute top-3 right-3 bg-[#111214]/90 backdrop-blur-md text-[#F2F3F5] px-3.5 py-1.5 rounded-2xl shadow-2xl z-10 flex flex-col items-center justify-center font-heading border border-[#5865F2]/40">
-                  <span className="text-[9px] text-[#949BA4] font-bold uppercase tracking-wider -mb-0.5 font-heading">NET PRICE</span>
-                  <span className="text-lg font-black tracking-tight text-[#35ED7E]">{formatPriceString(latestDeal.deal_price)}</span>
+                <div className="absolute top-3 right-3 bg-[#10B981] px-2.5 py-1 rounded-sm text-[11px] font-bold text-black font-mono">
+                  {formatPriceString(latestDeal.deal_price)}
                 </div>
 
-                {/* Bottom title text overlay */}
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#111214] via-[#111214]/85 to-transparent p-4 pt-12 text-left">
-                  <div className="text-[#F2F3F5] text-sm font-bold tracking-wide font-sans mb-1 leading-snug line-clamp-1">
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#12141A] via-[#12141A]/70 to-transparent p-4 pt-10 text-left">
+                  <div className="text-[#F4F4F2] text-sm font-semibold tracking-wide font-sans mb-0.5 line-clamp-1">
                     {latestDeal.title}
                   </div>
                   {latestDeal.description && (
-                    <p className="text-[#DBDEE1]/80 text-[11px] font-medium leading-relaxed font-sans line-clamp-1 mb-0.5">
+                    <p className="text-[#9B9FA8] text-[11px] font-normal leading-relaxed line-clamp-1">
                       {latestDeal.description}
                     </p>
                   )}
                 </div>
               </div>
 
-              {/* Sizes and info display details block */}
-              <div className="p-4 bg-[#1E1F22] text-left space-y-2 flex-grow">
-                <div className="text-[11px] text-[#DBDEE1] font-normal leading-relaxed font-sans">
-                  <span className="text-[#949BA4] font-medium flex-shrink-0 font-sans">ไซส์ที่มี:</span>{' '}
-                  <span className="text-[#F2F3F5] font-bold font-sans">{latestDeal.sizes || 'Free Size / One Size'}</span>
+              {/* Deal Meta */}
+              <div className="p-4 space-y-2 text-left">
+                <div className="flex justify-between text-xs font-sans">
+                  <span className="text-[#60646E]">ไซส์ที่มี:</span>
+                  <span className="text-[#F4F4F2] font-medium">{latestDeal.sizes || 'Free Size'}</span>
                 </div>
-                <div className="text-[11px] text-[#DBDEE1] font-normal leading-relaxed font-sans">
-                  <span className="text-[#949BA4] font-medium flex-shrink-0 font-sans">การส่ง:</span>{' '}
-                  <span className="text-[#35ED7E] font-bold font-sans">{latestDeal.shipping_time || '✈️ พรีออเดอร์ 20-30 วัน'}</span>
+                <div className="flex justify-between text-xs font-sans">
+                  <span className="text-[#60646E]">ระยะเวลาจัดส่ง:</span>
+                  <span className="text-[#F4F4F2] font-mono">{latestDeal.shipping_time || '20-30 วัน'}</span>
                 </div>
                 {latestDeal.original_price && (
-                  <div className="text-[11px] text-[#949BA4] font-normal leading-relaxed font-sans flex items-baseline gap-1.5">
-                    <span className="text-[#80848E] font-medium flex-shrink-0 font-sans">ราคาปกติ:</span>
-                    <span className="text-[#80848E] line-through font-medium font-sans">{latestDeal.original_price}</span>
+                  <div className="flex justify-between text-xs font-sans">
+                    <span className="text-[#60646E]">ราคาปกติ:</span>
+                    <span className="text-[#60646E] line-through font-mono">{latestDeal.original_price}</span>
                   </div>
                 )}
-                <p className="text-[10px] text-[#80848E] font-medium leading-relaxed font-sans border-t border-[#35373C] pt-2 mt-1">
-                  *ราคาเหมาจ่ายเบ็ดเสร็จรวมส่งถึงหน้าบ้าน ไม่มีเก็บเงินเพิ่มภายหลัง
-                </p>
               </div>
 
-              {/* Discord Interactive Community Reaction Pills */}
-              <div className="px-4 py-2 bg-[#17181B] border-t border-[#35373C] flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => toggleReaction('fire')}
-                  className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                    userReacted.fire
-                      ? 'bg-[#5865F2]/30 border border-[#5865F2] text-[#F2F3F5]'
-                      : 'bg-[#2B2D31] hover:bg-[#35373C] text-[#DBDEE1]'
-                  }`}
-                  title="React with Fire"
-                >
-                  <span>🔥</span>
-                  <span>{reactions.fire}</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => toggleReaction('gem')}
-                  className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                    userReacted.gem
-                      ? 'bg-[#5865F2]/30 border border-[#5865F2] text-[#F2F3F5]'
-                      : 'bg-[#2B2D31] hover:bg-[#35373C] text-[#DBDEE1]'
-                  }`}
-                  title="React with Gem"
-                >
-                  <span>💎</span>
-                  <span>{reactions.gem}</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => toggleReaction('heart')}
-                  className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                    userReacted.heart
-                      ? 'bg-[#5865F2]/30 border border-[#5865F2] text-[#F2F3F5]'
-                      : 'bg-[#2B2D31] hover:bg-[#35373C] text-[#DBDEE1]'
-                  }`}
-                  title="React with Heart"
-                >
-                  <span>❤️</span>
-                  <span>{reactions.heart}</span>
-                </button>
-              </div>
-
-              {/* Action Buttons - Electric Green Primary */}
-              <div className="p-4 pt-2 flex flex-col gap-1.5 bg-[#1E1F22] rounded-b-3xl">
+              {/* Action Buttons */}
+              <div className="p-4 pt-0 flex gap-2">
                 <button
                   onClick={() => handleOrderDeal(latestDeal)}
-                  className="w-full h-12 bg-[#23A55A] hover:bg-[#1F924F] text-white text-sm font-black rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-lg hover:shadow-[#23A55A]/25 cursor-pointer font-heading tracking-wider uppercase active:scale-98"
+                  className="flex-1 h-10 bg-[#10B981] hover:bg-[#059669] text-black text-xs font-bold rounded-xl flex items-center justify-center gap-1.5 transition-all cursor-pointer font-heading tracking-wider uppercase tactile-btn"
                 >
-                  <Zap className="w-4 h-4 fill-white text-white" />
-                  ฝากสั่งซื้อด่วน
+                  <span>ฝากสั่งซื้อทันที</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
                 
-                {(latestDeal.affiliate_url || getSizeChartUrl(latestDeal)) && (
-                  <div className="flex gap-1.5 w-full">
-                    {getSizeChartUrl(latestDeal) && (
-                      <button
-                        onClick={() => setSizeChartModalUrl(getSizeChartUrl(latestDeal))}
-                        className="flex-grow h-9 bg-[#FEE75C] hover:bg-[#E3CE52] text-[#060607] rounded-xl text-[10px] font-black flex items-center justify-center transition-all cursor-pointer font-heading tracking-wider uppercase"
-                      >
-                        ตารางไซส์
-                      </button>
-                    )}
-                    {latestDeal.affiliate_url && (
-                      <a
-                        href={latestDeal.affiliate_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-grow h-9 bg-[#5865F2] hover:bg-[#4752C4] text-white rounded-xl text-[10px] font-bold flex items-center justify-center transition-all shadow-sm font-heading"
-                      >
-                        ดูโพสต์เดิม <ExternalLink className="w-3 h-3 ml-0.5" />
-                      </a>
-                    )}
-                  </div>
+                {getSizeChartUrl(latestDeal) && (
+                  <button
+                    onClick={() => setSizeChartModalUrl(getSizeChartUrl(latestDeal))}
+                    className="px-3.5 h-10 bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] text-[#F4F4F2] text-xs font-medium rounded-xl transition-all cursor-pointer font-heading tactile-btn"
+                  >
+                    ตารางไซส์
+                  </button>
+                )}
+                {latestDeal.affiliate_url && (
+                  <a
+                    href={latestDeal.affiliate_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3.5 h-10 bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] text-[#9B9FA8] hover:text-[#F4F4F2] text-xs font-medium rounded-xl flex items-center justify-center transition-all tactile-btn"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 )}
               </div>
 
             </div>
           ) : (
-            <div className="w-full aspect-[4/3] border border-dashed border-[#5865F2]/20 rounded-3xl flex items-center justify-center text-[#80848E] text-sm bg-[#1E1F22] font-sans">
+            <div className="w-full aspect-[4/3] border border-white/[0.08] rounded-2xl flex items-center justify-center text-[#60646E] text-xs bg-[#12141A] font-sans">
               ไม่มีดีลลดราคาแสดงในขณะนี้
             </div>
           )}
@@ -623,86 +496,100 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
 
       </div>
 
-      {/* Pricing Checker Discord Modal */}
+      {/* Pricing Checker Modal */}
       {showModal && (
         <div 
           onClick={closeModal}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-md bg-[#1E1F22] border border-[#5865F2]/40 p-6 rounded-3xl shadow-2xl relative text-left font-sans text-[#F2F3F5]"
+            className="w-full max-w-md bg-[#12141A] border border-white/[0.12] p-6 rounded-2xl shadow-2xl relative text-left font-sans text-[#F4F4F2]"
           >
-            
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-[#60646E] hover:text-[#F4F4F2] p-1 transition-colors"
+              aria-label="ปิดหน้าต่าง"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
             {step === 1 ? (
               <form onSubmit={handleConfirmInquiry} className="space-y-4">
-                <h3 className="text-base font-bold text-[#F2F3F5] flex items-center gap-2 font-heading">
-                  <Terminal className="w-5 h-5 text-[#5865F2]" />
-                  กรอกช่องทางติดต่อที่สะดวก (LINE หรือ FB)
-                </h3>
-                <p className="text-xs text-[#DBDEE1] leading-relaxed font-medium">
-                  เพื่อให้แอดมินติดต่อกลับแจ้งราคาสุทธิและสรุปค่าบริการนำเข้า กรุณากรอกช่องทางที่คุณสะดวกติดต่อที่สุดครับ:
+                <div>
+                  <span className="text-[10px] text-[#10B981] font-mono uppercase tracking-widest block mb-1">
+                    STEP 1 / SOURCING INQUIRY
+                  </span>
+                  <h3 className="text-base font-bold text-[#F4F4F2] font-heading">
+                    ระบุช่องทางติดต่อกลับ
+                  </h3>
+                </div>
+                
+                <p className="text-xs text-[#9B9FA8] leading-relaxed">
+                  เพื่อให้แอดมินแจ้งราคาสุทธิและสรุปค่าบริการนำเข้า กรุณากรอกช่องทางที่คุณสะดวกติดต่อครับ
                 </p>
                 
                 <input
                   type="text"
-                  placeholder="เช่น LINE ID: somchai123 หรือ FB: สมชาย ใจดี"
+                  placeholder="LINE ID, เบอร์โทรศัพท์ หรือ Facebook"
                   value={contactInfo}
                   onChange={(e) => {
                     setContactInfo(e.target.value);
                     setModalError('');
                   }}
-                  className="w-full h-12 bg-[#111214] border border-[#383A40] text-[#F2F3F5] rounded-xl px-4 text-sm focus:border-[#5865F2] outline-none placeholder:text-[#80848E] font-medium font-sans"
+                  className="w-full h-12 bg-[#090A0C] border border-white/[0.12] text-[#F4F4F2] rounded-xl px-4 text-sm focus:border-[#10B981] outline-none placeholder:text-[#60646E] font-medium font-sans"
                   required
                 />
 
                 {modalError && (
-                  <p className="text-xs text-[#ED4245] font-bold">{modalError}</p>
+                  <p className="text-xs text-[#EF4444] font-medium">{modalError}</p>
                 )}
 
-                <div className="flex gap-2 pt-2">
+                <div className="flex gap-2.5 pt-2">
                   <button
                     type="button"
                     onClick={closeModal}
-                    className="flex-1 h-12 border border-[#383A40] hover:bg-white/5 text-[#949BA4] text-sm font-bold rounded-xl transition-all cursor-pointer font-heading"
+                    className="flex-1 h-11 border border-white/[0.1] hover:bg-white/[0.05] text-[#9B9FA8] text-xs font-semibold rounded-xl transition-all cursor-pointer font-heading tactile-btn"
                   >
                     ยกเลิก
                   </button>
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="flex-1 h-12 bg-[#5865F2] hover:bg-[#4752C4] text-white text-sm font-black rounded-xl flex items-center justify-center gap-1.5 transition-all cursor-pointer font-heading tracking-wider"
+                    className="flex-1 h-11 bg-[#F4F4F2] hover:bg-white text-[#090A0C] text-xs font-bold rounded-xl flex items-center justify-center gap-1.5 transition-all cursor-pointer font-heading tracking-wider uppercase tactile-btn"
                   >
-                    {submitting ? 'กำลังส่งข้อมูล...' : 'ยืนยันส่งข้อมูล'}
+                    {submitting ? 'กำลังบันทึก...' : 'ส่งข้อมูลประเมินราคา'}
                   </button>
                 </div>
               </form>
             ) : step === 2 ? (
               <div className="space-y-4">
-                <h3 className="text-base font-bold text-[#F2F3F5] flex items-center gap-2 font-heading">
-                  <Check className="w-5 h-5 text-[#23A55A]" />
-                  ส่งข้อมูลตรวจราคาเรียบร้อยแล้ว!
-                </h3>
-                <p className="text-xs text-[#DBDEE1] leading-relaxed font-medium">
-                  ระบบได้บันทึกการเช็คราคาและคัดลอกข้อความสรุปลงคลิปบอร์ดของคุณแล้ว แอดมินจะรีบตรวจสอบสินค้าและติดต่อกลับโดยเร็วที่สุดครับ:
+                <div>
+                  <span className="text-[10px] text-[#10B981] font-mono uppercase tracking-widest block mb-1">
+                    STEP 2 / CONFIRMATION
+                  </span>
+                  <h3 className="text-base font-bold text-[#F4F4F2] flex items-center gap-2 font-heading">
+                    <Check className="w-5 h-5 text-[#10B981]" />
+                    ส่งข้อมูลเรียบร้อยแล้ว
+                  </h3>
+                </div>
+
+                <p className="text-xs text-[#9B9FA8] leading-relaxed">
+                  ระบบได้บันทึกและคัดลอกข้อความสรุปลงคลิปบอร์ดแล้ว คุณสามารถกดทักแชทคุยกับแอดมินเพื่อเช็คราคาได้ทันทีครับ
                 </p>
 
                 {/* Inquiry Summary Block */}
-                <div className="bg-[#111214] border border-[#383A40] p-4 rounded-2xl text-xs text-[#DBDEE1] break-all space-y-2 font-sans font-medium">
+                <div className="bg-[#090A0C] border border-white/[0.08] p-4 rounded-xl text-xs text-[#9B9FA8] break-all space-y-2 font-sans">
                   <div>
-                    <span className="text-[#949BA4] block font-semibold mb-0.5 font-sans">ลิงก์สินค้าที่ถาม:</span>
-                    <a href={url} target="_blank" rel="noopener noreferrer" className="text-[#00B0F4] underline break-all font-mono font-medium block">
+                    <span className="text-[#60646E] block font-medium mb-0.5">ลิงก์สินค้า:</span>
+                    <a href={url} target="_blank" rel="noopener noreferrer" className="text-[#F4F4F2] underline break-all font-mono block">
                       {url.length > 50 ? url.substring(0, 50) + '...' : url}
                     </a>
                   </div>
                   <div>
-                    <span className="text-[#949BA4] block font-semibold mb-0.5 font-sans">ช่องทางติดต่อกลับของคุณ:</span>
-                    <span className="text-[#F2F3F5] font-bold font-sans">{contactInfo}</span>
+                    <span className="text-[#60646E] block font-medium mb-0.5">ช่องทางติดต่อกลับ:</span>
+                    <span className="text-[#F4F4F2] font-semibold">{contactInfo}</span>
                   </div>
-                </div>
-
-                <div className="text-xs text-[#DBDEE1] leading-relaxed font-medium border-t border-[#35373C] pt-3">
-                  💬 <span className="font-bold text-[#F2F3F5]">แนะนำส่งต่อให้แอดมินทันที:</span> กดปุ่ม LINE OA หรือ Facebook Messenger ด้านล่างเพื่อส่งข้อความแชทคุยราคาได้ทันทีครับ!
                 </div>
 
                 <div className="flex flex-col gap-2 pt-2">
@@ -711,50 +598,43 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeModal}
-                    className="w-full h-12 bg-[#23A55A] hover:bg-[#1F924F] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-md font-heading tracking-wider"
+                    className="w-full h-11 bg-[#10B981] hover:bg-[#059669] text-black text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm font-heading tracking-wider uppercase tactile-btn"
                   >
                     <MessageCircle className="w-4 h-4" />
-                    ทักถามทาง LINE OA (@hij2541a)
+                    ทักสอบถามทาง LINE OA (@hij2541a)
                   </a>
                   <a
                     href="https://m.me/us2th"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeModal}
-                    className="w-full h-12 bg-[#5865F2] hover:bg-[#4752C4] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-md font-heading tracking-wider"
+                    className="w-full h-11 bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] text-[#F4F4F2] text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition-all font-heading tracking-wider uppercase tactile-btn"
                   >
-                    <Send className="w-4 h-4" />
-                    ทักถามทาง FB Messenger
+                    <Send className="w-4 h-4 text-[#9B9FA8]" />
+                    ทักสอบถามทาง FB Messenger
                   </a>
                 </div>
-
-                <button
-                  onClick={closeModal}
-                  className="w-full text-center text-xs font-semibold text-[#949BA4] hover:text-[#F2F3F5] transition-colors mt-4 py-1 uppercase tracking-wider font-heading cursor-pointer"
-                >
-                  ปิดหน้าต่างนี้
-                </button>
               </div>
             ) : (
               <div className="space-y-4">
-                <h3 className="text-base font-bold text-[#F2F3F5] flex items-center gap-2 font-heading">
-                  <Check className="w-5 h-5 text-[#23A55A]" />
-                  คัดลอกรายละเอียดดีลสำเร็จ!
-                </h3>
-                <p className="text-xs text-[#DBDEE1] leading-relaxed font-medium">
-                  ระบบได้คัดลอกรายละเอียดข้อมูลดีลส่วนลดนี้ลงคลิปบอร์ดของคุณแล้ว กรุณาทักคุยกับแอดมินเพื่อยืนยันขนาดไซส์และแจ้งความประสงค์สั่งซื้อได้เลยครับ:
+                <div>
+                  <span className="text-[10px] text-[#10B981] font-mono uppercase tracking-widest block mb-1">
+                    ORDER DEAL / CONFIRMATION
+                  </span>
+                  <h3 className="text-base font-bold text-[#F4F4F2] flex items-center gap-2 font-heading">
+                    <Check className="w-5 h-5 text-[#10B981]" />
+                    คัดลอกรายละเอียดดีลสำเร็จ
+                  </h3>
+                </div>
+
+                <p className="text-xs text-[#9B9FA8] leading-relaxed">
+                  ระบบได้คัดลอกข้อมูลดีลส่วนลดนี้ลงคลิปบอร์ดแล้ว ทักแชทแอดมินเพื่อแจ้งสั่งซื้อได้ทันทีครับ
                 </p>
 
-                {/* Deal Order Summary Block */}
-                <div className="bg-[#111214] border border-[#383A40] p-4 rounded-2xl text-xs text-[#DBDEE1] break-all space-y-2 font-sans font-medium">
-                  <div>
-                    <span className="text-[#949BA4] block font-semibold mb-0.5 font-sans">สินค้าดีลที่เลือก:</span>
-                    <span className="text-[#F2F3F5] font-bold block">{orderedDealTitle}</span>
-                  </div>
-                  <div>
-                    <span className="text-[#949BA4] block font-semibold mb-0.5 font-sans">ราคาสุทธิ:</span>
-                    <span className="text-[#35ED7E] font-black text-sm block">{formatPriceString(orderedDealPrice)}</span>
-                  </div>
+                <div className="bg-[#090A0C] border border-white/[0.08] p-4 rounded-xl text-xs space-y-1.5 font-sans">
+                  <span className="text-[#60646E] block font-medium">รายการดีล:</span>
+                  <div className="text-[#F4F4F2] font-semibold">{orderedDealTitle}</div>
+                  <div className="text-[#10B981] font-mono font-bold">{orderedDealPrice}</div>
                 </div>
 
                 <div className="flex flex-col gap-2 pt-2">
@@ -763,7 +643,7 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeModal}
-                    className="w-full h-12 bg-[#23A55A] hover:bg-[#1F924F] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-md font-heading tracking-wider"
+                    className="w-full h-11 bg-[#10B981] hover:bg-[#059669] text-black text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm font-heading tracking-wider uppercase tactile-btn"
                   >
                     <MessageCircle className="w-4 h-4" />
                     ส่งดีลสั่งซื้อทาง LINE OA
@@ -773,43 +653,47 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeModal}
-                    className="w-full h-12 bg-[#5865F2] hover:bg-[#4752C4] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-md font-heading tracking-wider"
+                    className="w-full h-11 bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] text-[#F4F4F2] text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition-all font-heading tracking-wider uppercase tactile-btn"
                   >
-                    <Send className="w-4 h-4" />
-                    ส่งดีลสั่งซื้อทาง FB Messenger
+                    <Send className="w-4 h-4 text-[#9B9FA8]" />
+                    ส่งดีลสั่งซื้อทาง Messenger
                   </a>
                 </div>
-
-                <button
-                  onClick={closeModal}
-                  className="w-full text-center text-xs font-semibold text-[#949BA4] hover:text-[#F2F3F5] transition-colors mt-4 py-1 uppercase tracking-wider font-heading cursor-pointer"
-                >
-                  ปิดหน้าต่างนี้
-                </button>
               </div>
             )}
-
           </div>
         </div>
       )}
 
-      {/* Brand Size Chart Full-Screen Lightbox Modal */}
+      {/* Brand Size Chart Modal */}
       {sizeChartModalUrl && (
-        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 md:p-8 animate-fade-in">
-          {/* Relative wrapper around the image to place close button in its top-right */}
-          <div className="relative max-w-full max-h-screen">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={sizeChartModalUrl}
-              alt="Brand Size Chart"
-              className="max-w-full max-h-screen object-contain select-none rounded-2xl shadow-2xl bg-white"
-            />
-            <button
-              onClick={() => setSizeChartModalUrl(null)}
-              className="absolute top-4 right-4 z-50 bg-[#111214]/90 hover:bg-[#111214] text-white text-xs font-black px-3.5 py-2 rounded-full shadow-lg border border-white/20 backdrop-blur-xs flex items-center gap-1 font-heading cursor-pointer"
-            >
-              ปิด [X]
-            </button>
+        <div
+          onClick={() => setSizeChartModalUrl(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-2xl bg-[#12141A] border border-white/[0.12] rounded-2xl p-5 shadow-2xl relative"
+          >
+            <div className="flex items-center justify-between border-b border-white/[0.08] pb-3 mb-4">
+              <span className="text-xs font-bold text-[#F4F4F2] uppercase tracking-wider font-heading">
+                ตารางเทียบขนาดมาตรฐาน (SIZE CHART)
+              </span>
+              <button
+                onClick={() => setSizeChartModalUrl(null)}
+                className="text-[#60646E] hover:text-[#F4F4F2] p-1 transition-colors"
+                aria-label="ปิดหน้าต่าง"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="w-full max-h-[75vh] overflow-auto rounded-xl bg-[#090A0C]">
+              <img
+                src={sizeChartModalUrl}
+                alt="Brand Size Chart"
+                className="w-full h-auto object-contain mx-auto"
+              />
+            </div>
           </div>
         </div>
       )}

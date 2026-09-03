@@ -30,7 +30,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0A0D3A] text-[#DBDEE1] font-sans selection:bg-[#5865F2] selection:text-white antialiased">
+    <div className="flex flex-col min-h-screen bg-[#090A0C] text-[#F4F4F2] font-sans selection:bg-[#10B981] selection:text-black antialiased">
       {/* Scam alert warning banner at the top */}
       <SafetyBanner />
 

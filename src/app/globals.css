@@ -1,70 +1,50 @@
 @import "tailwindcss";
 
 @theme {
-  /* Discord Design System Palette */
-  --color-discord-blurple: #5865F2;
-  --color-discord-blurple-hover: #4752C4;
-  --color-discord-green: #23A55A;
-  --color-discord-green-light: #35ED7E;
-  --color-discord-green-hover: #1F924F;
-  --color-discord-magenta: #EC48BD;
-  --color-discord-magenta-hover: #D638A8;
-  --color-discord-cyan: #00B0F4;
-  --color-discord-cyan-hover: #009BD6;
-  --color-discord-yellow: #FEE75C;
-  --color-discord-red: #ED4245;
+  /* Luxury Streetwear & Sourcing System Palette */
+  --color-obsidian-canvas: #090A0C;
+  --color-obsidian-surface: #12141A;
+  --color-obsidian-elevated: #171922;
+  --color-obsidian-card: #12141A;
+  --color-obsidian-card-hover: #181B24;
+  --color-obsidian-sidebar: #0D0E12;
+  --color-obsidian-border: rgba(255, 255, 255, 0.08);
+  --color-obsidian-border-subtle: rgba(255, 255, 255, 0.05);
+  --color-obsidian-border-hover: rgba(255, 255, 255, 0.16);
 
-  /* Discord Surfaces & Canvas */
-  --color-discord-canvas: #0A0D3A;
-  --color-discord-indigo: #1E2353;
-  --color-discord-indigo-hover: #262D69;
-  --color-discord-dark: #1E1F22;
-  --color-discord-card: #2B2D31;
-  --color-discord-card-hover: #313338;
-  --color-discord-sidebar: #111214;
-  --color-discord-onyx: #23272A;
-  --color-discord-black: #080A1A;
-  --color-discord-border: rgba(255, 255, 255, 0.08);
-  --color-discord-border-hover: rgba(255, 255, 255, 0.16);
+  /* High-contrast Text Hierarchy */
+  --color-obsidian-text-primary: #F4F4F2;
+  --color-obsidian-text-secondary: #9B9FA8;
+  --color-obsidian-text-muted: #60646E;
 
-  /* Discord Text Hierarchy */
-  --color-discord-text-primary: #F2F3F5;
-  --color-discord-text-secondary: #DBDEE1;
-  --color-discord-text-muted: #949BA4;
-  --color-discord-text-dark: #060607;
+  /* Single Calibrated Accent (Emerald / Verified Authenticity) */
+  --color-brand-emerald: #10B981;
+  --color-brand-emerald-hover: #059669;
+  --color-brand-emerald-muted: rgba(16, 185, 129, 0.12);
 
-  /* Backward compatibility for brand colors */
-  --color-brand-orange: #5865F2;
-  --color-brand-orange-hover: #4752C4;
-  --color-brand-emerald: #23A55A;
-  --color-brand-emerald-hover: #1F924F;
-  --color-brand-green: #23A55A;
-  --color-brand-green-hover: #1F924F;
-  --color-brand-blue: #5865F2;
-  --color-brand-blue-hover: #4752C4;
-
-  --color-dark-bg: #0A0D3A;
-  --color-dark-surface: #1E2353;
-  --color-dark-card: #2B2D31;
-  --color-dark-card-hover: #313338;
+  /* Legacy Fallbacks mapped cleanly to luxury dark neutral */
+  --color-dark-bg: #090A0C;
+  --color-dark-surface: #12141A;
+  --color-dark-card: #12141A;
+  --color-dark-card-hover: #181B24;
   --color-dark-border: rgba(255, 255, 255, 0.08);
-  --color-dark-border-hover: rgba(255, 255, 255, 0.18);
-  --color-dark-text-secondary: #949BA4;
+  --color-dark-border-hover: rgba(255, 255, 255, 0.16);
+  --color-dark-text-secondary: #9B9FA8;
 
-  /* Thai + Discord Display Fonts */
+  /* Typography Stacks */
   --font-sans: var(--font-sarabun), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-heading: var(--font-kanit), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-kanit: var(--font-kanit), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 :root {
-  --background: #0A0D3A;
-  --foreground: #F2F3F5;
+  --background: #090A0C;
+  --foreground: #F4F4F2;
 }
 
 body {
-  background-color: #0A0D3A;
-  color: #DBDEE1;
+  background-color: #090A0C;
+  color: #9B9FA8;
   font-family: var(--font-sans);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -73,100 +53,63 @@ body {
   line-height: 1.7;
 }
 
-/* Discord Display Typography with Kanit for Thai/Latin */
+/* Luxury Editorial Headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  color: #F2F3F5;
-  letter-spacing: -0.01em;
+  color: #F4F4F2;
+  letter-spacing: -0.02em;
 }
 
-/* Discord Dark Custom Scrollbar */
+/* Refined Minimalist Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #111214;
+  background: #090A0C;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2B2D31;
+  background: #242731;
   border-radius: 9999px;
-  border: 2px solid #111214;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #5865F2;
+  background: #3B3F4E;
 }
 
-/* Moving Marquee Animation */
-@keyframes marquee {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
-/* Discord Glow Accents */
-.discord-blurple-glow {
-  box-shadow: 0 0 30px -4px rgba(88, 101, 242, 0.45), 0 0 12px -2px rgba(88, 101, 242, 0.25);
-}
-
-.discord-green-glow {
-  box-shadow: 0 0 30px -4px rgba(35, 165, 90, 0.45), 0 0 12px -2px rgba(35, 165, 90, 0.25);
-}
-
-.discord-magenta-glow {
-  box-shadow: 0 0 30px -4px rgba(236, 72, 189, 0.45), 0 0 12px -2px rgba(236, 72, 189, 0.25);
-}
-
-/* Discord Glassmorphism */
-.discord-glass {
-  background: rgba(30, 35, 83, 0.65);
+/* Subtle Frosted Surface (Luxury Glass) */
+.luxury-glass {
+  background: rgba(18, 20, 26, 0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Discord Animated Mesh Gradient Background */
-.discord-mesh-gradient {
-  background: radial-gradient(circle at 10% 20%, rgba(88, 101, 242, 0.22) 0%, transparent 45%),
-              radial-gradient(circle at 90% 15%, rgba(236, 72, 189, 0.18) 0%, transparent 40%),
-              radial-gradient(circle at 50% 80%, rgba(35, 165, 90, 0.12) 0%, transparent 50%),
-              #0A0D3A;
+/* Subtle Hairline Dividers */
+.luxury-hairline {
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
-/* Discord Rich Embed Left Border Accent */
-.discord-embed-blurple {
-  border-left: 4px solid #5865F2;
+/* Tactile Active feedback */
+.tactile-btn {
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease;
 }
-
-.discord-embed-green {
-  border-left: 4px solid #23A55A;
-}
-
-.discord-embed-magenta {
-  border-left: 4px solid #EC48BD;
+.tactile-btn:active {
+  transform: scale(0.98);
 }
 
 /* Accessibility: Intentional reduced motion overrides */
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee,
-  .animate-pulse {
-    animation: none !important;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

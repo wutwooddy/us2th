@@ -5,56 +5,53 @@ import { ShieldCheck, Calendar, ArrowUpRight } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#07091F] border-t border-[#5865F2]/20 pt-20 pb-28 md:pb-20 px-4 md:px-8 text-[#DBDEE1] relative overflow-hidden font-sans">
-      {/* Background ambient glow */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#5865F2]/5 rounded-full blur-[140px] pointer-events-none" />
-
-      <div className="max-w-[1400px] mx-auto relative z-10">
+    <footer className="w-full bg-[#07080A] border-t border-white/[0.08] pt-16 pb-28 md:pb-16 px-4 md:px-8 text-[#9B9FA8] font-sans">
+      <div className="max-w-[1400px] mx-auto">
         
-        {/* Guarantees Grid - Discord Embed Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 pb-16 border-b border-[#5865F2]/20 text-left">
+        {/* Guarantees Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 pb-12 border-b border-white/[0.08] text-left">
           
           {/* Terms 1: Authenticity */}
-          <div className="flex gap-4 p-6 bg-[#1E1F22] border border-[#5865F2]/25 rounded-2xl shadow-md discord-embed-blurple">
-            <div className="w-11 h-11 rounded-xl bg-[#5865F2]/15 border border-[#5865F2]/30 flex items-center justify-center text-[#5865F2] flex-shrink-0 shadow-sm">
+          <div className="flex gap-4 p-5 bg-[#12141A] border border-white/[0.08] rounded-2xl">
+            <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.1] flex items-center justify-center text-[#10B981] flex-shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-base font-bold text-[#F2F3F5] mb-1.5 font-heading">
+              <h4 className="text-sm font-semibold text-[#F4F4F2] mb-1 font-heading">
                 รับประกันของแท้ 100%
               </h4>
-              <p className="text-xs md:text-sm text-[#DBDEE1] leading-relaxed font-medium font-sans">
-                การันตีสินค้าลิขสิทธิ์แท้ 100% รับหาทุกรุ่นตามงบ พบปลอมยินดีคืนเงินเต็มจำนวนทันที
+              <p className="text-xs text-[#9B9FA8] leading-relaxed font-normal font-sans">
+                การันตีสินค้าลิขสิทธิ์แท้ทุกชิ้น ตรวจสอบประวัติผู้ขายละเอียด หากพบของปลอมยินดีคืนเงินเต็มจำนวนทันที
               </p>
             </div>
           </div>
 
           {/* Terms 2: Import Speed */}
-          <div className="flex gap-4 p-6 bg-[#1E1F22] border border-[#23A55A]/30 rounded-2xl shadow-md discord-embed-green">
-            <div className="w-11 h-11 rounded-xl bg-[#23A55A]/15 border border-[#23A55A]/30 flex items-center justify-center text-[#35ED7E] flex-shrink-0 shadow-sm">
+          <div className="flex gap-4 p-5 bg-[#12141A] border border-white/[0.08] rounded-2xl">
+            <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.1] flex items-center justify-center text-[#10B981] flex-shrink-0">
               <Calendar className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-base font-bold text-[#F2F3F5] mb-1.5 font-heading">
-                ระยะเวลานำเข้าที่รวดเร็ว
+              <h4 className="text-sm font-semibold text-[#F4F4F2] mb-1 font-heading">
+                ระยะเวลานำเข้าตามรอบ
               </h4>
-              <p className="text-xs md:text-sm text-[#DBDEE1] leading-relaxed font-medium font-sans">
-                ระยะเวลานำเข้า Pre-order ส่งตรงจากต่างประเทศ 20-30 วัน และจัดส่งต่อในไทยรวดเร็วผ่านขนส่งชั้นนำ 2-5 วัน
+              <p className="text-xs text-[#9B9FA8] leading-relaxed font-normal font-sans">
+                ขนส่งทางอากาศรอบบินตรง 10-30 วันตามภูมิภาคต้นทาง พร้อมบริการจัดส่งด่วนในไทยถึงหน้าบ้านคุณ
               </p>
             </div>
           </div>
 
           {/* Terms 3: All Inclusive Pricing */}
-          <div className="flex gap-4 p-6 bg-[#1E1F22] border border-[#00B0F4]/30 rounded-2xl shadow-md discord-embed-cyan">
-            <div className="w-11 h-11 rounded-xl bg-[#00B0F4]/15 border border-[#00B0F4]/30 flex items-center justify-center text-[#00B0F4] flex-shrink-0 shadow-sm">
+          <div className="flex gap-4 p-5 bg-[#12141A] border border-white/[0.08] rounded-2xl">
+            <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.1] flex items-center justify-center text-[#10B981] flex-shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-base font-bold text-[#F2F3F5] mb-1.5 font-heading">
+              <h4 className="text-sm font-semibold text-[#F4F4F2] mb-1 font-heading">
                 ราคาเหมาจ่ายเบ็ดเสร็จ
               </h4>
-              <p className="text-xs md:text-sm text-[#DBDEE1] leading-relaxed font-medium font-sans">
-                ดูแลการนำเข้าและจัดส่งตรงถึงหน้าบ้านคุณ ราคาเคลียร์จบครบทุกอย่าง ไม่มีเรียกเก็บค่าใช้จ่ายเพิ่มเติมภายหลังแน่นอนครับ
+              <p className="text-xs text-[#9B9FA8] leading-relaxed font-normal font-sans">
+                เคลียร์ภาษีศุลกากรและค่าจัดส่งครบจบในยอดเดียว ไม่มีเรียกเก็บค่าใช้จ่ายแอบแฝงเพิ่มเติมภายหลังแน่นอน
               </p>
             </div>
           </div>
@@ -62,46 +59,46 @@ export default function Footer() {
         </div>
 
         {/* Brand Details */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
           <div>
-            <div className="flex flex-col mb-3">
-              <span className="text-2xl font-black tracking-tight text-[#F2F3F5] font-heading">
-                US<span className="text-[#5865F2]">2</span>TH
+            <div className="flex flex-col mb-2">
+              <span className="text-xl font-bold tracking-tight text-[#F4F4F2] font-heading">
+                US2TH
               </span>
-              <span className="text-[10px] tracking-widest text-[#00B0F4] font-black font-heading">
-                GLOBAL SOURCING PLATFORM
+              <span className="text-[9px] tracking-[0.2em] text-[#60646E] font-medium uppercase font-heading">
+                LUXURY SOURCING PLATFORM
               </span>
             </div>
-            <p className="text-xs text-[#949BA4] leading-relaxed max-w-sm font-medium font-sans">
+            <p className="text-xs text-[#60646E] leading-relaxed font-normal font-sans">
               &copy; 2026 US2TH. บริการสั่งซื้อและนำเข้าสินค้าทั่วโลก สตรีทแวร์ สนีกเกอร์ และของสะสม
             </p>
           </div>
 
           {/* Direct Social Links */}
-          <div className="flex flex-wrap gap-x-6 gap-y-3 text-xs md:text-sm font-bold font-heading">
+          <div className="flex flex-wrap gap-3 text-xs font-sans">
             <a
               href="https://lin.ee/ByS27YW"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#35ED7E] hover:text-white flex items-center gap-1.5 transition-colors tracking-wide bg-[#23A55A]/10 border border-[#23A55A]/25 px-3 py-1.5 rounded-xl"
+              className="text-[#10B981] hover:text-white flex items-center gap-1.5 transition-colors bg-white/[0.04] border border-white/[0.08] hover:border-white/20 px-3 py-1.5 rounded-full tactile-btn"
             >
-              LINE OA @hij2541a <ArrowUpRight className="w-4 h-4 text-[#35ED7E]" />
+              LINE OA @hij2541a <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
             <a
               href="https://www.facebook.com/us2th"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#5865F2] hover:text-white flex items-center gap-1 transition-colors tracking-wide bg-[#5865F2]/10 border border-[#5865F2]/25 px-3 py-1.5 rounded-xl"
+              className="text-[#F4F4F2] hover:text-white flex items-center gap-1.5 transition-colors bg-white/[0.04] border border-white/[0.08] hover:border-white/20 px-3 py-1.5 rounded-full tactile-btn"
             >
-              FACEBOOK <ArrowUpRight className="w-4 h-4 text-[#5865F2]" />
+              Facebook US2TH <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
             <a
               href="https://bit.ly/3FFICJz"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#EC48BD] hover:text-white flex items-center gap-1 transition-colors tracking-wide bg-[#EC48BD]/10 border border-[#EC48BD]/25 px-3 py-1.5 rounded-xl"
+              className="text-[#9B9FA8] hover:text-white flex items-center gap-1.5 transition-colors bg-white/[0.04] border border-white/[0.08] hover:border-white/20 px-3 py-1.5 rounded-full tactile-btn"
             >
-              OPENCHAT <ArrowUpRight className="w-4 h-4 text-[#EC48BD]" />
+              LINE OpenChat <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           </div>
         </div>
