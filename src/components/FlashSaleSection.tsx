@@ -154,45 +154,50 @@ export default function FlashSaleSection() {
 
   if (loading) {
     return (
-      <div className="w-full bg-white py-16 text-center text-sm font-semibold text-slate-400">
+      <div className="w-full bg-[#0A0D3A] py-16 text-center text-sm font-semibold text-[#949BA4] font-sans">
         กำลังโหลดดีลโปรโมชั่นพิเศษ...
       </div>
     );
   }
 
-  // If there are no active promotions in the database, don't render the section or show a placeholder
+  // If there are no active promotions in the database, don't render the section
   if (promotions.length === 0) {
     return null;
   }
 
   return (
-    <section id="flashsale" className="w-full bg-white py-24 px-4 md:px-8 border-b border-slate-100">
-      <div className="max-w-[1400px] mx-auto">
+    <section id="flashsale" className="w-full bg-[#0A0D3A] py-24 px-4 md:px-8 border-b border-[#5865F2]/20 relative overflow-hidden text-[#F2F3F5]">
+      {/* Background ambient glow */}
+      <div className="absolute top-1/2 left-0 w-80 h-80 bg-[#EC48BD]/10 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-[1400px] mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-100 pb-8 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#5865F2]/20 pb-8 mb-16">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="w-2 h-2 rounded-full bg-brand-green animate-ping" />
-              <span className="text-xs font-bold text-brand-green uppercase tracking-widest">[ ดีลจำกัดเวลาวันนี้ ]</span>
+              <span className="w-2 h-2 rounded-full bg-[#EC48BD] animate-ping" />
+              <span className="text-xs font-bold text-[#EC48BD] uppercase tracking-widest font-heading">
+                [ #DISCORD-NITRO // FLASH-DEALS ]
+              </span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 font-heading">
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-[#F2F3F5] font-heading">
               โปรโมชั่นวันนี้ & Flash Sale
             </h2>
-            <p className="text-sm md:text-base text-slate-500 mt-2 max-w-lg leading-relaxed font-semibold">
-              ดีลพิเศษแบรนด์และสนีกเกอร์ ราคาเหมาจ่ายเบ็ดเสร็จ รีบตัดสินใจก่อนหมดเวลาโปรโมชั่น
+            <p className="text-sm md:text-base text-[#DBDEE1] mt-2 max-w-lg leading-relaxed font-medium font-sans">
+              ดีลพิเศษแบรนด์เนมและสนีกเกอร์ ราคาเหมาจ่ายเบ็ดเสร็จ รีบตัดสินใจก่อนหมดเวลาโปรโมชั่น
             </p>
           </div>
 
-          <div className="mt-6 md:mt-0 flex items-center gap-1.5 text-xs md:text-sm font-bold text-slate-400">
-            <Zap className="w-4 h-4 text-brand-green" />
+          <div className="mt-6 md:mt-0 flex items-center gap-1.5 text-xs md:text-sm font-bold text-[#35ED7E] font-heading bg-[#23A55A]/10 border border-[#23A55A]/30 px-3.5 py-1.5 rounded-full">
+            <Zap className="w-4 h-4 text-[#35ED7E]" />
             <span>ดีลด่วนราคาเน็ต</span>
           </div>
         </div>
 
         {/* Promotions Grid */}
         {promotions.length === 0 ? (
-          <div className="text-center py-16 border border-dashed border-slate-200 rounded-[32px] bg-slate-50 text-slate-500 font-semibold text-xs md:text-sm font-sans max-w-xl mx-auto w-full">
+          <div className="text-center py-16 border border-dashed border-[#5865F2]/20 rounded-[32px] bg-[#1E1F22] text-[#949BA4] font-medium text-xs md:text-sm font-sans max-w-xl mx-auto w-full">
             ✨ ดีลจำกัดเวลาเพิ่มรอบอื่นอยู่ระหว่างการอัปเดต หรือสามารถชม "ดีลล่าสุดแนะนำ" ได้ในส่วนหน้าเว็บบนสุดครับ
           </div>
         ) : (
@@ -204,60 +209,60 @@ export default function FlashSaleSection() {
             return (
               <div 
                 key={deal.id}
-                className={`flex flex-col bg-white border rounded-[32px] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 ${
+                className={`flex flex-col bg-[#1E1F22] border rounded-[32px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 discord-embed-magenta ${
                   isExpired 
-                    ? 'border-slate-100 opacity-60' 
-                    : 'border-slate-100 hover:border-slate-200'
+                    ? 'border-[#35373C] opacity-50' 
+                    : 'border-[#5865F2]/25 hover:border-[#5865F2]/50 hover:bg-[#232529]'
                 }`}
               >
                 {/* Poster Block (Aspect 4/3) */}
-                <div className="aspect-[4/3] relative w-full overflow-hidden bg-slate-50 border-b border-slate-100">
+                <div className="aspect-[4/3] relative w-full overflow-hidden bg-[#111214] border-b border-[#35373C]">
                   {deal.img_url ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img 
                       src={deal.img_url} 
                       alt={deal.title}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-xs text-slate-400 font-semibold bg-slate-50">
+                    <div className="absolute inset-0 flex items-center justify-center text-xs text-[#80848E] font-medium bg-[#111214]">
                       ไม่มีรูปภาพสินค้า
                     </div>
                   )}
                   
                   {/* Active Timer badge (Top-Left) */}
                   {deal.end_time && (
-                    <div className={`absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-lg text-[9px] font-bold shadow-md z-10 ${
+                    <div className={`absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-bold shadow-md z-10 font-heading tracking-wide ${
                       isExpired 
-                        ? 'bg-slate-900 text-white' 
-                        : 'bg-brand-green text-white animate-pulse'
+                        ? 'bg-[#111214] text-[#80848E]' 
+                        : 'bg-[#EC48BD] text-white animate-pulse'
                     }`}>
-                      <Timer className="w-3 h-3" />
+                      <Timer className="w-3.5 h-3.5" />
                       <span>{countdown}</span>
                     </div>
                   )}
 
                   {/* Price Tag Badge (Top-Right) */}
                   {!isExpired && (
-                    <div className="absolute top-3 right-3 bg-white text-slate-900 px-5 py-3 rounded-2xl text-xl md:text-2xl font-black shadow-xl border border-slate-100 z-10 font-heading tracking-tight flex items-center justify-center">
+                    <div className="absolute top-3 right-3 bg-[#111214]/90 backdrop-blur-md text-[#35ED7E] px-4 py-2 rounded-2xl text-lg md:text-xl font-black shadow-xl border border-[#5865F2]/30 z-10 font-heading tracking-tight flex items-center justify-center">
                       <span>{formatPriceString(deal.deal_price)}</span>
                     </div>
                   )}
 
                   {/* Bottom Semi-transparent Title Band */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-slate-950/80 backdrop-blur-xs p-3.5 text-left flex flex-col gap-0.5 z-10 border-t border-white/5 font-sans">
-                    <div className="text-xs md:text-sm font-normal leading-relaxed text-white font-sans">
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#111214] via-[#111214]/85 to-transparent p-4 pt-10 text-left flex flex-col gap-0.5 z-10 font-sans">
+                    <div className="text-xs md:text-sm font-bold leading-relaxed text-[#F2F3F5] font-sans line-clamp-1">
                       {deal.title}
                     </div>
                     
                     {deal.description && (
-                      <div className="text-[10px] text-white/70 font-normal leading-normal font-sans">
+                      <div className="text-[10px] text-[#DBDEE1]/80 font-medium leading-normal font-sans line-clamp-1">
                         {deal.description}
                       </div>
                     )}
 
                     {deal.shipping_time && (
-                      <div className="text-[10px] font-normal text-white/80 font-sans mt-0.5 block">
+                      <div className="text-[10px] font-medium text-[#35ED7E] font-sans mt-0.5 block">
                         {deal.shipping_time}
                       </div>
                     )}
@@ -265,38 +270,38 @@ export default function FlashSaleSection() {
                 </div>
 
                 {/* Below Image Details Block */}
-                <div className="p-4 pb-0 text-left flex flex-col gap-1.5 bg-white font-sans">
+                <div className="p-4 pb-0 text-left flex flex-col gap-1.5 bg-[#1E1F22] font-sans">
                   {deal.sizes && (
-                    <div className="text-[11px] text-slate-500 font-normal leading-relaxed font-sans flex items-baseline gap-1.5">
-                      <span className="text-slate-400 font-normal flex-shrink-0 font-sans">ไซส์:</span>
-                      <span className="text-slate-600 font-normal font-sans">{deal.sizes}</span>
+                    <div className="text-[11px] text-[#DBDEE1] font-normal leading-relaxed font-sans flex items-baseline gap-1.5">
+                      <span className="text-[#949BA4] font-medium flex-shrink-0 font-sans">ไซส์:</span>
+                      <span className="text-[#F2F3F5] font-bold font-sans">{deal.sizes}</span>
                     </div>
                   )}
 
                   {deal.original_price && (
-                    <div className="text-[11px] text-slate-500 font-normal leading-relaxed font-sans flex items-baseline gap-1.5">
-                      <span className="text-slate-400 font-normal flex-shrink-0 font-sans">ราคาปกติ:</span>
-                      <span className="text-slate-500 line-through font-normal font-sans">{deal.original_price}</span>
+                    <div className="text-[11px] text-[#949BA4] font-normal leading-relaxed font-sans flex items-baseline gap-1.5">
+                      <span className="text-[#80848E] font-medium flex-shrink-0 font-sans">ราคาปกติ:</span>
+                      <span className="text-[#80848E] line-through font-normal font-sans">{deal.original_price}</span>
                     </div>
                   )}
 
-                  <p className="text-[10px] text-slate-400 font-normal leading-relaxed font-sans">
+                  <p className="text-[10px] text-[#80848E] font-medium leading-relaxed font-sans border-t border-[#35373C] pt-2 mt-1">
                     *ราคารวมส่งถึงหน้าบ้าน ไม่มีเก็บเงินเพิ่มภายหลัง
                   </p>
                 </div>
 
                 {/* Stacked Action Buttons */}
-                <div className="p-4 pt-2 flex flex-col gap-1.5 bg-white">
+                <div className="p-4 pt-2 flex flex-col gap-1.5 bg-[#1E1F22]">
                   <button
                     onClick={() => handleOrderDeal(deal)}
                     disabled={isExpired}
-                    className={`w-full h-12 rounded-xl text-sm font-extrabold flex items-center justify-center gap-1.5 transition-all shadow-sm ${
+                    className={`w-full h-12 rounded-xl text-sm font-black flex items-center justify-center gap-1.5 transition-all shadow-md font-heading uppercase tracking-wide cursor-pointer ${
                       isExpired
-                        ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
-                        : 'bg-brand-green hover:bg-brand-green-hover text-white cursor-pointer hover:shadow'
+                        ? 'bg-[#2B2D31] text-[#80848E] cursor-not-allowed'
+                        : 'bg-[#23A55A] hover:bg-[#1F924F] text-white active:scale-98'
                     }`}
                   >
-                    <Zap className="w-3.5 h-3.5" />
+                    <Zap className="w-4 h-4 fill-white" />
                     {isExpired ? 'หมดเขตช่วงโปร' : 'ฝากสั่งซื้อด่วน'}
                   </button>
                   
@@ -305,7 +310,7 @@ export default function FlashSaleSection() {
                       {getSizeChartUrl(deal) && (
                         <button
                           onClick={() => setSizeChartModalUrl(getSizeChartUrl(deal))}
-                          className="flex-grow h-9 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-[10px] font-bold flex items-center justify-center transition-all cursor-pointer font-heading"
+                          className="flex-grow h-9 bg-[#FEE75C] hover:bg-[#E3CE52] text-[#060607] rounded-xl text-[10px] font-black flex items-center justify-center transition-all cursor-pointer font-heading tracking-wider uppercase"
                         >
                           ตารางไซส์
                         </button>
@@ -316,7 +321,7 @@ export default function FlashSaleSection() {
                           href={deal.affiliate_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-grow h-9 bg-brand-blue hover:bg-brand-blue-hover text-white rounded-xl text-[10px] font-bold flex items-center justify-center transition-all cursor-pointer font-heading text-center"
+                          className="flex-grow h-9 bg-[#5865F2] hover:bg-[#4752C4] text-white rounded-xl text-[10px] font-bold flex items-center justify-center transition-all cursor-pointer font-heading text-center shadow-sm"
                           title="ดูโพสต์ต้นฉบับ"
                         >
                           ดูโพสต์
@@ -333,22 +338,22 @@ export default function FlashSaleSection() {
 
       </div>
 
-      {/* Promotion Checkout Success Modal */}
+      {/* Promotion Checkout Success Modal - Discord Style */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
-          <div className="w-full max-w-md bg-white border border-slate-100 p-6 rounded-2xl shadow-2xl relative text-left">
-            <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2 font-heading">
-              <Check className="w-5 h-5 text-brand-green" /> คัดลอกดีลสำเร็จ!
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
+          <div className="w-full max-w-md bg-[#1E1F22] border border-[#5865F2]/40 p-6 rounded-3xl shadow-2xl relative text-left text-[#F2F3F5] font-sans">
+            <h3 className="text-lg font-bold text-[#F2F3F5] mb-3 flex items-center gap-2 font-heading">
+              <Check className="w-5 h-5 text-[#23A55A]" /> คัดลอกดีลสำเร็จ!
             </h3>
-            <p className="text-sm text-slate-500 leading-relaxed mb-4">
+            <p className="text-sm text-[#DBDEE1] leading-relaxed mb-4 font-medium">
               ระบบได้คัดลอกรายละเอียดดีลนี้เรียบร้อยแล้ว กรุณาทักแชทคุยกับแอดมินเพื่อจองสั่งซื้อสินค้าต่อได้ทันทีครับ:
             </p>
             
-            <div className="bg-slate-50 border border-slate-100 p-4 rounded-xl text-xs text-slate-600 break-all mb-5 font-mono">
+            <div className="bg-[#111214] border border-[#383A40] p-4 rounded-xl text-xs text-[#DBDEE1] break-all mb-5 font-mono">
               {`สวัสดีครับ สนใจฝากกดดีลพิเศษนี้ครับ:\n[ ${activeDealTitle} ]\nราคาดีล: ${activeDealPrice}`}
             </div>
 
-            <p className="text-xs font-bold text-brand-blue uppercase tracking-wider mb-4 font-heading">
+            <p className="text-xs font-bold text-[#00B0F4] uppercase tracking-wider mb-3 font-heading">
               ➔ เลือกช่องทางแชทคุยกับแอดมิน
             </p>
             
@@ -358,7 +363,7 @@ export default function FlashSaleSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowModal(false)}
-                className="w-full h-12 bg-brand-green hover:bg-brand-green-hover text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm font-heading"
+                className="w-full h-12 bg-[#23A55A] hover:bg-[#1F924F] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-md font-heading"
               >
                 <MessageCircle className="w-4 h-4" />
                 คุยทาง LINE OA
@@ -368,7 +373,7 @@ export default function FlashSaleSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setShowModal(false)}
-                className="w-full h-12 bg-brand-blue hover:bg-brand-blue-hover text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm font-heading"
+                className="w-full h-12 bg-[#5865F2] hover:bg-[#4752C4] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-md font-heading"
               >
                 <Send className="w-4 h-4" />
                 คุยทาง FB Messenger
@@ -377,7 +382,7 @@ export default function FlashSaleSection() {
 
             <button
               onClick={() => setShowModal(false)}
-              className="w-full text-center text-xs font-semibold text-slate-400 hover:text-slate-600 transition-colors mt-5 py-1 uppercase tracking-wider font-heading"
+              className="w-full text-center text-xs font-semibold text-[#949BA4] hover:text-[#F2F3F5] transition-colors mt-5 py-1 uppercase tracking-wider font-heading cursor-pointer"
             >
               ปิดหน้าต่างนี้
             </button>
@@ -388,7 +393,6 @@ export default function FlashSaleSection() {
       {/* Sizing Chart Modal */}
       {sizeChartModalUrl && (
         <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 md:p-8 animate-fade-in">
-          {/* Relative wrapper around the image to place close button in its top-right */}
           <div className="relative max-w-full max-h-screen">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -398,7 +402,7 @@ export default function FlashSaleSection() {
             />
             <button
               onClick={() => setSizeChartModalUrl(null)}
-              className="absolute top-4 right-4 z-50 bg-slate-950/85 hover:bg-slate-950 text-white text-xs font-black px-3.5 py-2 rounded-full shadow-lg border border-white/10 backdrop-blur-xs flex items-center gap-1 font-heading cursor-pointer"
+              className="absolute top-4 right-4 z-50 bg-[#111214]/90 hover:bg-[#111214] text-white text-xs font-black px-3.5 py-2 rounded-full shadow-lg border border-white/20 backdrop-blur-xs flex items-center gap-1 font-heading cursor-pointer"
             >
               ปิด [X]
             </button>

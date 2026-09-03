@@ -44,56 +44,78 @@ export const testimonials = [
 export default function TestimonialsSection({ testimonialsData }: { testimonialsData?: typeof testimonials }) {
   const listToRender = testimonialsData || testimonials;
   return (
-    <section id="testimonials" className="w-full bg-white py-20 px-4 md:px-8 border-b border-slate-100">
-      <div className="max-w-[1400px] mx-auto">
+    <section id="testimonials" className="w-full bg-[#0A0D3A] py-24 px-4 md:px-8 border-b border-[#5865F2]/20 text-[#F2F3F5] relative overflow-hidden">
+      {/* Background ambient glow */}
+      <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-[#5865F2]/10 rounded-full blur-[130px] pointer-events-none" />
+
+      <div className="max-w-[1400px] mx-auto relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-2 h-2 rounded-full bg-brand-green" />
-            <span className="text-xs font-bold text-brand-green uppercase tracking-widest font-heading">[ เสียงตอบรับจากผู้ใช้บริการ ]</span>
+            <span className="w-2 h-2 rounded-full bg-[#23A55A] animate-pulse" />
+            <span className="text-xs font-bold text-[#35ED7E] uppercase tracking-widest font-heading">
+              [ #CUSTOMER-VOUCHES // REAL REVIEWS ]
+            </span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 font-heading">
-            ความพึงพอใจจากลูกค้า
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-[#F2F3F5] font-heading">
+            ความพึงพอใจจากลูกค้าจริง
           </h2>
+          <p className="text-sm md:text-base text-[#DBDEE1] mt-2 leading-relaxed font-medium font-sans">
+            รีวิวและเสียงตอบรับจากนักสะสมและลูกค้าที่ใช้บริการนำเข้าสินค้ากับเราอย่างต่อเนื่อง
+          </p>
         </div>
 
         {/* Testimonials Layout Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {listToRender.map((t) => (
-            <div 
-              key={t.id}
-              className="bg-[#fbfbfb] border border-slate-100 p-6 rounded-3xl flex flex-col justify-between hover:border-slate-200 transition-colors shadow-sm"
-            >
-              <div>
-                {/* Quote Icon & Stars */}
-                <div className="flex justify-between items-center mb-4">
-                  <Quote className="w-5 h-5 text-slate-300" />
-                  <div className="flex gap-0.5">
-                    {[...Array(t.stars)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                    ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {listToRender.map((t, idx) => {
+            const avatarColors = ['bg-[#5865F2]', 'bg-[#23A55A]', 'bg-[#EC48BD]', 'bg-[#00B0F4]', 'bg-[#FEE75C]'];
+            const avatarColor = avatarColors[idx % avatarColors.length];
+            const initial = t.name.replace('คุณ', '').trim().charAt(0);
+
+            return (
+              <div 
+                key={t.id}
+                className="bg-[#1E1F22] border border-[#5865F2]/20 hover:border-[#5865F2]/50 hover:bg-[#232529] p-6 rounded-3xl flex flex-col justify-between transition-all shadow-lg discord-embed-blurple font-sans"
+              >
+                <div>
+                  {/* Stars & Verified Role Header */}
+                  <div className="flex justify-between items-center mb-5">
+                    <div className="flex gap-1">
+                      {[...Array(t.stars)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-[#FEE75C] text-[#FEE75C]" />
+                      ))}
+                    </div>
+                    <span className="inline-flex items-center gap-1 bg-[#23A55A]/15 border border-[#23A55A]/30 text-[#35ED7E] text-[10px] font-black px-2.5 py-0.5 rounded-full font-heading uppercase tracking-wider">
+                      <ShieldCheck className="w-3 h-3" />
+                      VERIFIED
+                    </span>
+                  </div>
+
+                  {/* Comment */}
+                  <p className="text-[#DBDEE1] text-xs md:text-sm leading-relaxed mb-6 font-medium font-sans">
+                    "{t.comment}"
+                  </p>
+                </div>
+
+                {/* Customer Profile Discord Style */}
+                <div className="border-t border-[#35373C] pt-4 flex items-center gap-3">
+                  <div className={`w-10 h-10 rounded-full ${avatarColor} text-white font-black flex items-center justify-center text-sm font-heading shadow-md flex-shrink-0`}>
+                    {initial}
+                  </div>
+                  <div className="text-left overflow-hidden">
+                    <span className="block text-xs md:text-sm font-bold text-[#F2F3F5] font-heading truncate">
+                      {t.name}
+                    </span>
+                    <span className="block text-[11px] text-[#949BA4] font-sans truncate">
+                      {t.role}
+                    </span>
                   </div>
                 </div>
 
-                {/* Comment */}
-                <p className="text-slate-650 text-xs md:text-sm leading-relaxed mb-6 font-semibold">
-                  "{t.comment}"
-                </p>
               </div>
-
-              {/* Customer Profiling */}
-              <div className="border-t border-slate-100 pt-4 flex items-center justify-between">
-                <div>
-                  <span className="block text-xs font-bold text-slate-800 font-heading">{t.name}</span>
-                </div>
-                <div className="text-brand-green bg-brand-green/5 p-1 rounded-full" title="Verified Customer">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-              </div>
-
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

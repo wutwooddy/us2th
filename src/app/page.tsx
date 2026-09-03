@@ -9,6 +9,7 @@ import FlashSaleSection from '@/components/FlashSaleSection';
 import DeliveredGallery from '@/components/DeliveredGallery';
 import TestimonialsSection, { testimonials } from '@/components/TestimonialsSection';
 import MagazineSection from '@/components/MagazineSection';
+import ShipmentTimeline from '@/components/ShipmentTimeline';
 import OpenChatBanner from '@/components/OpenChatBanner';
 import InquiryForm from '@/components/InquiryForm';
 import StickyMobileBottomBar from '@/components/StickyMobileBottomBar';
@@ -30,7 +31,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-dark-bg font-sans selection:bg-brand-emerald selection:text-white antialiased">
+    <div className="flex flex-col min-h-screen bg-[#0A0D3A] text-[#DBDEE1] font-sans selection:bg-[#5865F2] selection:text-white antialiased">
       {/* Scam alert warning banner at the top */}
       <SafetyBanner />
 
@@ -42,6 +43,7 @@ export default function Home() {
         <HeroSection selectedTestimonial={selectedTestimonial} />
         <SoftSellHeader />
         <FlashSaleSection />
+        <ShipmentTimeline />
         <MagazineSection />
         <InquiryForm />
         <DeliveredGallery />

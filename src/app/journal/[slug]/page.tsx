@@ -91,42 +91,47 @@ export default async function ArticlePage({ params }: PageProps) {
   const formattedDate = `${day} ${month} ${year}`;
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#fbfbfb] font-sans antialiased">
+    <div className="flex flex-col min-h-screen bg-[#0A0D3A] text-[#DBDEE1] font-sans antialiased selection:bg-[#5865F2] selection:text-white">
       {/* Safety warning banner */}
       <SafetyBanner />
 
       {/* Main navigation header */}
       <Header />
       
-      <main className="flex-grow max-w-[800px] w-full mx-auto px-4 py-16">
-        <Link href="/#magazine" className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-brand-blue transition-colors mb-8 font-heading">
-          <ArrowLeft className="w-4 h-4" /> กลับไปอ่านวารสารทั้งหมด
+      <main className="flex-grow max-w-[840px] w-full mx-auto px-4 py-16">
+        <Link 
+          href="/#magazine" 
+          className="inline-flex items-center gap-2 text-xs font-bold text-[#949BA4] hover:text-[#00B0F4] transition-colors mb-8 font-heading uppercase tracking-wider"
+        >
+          <ArrowLeft className="w-4 h-4 text-[#5865F2]" /> กลับไปอ่าน Journal ทั้งหมด
         </Link>
 
-        <article className="bg-white border border-slate-100 p-6 md:p-12 rounded-3xl shadow-sm">
+        <article className="bg-[#1E1F22] border border-[#5865F2]/25 p-6 md:p-12 rounded-3xl shadow-2xl discord-embed-blurple">
           {/* Article Header Metadata */}
-          <div className="flex flex-wrap items-center gap-4 text-xs font-bold text-brand-green tracking-wider mb-6 font-heading">
-            <span>{article.category}</span>
-            <span className="text-slate-300">•</span>
-            <span className="text-slate-500 flex items-center gap-1">
+          <div className="flex flex-wrap items-center gap-4 text-xs font-bold text-[#35ED7E] tracking-wider mb-6 font-heading">
+            <span className="bg-[#23A55A]/15 border border-[#23A55A]/30 px-2.5 py-0.5 rounded-md">
+              {article.category}
+            </span>
+            <span className="text-[#35373C]">•</span>
+            <span className="text-[#949BA4] flex items-center gap-1 font-sans font-medium">
               <Calendar className="w-3.5 h-3.5" />
               {formattedDate}
             </span>
-            <span className="text-slate-300">•</span>
-            <span className="text-slate-500 flex items-center gap-1">
+            <span className="text-[#35373C]">•</span>
+            <span className="text-[#949BA4] flex items-center gap-1 font-sans font-medium">
               <Clock className="w-3.5 h-3.5" />
               {article.read_time}
             </span>
           </div>
 
           {/* Article Title */}
-          <h1 className="text-2xl md:text-4xl font-extrabold text-slate-900 leading-tight mb-8 font-heading">
+          <h1 className="text-2xl md:text-4xl font-black text-[#F2F3F5] leading-tight mb-8 font-heading">
             {article.title}
           </h1>
 
           {/* Featured Image */}
           {article.img_url && (
-            <div className="w-full aspect-[16/10] relative rounded-2xl overflow-hidden mb-10 bg-slate-50 border border-slate-100">
+            <div className="w-full aspect-[16/10] relative rounded-2xl overflow-hidden mb-10 bg-[#111214] border border-[#35373C]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
                 src={article.img_url} 
@@ -138,14 +143,14 @@ export default async function ArticlePage({ params }: PageProps) {
 
           {/* Excerpt */}
           {article.excerpt && (
-            <div className="border-l-4 border-brand-blue pl-4 py-1.5 text-slate-600 text-sm md:text-base italic leading-relaxed mb-8 font-semibold">
+            <div className="border-l-4 border-[#5865F2] bg-[#111214] p-4 rounded-r-xl text-[#DBDEE1] text-sm md:text-base italic leading-relaxed mb-8 font-medium font-sans">
               {article.excerpt}
             </div>
           )}
 
           {/* Content Body */}
           <div 
-            className="text-slate-700 text-base leading-relaxed whitespace-pre-line font-semibold space-y-6"
+            className="text-[#DBDEE1] text-base leading-[1.8] whitespace-pre-line font-medium space-y-6 font-sans"
           >
             {article.content}
           </div>

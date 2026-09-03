@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Prompt, Sarabun } from "next/font/google";
+import { Kanit, Sarabun } from "next/font/google";
 import "./globals.css";
 
-const prompt = Prompt({
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+const kanit = Kanit({
+  weight: ["400", "600", "700", "900"],
   subsets: ["thai", "latin"],
-  variable: "--font-prompt",
+  variable: "--font-kanit",
+  display: "swap",
 });
 
 const sarabun = Sarabun({
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["thai", "latin"],
   variable: "--font-sarabun",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -27,9 +29,9 @@ export default function RootLayout({
   return (
     <html
       lang="th"
-      className={`${prompt.variable} ${sarabun.variable} scroll-smooth`}
+      className={`${kanit.variable} ${sarabun.variable} scroll-smooth dark`}
     >
-      <body className="bg-white text-slate-900">
+      <body className="bg-[#0A0D3A] text-[#DBDEE1] antialiased selection:bg-[#5865F2] selection:text-white">
         {children}
       </body>
     </html>
