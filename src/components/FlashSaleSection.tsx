@@ -335,7 +335,7 @@ export default function FlashSaleSection() {
                 className="w-full h-12 bg-[#059669] hover:bg-[#047857] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-2xs font-heading tracking-wide uppercase tactile-btn"
               >
                 <MessageCircle className="w-4 h-4" />
-                คุยทาง LINE OA (@hij2541a)
+                คุยทาง LINE OA
               </a>
               <a
                 href="https://m.me/us2th"

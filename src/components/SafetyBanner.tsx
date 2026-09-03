@@ -24,7 +24,7 @@ export default function SafetyBanner() {
             rel="noopener noreferrer"
             className="text-[#111111] font-bold underline underline-offset-4 decoration-[#059669] hover:text-[#059669] transition-colors"
           >
-            LINE OA (@hij2541a)
+            LINE OA
           </a>{' '}
           และ{' '}
           <a

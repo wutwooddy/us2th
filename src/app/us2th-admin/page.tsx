@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabaseClient';
-import { Lock, Trash2, Plus, Clock, ArrowLeft, BookOpen, Zap, LogOut, CheckCircle, AlertCircle } from 'lucide-react';
+import { Lock, Trash2, Plus, Clock, ArrowLeft, BookOpen, Zap, LogOut, CheckCircle, AlertCircle, Sparkles, RefreshCw } from 'lucide-react';
 import Link from 'next/link';
 
 interface Promotion {
@@ -229,6 +229,34 @@ export default function AdminPage() {
       fetchData();
     } catch (err: any) {
       alert(`Error deleting article: ${err.message}`);
+    }
+  };
+
+  // AI News Agent Generator
+  const [aiGenerating, setAiGenerating] = useState(false);
+  const [aiResultMsg, setAiResultMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  const handleGenerateAiArticle = async () => {
+    setAiGenerating(true);
+    setAiResultMsg(null);
+    try {
+      const res = await fetch('/api/cron/fetch-news');
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'ไม่สามารถดึงข้อมูลข่าวสารได้');
+      }
+      setAiResultMsg({
+        type: 'success',
+        text: `สร้างบทความสำเร็จ: "${data.article?.title}" เผยแพร่ลงหน้าเว็บเรียบร้อยแล้ว!`
+      });
+      fetchData();
+    } catch (err: any) {
+      setAiResultMsg({
+        type: 'error',
+        text: `เกิดข้อผิดพลาด: ${err.message}`
+      });
+    } finally {
+      setAiGenerating(false);
     }
   };
 
@@ -578,18 +606,67 @@ export default function AdminPage() {
 
           {/* TAB 2: ARTICLE JOURNAL FORM */}
           {activeTab === 'articles' && (
-            <form onSubmit={handleSaveArticle} className="space-y-6">
-              <div className="border-b border-slate-100 pb-3">
-                <h2 className="text-lg font-bold text-slate-900 font-heading">เขียนบทความใหม่สำหรับ SEO</h2>
-                <p className="text-xs text-slate-400 mt-0.5 font-semibold">เมื่อเขียนเสร็จ ระบบจะนำข้อมูลไปอัปเดตและสร้างลิงก์ Sitemap สำหรับ Google ให้อัตโนมัติ</p>
+            <div className="space-y-8">
+              {/* AI Auto-News Generator Card */}
+              <div className="bg-slate-900 text-white rounded-2xl p-6 shadow-sm border border-slate-800">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div>
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold mb-2">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      AI NEWS AGENT
+                    </div>
+                    <h3 className="text-lg font-bold text-white font-heading">
+                      ดึงข่าวสตรีทแวร์และเขียนบทความอัตโนมัติด้วย AI
+                    </h3>
+                    <p className="text-xs text-slate-300 mt-1 max-w-xl font-sans leading-relaxed">
+                      ระบบจะดึงข่าวสนีกเกอร์และแฟชั่นเปิดตัวใหม่ล่าสุดจาก Hypebeast และ Sneaker News แปลและเรียบเรียงเป็นบทความภาษาไทยให้อัตโนมัติ พร้อมรูปภาพความละเอียดสูง
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleGenerateAiArticle}
+                    disabled={aiGenerating}
+                    className="px-5 py-3 bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-700 text-white font-bold text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm flex-shrink-0"
+                  >
+                    {aiGenerating ? (
+                      <>
+                        <RefreshCw className="w-4 h-4 animate-spin" />
+                        <span>AI กำลังเขียนข่าว...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-4 h-4" />
+                        <span>ดึงข่าวและสร้างบทความใหม่ทันที</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {aiResultMsg && (
+                  <div className={`mt-4 p-3.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 ${
+                    aiResultMsg.type === 'success' 
+                      ? 'bg-emerald-500/20 border border-emerald-500/30 text-emerald-300' 
+                      : 'bg-red-500/20 border border-red-500/30 text-red-300'
+                  }`}>
+                    {aiResultMsg.type === 'success' ? <CheckCircle className="w-4 h-4 flex-shrink-0" /> : <AlertCircle className="w-4 h-4 flex-shrink-0" />}
+                    <span>{aiResultMsg.text}</span>
+                  </div>
+                )}
               </div>
 
-              {artSuccessMsg && (
-                <div className="bg-emerald-50 border border-emerald-100 text-emerald-800 text-xs md:text-sm font-bold p-4 rounded-xl flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                  <span>{artSuccessMsg}</span>
+              <form onSubmit={handleSaveArticle} className="space-y-6">
+                <div className="border-b border-slate-100 pb-3">
+                  <h2 className="text-lg font-bold text-slate-900 font-heading">หรือเขียนบทความเองด้วยตนเอง</h2>
+                  <p className="text-xs text-slate-400 mt-0.5 font-semibold">เมื่อเขียนเสร็จ ระบบจะนำข้อมูลไปอัปเดตและสร้างลิงก์ Sitemap สำหรับ Google ให้อัตโนมัติ</p>
                 </div>
-              )}
+
+                {artSuccessMsg && (
+                  <div className="bg-emerald-50 border border-emerald-100 text-emerald-800 text-xs md:text-sm font-bold p-4 rounded-xl flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                    <span>{artSuccessMsg}</span>
+                  </div>
+                )}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="md:col-span-2">
@@ -704,7 +781,8 @@ export default function AdminPage() {
                 </button>
               </div>
             </form>
-          )}
+          </div>
+        )}
 
         </div>
 

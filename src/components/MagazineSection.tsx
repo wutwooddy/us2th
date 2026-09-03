@@ -57,20 +57,20 @@ export default function MagazineSection() {
           <div>
             <div className="inline-flex items-center gap-2 mb-2">
               <span className="text-xs font-semibold text-[#059669] uppercase tracking-wider font-heading">
-                คู่มือและบทความแนะนำ
+                ข่าวสาร สินค้าใหม่ & เทรนด์แฟชั่น
               </span>
             </div>
             <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-[#111111] font-heading">
               US2TH Journal
             </h2>
             <p className="text-base text-[#555555] mt-2 max-w-xl leading-relaxed font-sans">
-              บทความให้ความรู้เรื่องการเช็คของแท้ วิธีสั่งซื้อสินค้าจากต่างประเทศ และเทรนด์ของสะสมระดับพรีเมียม
+              ข่าว บทความ สินค้าเปิดตัวใหม่ อัปเดตเทรนด์สตรีทแวร์ และคู่มือการเลือกซื้อของแท้สำหรับนักสะสม
             </p>
           </div>
 
           <div className="mt-4 md:mt-0 flex items-center gap-2 text-sm text-[#555555] font-sans">
             <BookOpen className="w-4 h-4 text-[#059669]" />
-            <span>คลังความรู้สำหรับนักสะสม</span>
+            <span>อัปเดตข่าวและเทรนด์ใหม่ล่าสุด</span>
           </div>
         </div>
 

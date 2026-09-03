@@ -82,7 +82,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-[#059669] hover:text-[#047857] flex items-center gap-1.5 transition-colors bg-white border border-[#D4D4CE] hover:border-[#111111] px-4 py-2 rounded-full tactile-btn font-semibold shadow-2xs"
             >
-              LINE OA @hij2541a <ArrowUpRight className="w-4 h-4" />
+              LINE OA <ArrowUpRight className="w-4 h-4" />
             </a>
             <a
               href="https://www.facebook.com/us2th"
