@@ -1,35 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  /* Luxury Streetwear & Sourcing System Palette */
-  --color-obsidian-canvas: #090A0C;
-  --color-obsidian-surface: #12141A;
-  --color-obsidian-elevated: #171922;
-  --color-obsidian-card: #12141A;
-  --color-obsidian-card-hover: #181B24;
-  --color-obsidian-sidebar: #0D0E12;
-  --color-obsidian-border: rgba(255, 255, 255, 0.08);
-  --color-obsidian-border-subtle: rgba(255, 255, 255, 0.05);
-  --color-obsidian-border-hover: rgba(255, 255, 255, 0.16);
+  /* Premium Minimalist Warm Palette */
+  --color-canvas: #FBFBFA;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #F4F4F0;
+  --color-surface-hover: #F0F0EB;
+  --color-border: #E5E5E0;
+  --color-border-subtle: #EDEDE8;
+  --color-border-hover: #C8C8C0;
 
-  /* High-contrast Text Hierarchy */
-  --color-obsidian-text-primary: #F4F4F2;
-  --color-obsidian-text-secondary: #9B9FA8;
-  --color-obsidian-text-muted: #60646E;
+  /* High-legibility Text Hierarchy (Optimized for 40+ readability) */
+  --color-text-primary: #111111;
+  --color-text-secondary: #444444;
+  --color-text-muted: #666666;
 
-  /* Single Calibrated Accent (Emerald / Verified Authenticity) */
-  --color-brand-emerald: #10B981;
-  --color-brand-emerald-hover: #059669;
-  --color-brand-emerald-muted: rgba(16, 185, 129, 0.12);
-
-  /* Legacy Fallbacks mapped cleanly to luxury dark neutral */
-  --color-dark-bg: #090A0C;
-  --color-dark-surface: #12141A;
-  --color-dark-card: #12141A;
-  --color-dark-card-hover: #181B24;
-  --color-dark-border: rgba(255, 255, 255, 0.08);
-  --color-dark-border-hover: rgba(255, 255, 255, 0.16);
-  --color-dark-text-secondary: #9B9FA8;
+  /* Accent (Rich Emerald for Verified & LINE OA) */
+  --color-brand-emerald: #059669;
+  --color-brand-emerald-hover: #047857;
+  --color-brand-emerald-subtle: #ECFDF5;
 
   /* Typography Stacks */
   --font-sans: var(--font-sarabun), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -38,72 +27,61 @@
 }
 
 :root {
-  --background: #090A0C;
-  --foreground: #F4F4F2;
+  --background: #FBFBFA;
+  --foreground: #111111;
 }
 
 body {
-  background-color: #090A0C;
-  color: #9B9FA8;
+  background-color: #FBFBFA;
+  color: #333333;
   font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.8;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  line-height: 1.7;
 }
 
-/* Luxury Editorial Headings */
+/* Minimal Editorial Headings - Clear contrast & vowel spacing */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  color: #F4F4F2;
+  color: #111111;
   letter-spacing: -0.02em;
+  line-height: 1.35;
 }
 
-/* Refined Minimalist Scrollbar */
+/* Clean Minimal Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090A0C;
+  background: #FBFBFA;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #242731;
+  background: #D4D4CE;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3B3F4E;
+  background: #A8A8A0;
 }
 
-/* Subtle Frosted Surface (Luxury Glass) */
-.luxury-glass {
-  background: rgba(18, 20, 26, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Subtle Hairline Dividers */
-.luxury-hairline {
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-/* Tactile Active feedback */
+/* Tactile feedback */
 .tactile-btn {
-  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .tactile-btn:active {
   transform: scale(0.98);
 }
 
-/* Accessibility: Intentional reduced motion overrides */
+/* Accessible reduced motion override */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

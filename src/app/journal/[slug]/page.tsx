@@ -91,47 +91,47 @@ export default async function ArticlePage({ params }: PageProps) {
   const formattedDate = `${day} ${month} ${year}`;
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#090A0C] text-[#F4F4F2] font-sans antialiased selection:bg-[#10B981] selection:text-black">
+    <div className="flex flex-col min-h-screen bg-[#FBFBFA] text-[#111111] font-sans antialiased selection:bg-[#111111] selection:text-white">
       {/* Safety warning banner */}
       <SafetyBanner />
 
       {/* Main navigation header */}
       <Header />
       
-      <main className="flex-grow max-w-[840px] w-full mx-auto px-4 py-12 md:py-16">
+      <main className="flex-grow max-w-[860px] w-full mx-auto px-4 py-12 md:py-16 text-left">
         <Link 
           href="/#magazine" 
-          className="inline-flex items-center gap-2 text-xs font-semibold text-[#9B9FA8] hover:text-[#F4F4F2] transition-colors mb-8 font-heading uppercase tracking-wider"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-[#666666] hover:text-[#111111] transition-colors mb-8 font-heading uppercase tracking-wider"
         >
-          <ArrowLeft className="w-3.5 h-3.5 text-[#10B981]" /> กลับไปอ่าน Journal ทั้งหมด
+          <ArrowLeft className="w-4 h-4 text-[#059669]" /> กลับไปอ่าน Journal ทั้งหมด
         </Link>
 
-        <article className="bg-[#12141A] border border-white/[0.08] p-6 md:p-12 rounded-2xl shadow-xl">
+        <article className="bg-white border border-[#D4D4CE] p-6 md:p-12 rounded-2xl shadow-xs">
           {/* Article Header Metadata */}
-          <div className="flex flex-wrap items-center gap-3 text-xs font-medium text-[#10B981] mb-6 font-mono uppercase">
-            <span className="bg-white/[0.05] border border-white/[0.08] px-2 py-0.5 rounded-sm">
+          <div className="flex flex-wrap items-center gap-3 text-sm font-medium text-[#059669] mb-6 font-mono uppercase">
+            <span className="bg-[#ECFDF5] border border-[#A7F3D0] px-2.5 py-1 rounded">
               {article.category}
             </span>
-            <span className="text-[#60646E]">•</span>
-            <span className="text-[#9B9FA8] flex items-center gap-1 font-sans">
-              <Calendar className="w-3.5 h-3.5 text-[#60646E]" />
+            <span className="text-[#999999]">•</span>
+            <span className="text-[#666666] flex items-center gap-1 font-sans">
+              <Calendar className="w-4 h-4 text-[#666666]" />
               {formattedDate}
             </span>
-            <span className="text-[#60646E]">•</span>
-            <span className="text-[#9B9FA8] flex items-center gap-1 font-sans">
-              <Clock className="w-3.5 h-3.5 text-[#60646E]" />
+            <span className="text-[#999999]">•</span>
+            <span className="text-[#666666] flex items-center gap-1 font-sans">
+              <Clock className="w-4 h-4 text-[#666666]" />
               {article.read_time}
             </span>
           </div>
 
           {/* Article Title */}
-          <h1 className="text-2xl md:text-4xl font-bold text-[#F4F4F2] leading-tight mb-6 font-heading">
+          <h1 className="text-2xl sm:text-4xl font-bold text-[#111111] leading-tight mb-6 font-heading">
             {article.title}
           </h1>
 
           {/* Featured Image */}
           {article.img_url && (
-            <div className="w-full aspect-[16/10] relative rounded-xl overflow-hidden mb-8 bg-[#090A0C] border border-white/[0.08]">
+            <div className="w-full aspect-[16/10] relative rounded-xl overflow-hidden mb-8 bg-[#F4F4F0] border border-[#E5E5E0]">
               <img 
                 src={article.img_url} 
                 alt={article.title}
@@ -142,14 +142,14 @@ export default async function ArticlePage({ params }: PageProps) {
 
           {/* Excerpt */}
           {article.excerpt && (
-            <div className="border border-white/[0.08] bg-[#090A0C] px-6 py-4 rounded-xl text-[#9B9FA8] text-xs md:text-sm leading-relaxed mb-8 font-sans">
+            <div className="border border-[#E5E5E0] bg-[#FBFBFA] px-6 py-4 rounded-xl text-[#444444] text-base leading-relaxed mb-8 font-sans">
               {article.excerpt}
             </div>
           )}
 
-          {/* Content Body */}
+          {/* Content Body - comfortable 17px/18px font size for 40+ */}
           <div 
-            className="text-[#9B9FA8] text-sm md:text-base leading-[1.8] whitespace-pre-line space-y-6 font-sans"
+            className="text-[#333333] text-base sm:text-lg leading-[1.85] whitespace-pre-line space-y-6 font-sans"
           >
             {article.content}
           </div>

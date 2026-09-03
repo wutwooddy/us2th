@@ -44,21 +44,21 @@ export const testimonials = [
 export default function TestimonialsSection({ testimonialsData }: { testimonialsData?: typeof testimonials }) {
   const listToRender = testimonialsData || testimonials;
   return (
-    <section id="testimonials" className="w-full bg-[#090A0C] py-20 md:py-24 px-4 md:px-8 border-b border-white/[0.07] text-[#F4F4F2] relative">
+    <section id="testimonials" className="w-full bg-[#FBFBFA] py-20 md:py-24 px-4 md:px-8 border-b border-[#E5E5E0] text-[#111111] relative">
       <div className="max-w-[1400px] mx-auto">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 mb-2">
-            <span className="text-[11px] font-semibold text-[#10B981] uppercase tracking-[0.15em] font-mono">
-              CLIENT TESTIMONIALS
+            <span className="text-xs font-semibold text-[#059669] uppercase tracking-wider font-heading">
+              เสียงตอบรับจากลูกค้าจริง
             </span>
           </div>
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-[#F4F4F2] font-heading">
-            ความพึงพอใจจากลูกค้าจริง
+          <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-[#111111] font-heading">
+            ความพึงพอใจจากผู้ใช้บริการ
           </h2>
-          <p className="text-xs md:text-sm text-[#9B9FA8] mt-1.5 leading-relaxed font-sans">
-            เสียงตอบรับจากนักสะสมและผู้ที่ใช้บริการนำเข้าสินค้าหายากกับเราอย่างต่อเนื่อง
+          <p className="text-base text-[#555555] mt-2 leading-relaxed font-sans">
+            รีวิวและเสียงตอบรับจากนักสะสมและลูกค้าที่ไว้วางใจสั่งซื้อสินค้านำเข้ากับเราอย่างต่อเนื่อง
           </p>
         </div>
 
@@ -70,38 +70,38 @@ export default function TestimonialsSection({ testimonialsData }: { testimonials
             return (
               <div 
                 key={t.id}
-                className="bg-[#12141A] border border-white/[0.08] hover:border-white/[0.16] p-6 rounded-2xl flex flex-col justify-between transition-all shadow-md font-sans"
+                className="bg-white border border-[#E5E5E0] hover:border-[#D4D4CE] p-6 sm:p-7 rounded-2xl flex flex-col justify-between transition-all shadow-2xs text-left font-sans"
               >
                 <div>
                   {/* Stars & Verified Header */}
                   <div className="flex justify-between items-center mb-4">
-                    <div className="flex gap-0.5">
+                    <div className="flex gap-1">
                       {[...Array(t.stars)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-[#F59E0B] text-[#F59E0B]" />
+                        <Star key={i} className="w-4 h-4 fill-[#F59E0B] text-[#F59E0B]" />
                       ))}
                     </div>
-                    <span className="inline-flex items-center gap-1 bg-white/[0.05] border border-white/[0.08] text-[#10B981] text-[10px] font-mono font-medium px-2 py-0.5 rounded-sm">
-                      <ShieldCheck className="w-3 h-3" />
-                      VERIFIED CLIENT
+                    <span className="inline-flex items-center gap-1.5 bg-[#ECFDF5] border border-[#A7F3D0] text-[#059669] text-xs font-semibold px-2.5 py-0.5 rounded-full font-sans">
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                      ลูกค้าสั่งซื้อจริง
                     </span>
                   </div>
 
-                  {/* Comment */}
-                  <p className="text-[#9B9FA8] text-xs md:text-sm leading-relaxed mb-6 font-normal font-sans">
+                  {/* Comment - comfortable reading for 40+ */}
+                  <p className="text-[#333333] text-sm sm:text-base leading-relaxed mb-6 font-normal font-sans">
                     "{t.comment}"
                   </p>
                 </div>
 
                 {/* Customer Profile */}
-                <div className="border-t border-white/[0.06] pt-4 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-white/[0.08] text-[#F4F4F2] font-semibold flex items-center justify-center text-xs font-mono flex-shrink-0">
+                <div className="border-t border-[#E5E5E0] pt-4 flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-[#111111] text-white font-bold flex items-center justify-center text-sm font-heading flex-shrink-0">
                     {initial}
                   </div>
                   <div className="text-left overflow-hidden">
-                    <span className="block text-xs font-semibold text-[#F4F4F2] font-heading truncate">
+                    <span className="block text-sm font-bold text-[#111111] font-heading truncate">
                       {t.name}
                     </span>
-                    <span className="block text-[10px] text-[#60646E] font-sans truncate">
+                    <span className="block text-xs text-[#666666] font-sans truncate">
                       {t.role}
                     </span>
                   </div>

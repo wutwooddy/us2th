@@ -8,7 +8,6 @@ import FlashSaleSection from '@/components/FlashSaleSection';
 import DeliveredGallery from '@/components/DeliveredGallery';
 import TestimonialsSection, { testimonials } from '@/components/TestimonialsSection';
 import MagazineSection from '@/components/MagazineSection';
-import ShipmentTimeline from '@/components/ShipmentTimeline';
 import OpenChatBanner from '@/components/OpenChatBanner';
 import InquiryForm from '@/components/InquiryForm';
 import StickyMobileBottomBar from '@/components/StickyMobileBottomBar';
@@ -30,7 +29,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#090A0C] text-[#F4F4F2] font-sans selection:bg-[#10B981] selection:text-black antialiased">
+    <div className="flex flex-col min-h-screen bg-[#FBFBFA] text-[#111111] font-sans selection:bg-[#111111] selection:text-white antialiased">
       {/* Scam alert warning banner at the top */}
       <SafetyBanner />
 
@@ -41,7 +40,6 @@ export default function Home() {
       <main className="flex-grow">
         <HeroSection selectedTestimonial={selectedTestimonial} />
         <FlashSaleSection />
-        <ShipmentTimeline />
         <MagazineSection />
         <InquiryForm />
         <DeliveredGallery />

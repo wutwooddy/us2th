@@ -56,75 +56,75 @@ export default function InquiryForm() {
   };
 
   return (
-    <section id="inquiry" className="w-full bg-[#090A0C] py-20 md:py-24 px-4 md:px-8 border-b border-white/[0.07] text-[#F4F4F2] relative">
+    <section id="inquiry" className="w-full bg-[#FBFBFA] py-20 md:py-24 px-4 md:px-8 border-b border-[#E5E5E0] text-[#111111] relative">
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         
         {/* Left Side: Information & Instructions */}
-        <div className="lg:col-span-5 flex flex-col justify-between">
+        <div className="lg:col-span-5 flex flex-col justify-between text-left">
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-[11px] font-semibold text-[#10B981] uppercase tracking-[0.15em] font-mono">
-                BESPOKE SOURCING
+            <div className="inline-flex items-center gap-2 mb-2">
+              <span className="text-xs font-semibold text-[#059669] uppercase tracking-wider font-heading">
+                บริการฝากหาของพิเศษ
               </span>
             </div>
-            <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-[#F4F4F2] mb-4 font-heading">
+            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#111111] mb-4 font-heading">
               ฝากหาของ / เช็คราคา
             </h2>
-            <p className="text-xs md:text-sm text-[#9B9FA8] leading-relaxed mb-8 font-sans">
+            <p className="text-base text-[#555555] leading-relaxed mb-8 font-sans">
               เมื่อไอเทมที่คุณตามหาไม่มีวางจำหน่ายในไทย หรือหาซื้อได้ยาก เราพร้อมช่วยจัดซื้อและนำส่งตรงถึงหน้าบ้านคุณ ในราคาเหมาจ่ายเบ็ดเสร็จ ไร้กังวลเรื่องค่าใช้จ่ายเพิ่มเติมภายหลัง
             </p>
             
-            <div className="space-y-3.5 border-t border-white/[0.08] pt-6">
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-[#12141A] border border-white/[0.06]">
-                <div className="w-6 h-6 rounded-full bg-white/[0.06] text-[#F4F4F2] flex items-center justify-center text-xs font-mono font-bold flex-shrink-0 mt-0.5">
+            <div className="space-y-4 border-t border-[#E5E5E0] pt-6">
+              <div className="flex items-start gap-4 p-4 rounded-xl bg-white border border-[#E5E5E0]">
+                <div className="w-8 h-8 rounded-full bg-[#F4F4F0] text-[#111111] flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
                   1
                 </div>
-                <div className="text-xs text-[#9B9FA8] font-sans">
-                  <strong className="text-[#F4F4F2] block font-heading mb-0.5">เลือกหมวดหมู่ประเภทสินค้า</strong>
+                <div className="text-sm text-[#555555] font-sans">
+                  <strong className="text-[#111111] block font-heading mb-1 text-base">เลือกหมวดหมู่ประเภทสินค้า</strong>
                   สนีกเกอร์, เสื้อผ้าสตรีทแวร์, ของสะสม หรือสินค้าทั่วไป
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-[#12141A] border border-white/[0.06]">
-                <div className="w-6 h-6 rounded-full bg-white/[0.06] text-[#F4F4F2] flex items-center justify-center text-xs font-mono font-bold flex-shrink-0 mt-0.5">
+              <div className="flex items-start gap-4 p-4 rounded-xl bg-white border border-[#E5E5E0]">
+                <div className="w-8 h-8 rounded-full bg-[#F4F4F0] text-[#111111] flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
                   2
                 </div>
-                <div className="text-xs text-[#9B9FA8] font-sans">
-                  <strong className="text-[#F4F4F2] block font-heading mb-0.5">ระบุรายละเอียดหรือวางลิงก์</strong>
-                  ลิงก์จากเว็บต่างประเทศ หรือระบุชื่อรุ่น ไซส์ (เช่น 9US / 42.5EU)
+                <div className="text-sm text-[#555555] font-sans">
+                  <strong className="text-[#111111] block font-heading mb-1 text-base">ระบุรายละเอียดหรือวางลิงก์</strong>
+                  วางลิงก์จากเว็บต่างประเทศ หรือระบุชื่อรุ่น ไซส์ (เช่น 9US / 42.5EU)
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-[#12141A] border border-white/[0.06]">
-                <div className="w-6 h-6 rounded-full bg-white/[0.06] text-[#F4F4F2] flex items-center justify-center text-xs font-mono font-bold flex-shrink-0 mt-0.5">
+              <div className="flex items-start gap-4 p-4 rounded-xl bg-white border border-[#E5E5E0]">
+                <div className="w-8 h-8 rounded-full bg-[#F4F4F0] text-[#111111] flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">
                   3
                 </div>
-                <div className="text-xs text-[#9B9FA8] font-sans">
-                  <strong className="text-[#F4F4F2] block font-heading mb-0.5">กรอกช่องทางติดต่อที่สะดวก</strong>
-                  LINE ID, Facebook หรือเบอร์โทร เพื่อให้ทีมงานแจ้งยอดเหมาจ่าย
+                <div className="text-sm text-[#555555] font-sans">
+                  <strong className="text-[#111111] block font-heading mb-1 text-base">กรอกช่องทางติดต่อที่สะดวก</strong>
+                  เบอร์โทรศัพท์, LINE ID หรือ Facebook เพื่อให้แอดมินแจ้งยอดราคาเน็ต
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-white/[0.08] text-xs font-medium text-[#60646E] font-sans flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
-            <span>ข้อมูลของคุณจะถูกส่งเข้าระบบอย่างปลอดภัย การันตีของแท้ 100%</span>
+          <div className="mt-8 pt-6 border-t border-[#E5E5E0] text-sm font-medium text-[#666666] font-sans flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#059669]" />
+            <span>ระบบส่งข้อมูลเข้ารหัส ปลอดภัย มั่นใจได้ของแท้ 100%</span>
           </div>
         </div>
 
         {/* Right Side: Requisition Form */}
-        <div className="lg:col-span-7 bg-[#12141A] border border-white/[0.1] p-6 md:p-8 rounded-2xl shadow-xl">
+        <div className="lg:col-span-7 bg-white border border-[#D4D4CE] p-6 sm:p-10 rounded-2xl shadow-xs text-left">
           
           {success ? (
             <div className="text-center py-10 font-sans">
-              <div className="w-12 h-12 rounded-full bg-white/[0.05] text-[#10B981] flex items-center justify-center mx-auto mb-4 border border-white/[0.1]">
-                <CheckCircle2 className="w-6 h-6" />
+              <div className="w-14 h-14 rounded-full bg-[#ECFDF5] text-[#059669] flex items-center justify-center mx-auto mb-4 border border-[#A7F3D0]">
+                <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-bold text-[#F4F4F2] mb-2 font-heading">
+              <h3 className="text-2xl font-bold text-[#111111] mb-2 font-heading">
                 ส่งความต้องการสำเร็จแล้ว
               </h3>
-              <p className="text-xs md:text-sm text-[#9B9FA8] max-w-sm mx-auto leading-relaxed mb-6 font-normal">
+              <p className="text-base text-[#555555] max-w-md mx-auto leading-relaxed mb-8 font-normal">
                 เราได้รับข้อมูลเรียบร้อยแล้ว ทีมงานจะรีบตรวจสอบราคาแหล่งซื้อและติดต่อกลับโดยเร็วที่สุดครับ
               </p>
               
@@ -133,28 +133,28 @@ export default function InquiryForm() {
                   href="https://lin.ee/ByS27YW"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-3 px-5 bg-[#10B981] hover:bg-[#059669] text-black text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm font-heading tracking-wider uppercase tactile-btn"
+                  className="py-3.5 px-6 bg-[#059669] hover:bg-[#047857] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-2xs font-heading tracking-wide uppercase tactile-btn"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  ทักแชททาง LINE OA (@hij2541a)
+                  ทักคุยแอดมินทาง LINE OA
                 </a>
                 <button
                   onClick={() => setSuccess(false)}
-                  className="py-3 px-5 border border-white/[0.1] bg-white/[0.04] hover:bg-white/[0.08] text-[#F4F4F2] text-xs font-semibold rounded-xl transition-all font-heading tactile-btn"
+                  className="py-3.5 px-6 border border-[#D4D4CE] bg-[#FBFBFA] hover:bg-[#F4F4F0] text-[#111111] text-sm font-semibold rounded-xl transition-all font-heading tactile-btn"
                 >
                   ส่งรายการเพิ่มอีกรายการ
                 </button>
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5 font-sans">
+            <form onSubmit={handleSubmit} className="space-y-6 font-sans">
               
               {/* Category Selector */}
               <div>
-                <label className="block text-xs font-semibold text-[#F4F4F2] uppercase tracking-wider mb-2.5 font-heading">
-                  ประเภทสินค้า (CATEGORY)
+                <label className="block text-sm font-bold text-[#111111] mb-3 font-heading">
+                  ประเภทสินค้าที่ต้องการหา
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                   {[
                     { id: 'Sneakers', label: 'รองเท้าสนีกเกอร์' },
                     { id: 'Apparel', label: 'เสื้อผ้าสตรีทแวร์' },
@@ -165,10 +165,10 @@ export default function InquiryForm() {
                       key={cat.id}
                       type="button"
                       onClick={() => setCategory(cat.id)}
-                      className={`py-2.5 px-3 text-xs font-medium border rounded-xl transition-all cursor-pointer font-sans tactile-btn ${
+                      className={`py-3 px-3 text-sm border rounded-xl transition-all cursor-pointer font-sans tactile-btn text-center ${
                         category === cat.id
-                          ? 'bg-[#F4F4F2] border-[#F4F4F2] text-[#090A0C] font-semibold shadow-sm'
-                          : 'bg-[#090A0C] border-white/[0.1] text-[#9B9FA8] hover:border-white/20'
+                          ? 'bg-[#111111] border-[#111111] text-white font-bold shadow-2xs'
+                          : 'bg-[#FBFBFA] border-[#D4D4CE] text-[#444444] hover:border-[#111111]'
                       }`}
                     >
                       {cat.label}
@@ -179,7 +179,7 @@ export default function InquiryForm() {
 
               {/* Product Details */}
               <div>
-                <label htmlFor="details" className="block text-xs font-semibold text-[#F4F4F2] uppercase tracking-wider mb-2 font-heading">
+                <label htmlFor="details" className="block text-sm font-bold text-[#111111] mb-2 font-heading">
                   รายละเอียดสินค้า ลิงก์ ชื่อรุ่น หรือไซส์ที่ต้องการ
                 </label>
                 <textarea
@@ -189,41 +189,41 @@ export default function InquiryForm() {
                   placeholder="เช่น: Nike Dunk Low Travis Scott ไซส์ 9US หรือวางลิงก์สินค้าจากเว็บไซต์ต่างประเทศ"
                   value={productDetails}
                   onChange={(e) => setProductDetails(e.target.value)}
-                  className="w-full bg-[#090A0C] border border-white/[0.12] focus:border-[#10B981] text-[#F4F4F2] rounded-xl p-3.5 text-xs md:text-sm placeholder-[#60646E] outline-none transition-all font-sans"
+                  className="w-full bg-[#FBFBFA] border border-[#D4D4CE] focus:border-[#111111] focus:bg-white text-[#111111] rounded-xl p-4 text-base placeholder-[#888888] outline-none transition-all font-sans"
                 />
               </div>
 
               {/* Contact Info */}
               <div>
-                <label htmlFor="contact" className="block text-xs font-semibold text-[#F4F4F2] uppercase tracking-wider mb-2 font-heading">
-                  ช่องทางติดต่อกลับ (LINE ID, เบอร์โทร หรือ Facebook)
+                <label htmlFor="contact" className="block text-sm font-bold text-[#111111] mb-2 font-heading">
+                  ช่องทางติดต่อกลับ (เบอร์โทร, LINE ID หรือ Facebook)
                 </label>
                 <input
                   id="contact"
                   type="text"
                   required
-                  placeholder="เช่น LINE ID: @yourname / เบอร์โทร: 08x-xxx-xxxx"
+                  placeholder="เช่น เบอร์โทร: 08x-xxx-xxxx / LINE ID: @yourname"
                   value={contactInfo}
                   onChange={(e) => setContactInfo(e.target.value)}
-                  className="w-full h-11 bg-[#090A0C] border border-white/[0.12] focus:border-[#10B981] text-[#F4F4F2] rounded-xl px-4 text-xs md:text-sm placeholder-[#60646E] outline-none transition-all font-sans"
+                  className="w-full h-12 bg-[#FBFBFA] border border-[#D4D4CE] focus:border-[#111111] focus:bg-white text-[#111111] rounded-xl px-4 text-base placeholder-[#888888] outline-none transition-all font-sans"
                 />
               </div>
 
               {/* Error Alert */}
               {errorMsg && (
-                <div className="bg-[#EF4444]/10 border border-[#EF4444]/20 text-[#F4F4F2] text-xs p-3.5 rounded-xl flex items-start gap-2.5">
-                  <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5 text-[#EF4444]" />
+                <div className="bg-[#FEF2F2] border border-[#FCA5A5] text-[#DC2626] text-sm p-4 rounded-xl flex items-start gap-3">
+                  <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5 text-[#DC2626]" />
                   <div className="leading-relaxed">
                     <p>{errorMsg}</p>
                     {errorMsg.includes('LINE OA') && (
-                      <div className="mt-2.5">
+                      <div className="mt-3">
                         <a
                           href="https://lin.ee/ByS27YW"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-3.5 py-1.5 bg-[#10B981] text-black text-xs font-bold rounded-lg inline-flex items-center gap-1.5 hover:bg-[#059669] transition-colors font-heading"
+                          className="px-4 py-2 bg-[#059669] text-white text-sm font-bold rounded-lg inline-flex items-center gap-1.5 hover:bg-[#047857] transition-colors font-heading shadow-2xs"
                         >
-                          <MessageCircle className="w-3.5 h-3.5" /> ทัก LINE OA (@hij2541a)
+                          <MessageCircle className="w-4 h-4" /> ทัก LINE OA (@hij2541a)
                         </a>
                       </div>
                     )}
@@ -236,16 +236,16 @@ export default function InquiryForm() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full h-12 bg-[#10B981] hover:bg-[#059669] text-black text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm cursor-pointer font-heading tracking-wider uppercase tactile-btn"
+                  className="w-full h-14 bg-[#111111] hover:bg-[#222222] text-white text-base font-bold rounded-xl flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-2xs cursor-pointer font-heading tracking-wide uppercase tactile-btn"
                 >
                   {loading ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <Loader2 className="w-5 h-5 animate-spin" />
                       กำลังส่งข้อมูล...
                     </>
                   ) : (
                     <>
-                      <Send className="w-4 h-4" />
+                      <Send className="w-5 h-5" />
                       ส่งข้อมูลตรวจสอบราคาฟรี
                     </>
                   )}

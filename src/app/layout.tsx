@@ -29,9 +29,9 @@ export default function RootLayout({
   return (
     <html
       lang="th"
-      className={`${kanit.variable} ${sarabun.variable} scroll-smooth dark`}
+      className={`${kanit.variable} ${sarabun.variable} scroll-smooth`}
     >
-      <body className="bg-[#090A0C] text-[#F4F4F2] antialiased selection:bg-[#10B981] selection:text-black">
+      <body className="bg-[#FBFBFA] text-[#111111] antialiased selection:bg-[#111111] selection:text-white">
         {children}
       </body>
     </html>

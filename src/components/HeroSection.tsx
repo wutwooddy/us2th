@@ -47,7 +47,7 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
   
   // Sourcing Inquiry State
   const [contactInfo, setContactInfo] = useState('');
-  const [step, setStep] = useState(1); // 1 = enter contact, 2 = success summary, 3 = deal order success
+  const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [modalError, setModalError] = useState('');
 
@@ -193,217 +193,142 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
   };
 
   return (
-    <section className="relative w-full bg-[#090A0C] border-b border-white/[0.07] text-[#F4F4F2] overflow-hidden pt-10 md:pt-16 pb-16 md:pb-20">
+    <section className="relative w-full bg-[#FBFBFA] border-b border-[#E5E5E0] text-[#111111] overflow-hidden pt-12 md:pt-16 pb-16 md:pb-24">
       
-      {/* 2-Column Split Layout */}
-      <div className="max-w-[1400px] mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start relative z-10">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-8 relative z-10">
         
-        {/* Left Column: Value Proposition & Sourcing Concierge Form */}
-        <div className="lg:col-span-7 flex flex-col justify-between">
+        {/* Top Editorial Layout */}
+        <div className="max-w-4xl mx-auto text-center mb-10 md:mb-14">
           
-          <div>
-            {/* Eyebrow: Max 1 text element */}
-            <div className="flex items-center gap-2.5 mb-5">
-              <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-sm bg-white/[0.05] border border-white/[0.1] text-[#F4F4F2] text-[11px] font-semibold tracking-[0.15em] uppercase font-heading">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
-                GLOBAL SOURCING CONCIERGE
-              </span>
-              <span className="text-[#60646E] text-xs font-mono">•</span>
-              <span className="text-[#9B9FA8] text-xs tracking-wider uppercase font-sans">100% AUTHENTIC GUARANTEE</span>
-            </div>
-
-            {/* Headline: Max 2 lines desktop */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F4F4F2] mb-4 font-heading leading-[1.12]">
-              สั่งซื้อและนำเข้าของสะสมหายาก
-              <span className="block text-[#9B9FA8] font-normal">สนีกเกอร์ลิมิเต็ดทั่วโลก</span>
-            </h1>
-
-            {/* Subtext: Max 20 words */}
-            <p className="max-w-xl text-sm md:text-base text-[#9B9FA8] leading-relaxed mb-8 font-sans">
-              บริการจัดซื้อและเคลียร์ภาษีเบ็ดเสร็จ ส่งตรงถึงหน้าบ้านคุณในราคาเหมาจ่ายยอดเดียวจบ การันตีของแท้ทุกชิ้น
-            </p>
-
-            {/* Sourcing Concierge Quote Box */}
-            <div className="w-full max-w-xl bg-[#12141A] border border-white/[0.1] rounded-2xl p-5 md:p-6 shadow-xl relative mb-10">
-              <div className="flex items-center justify-between border-b border-white/[0.08] pb-3.5 mb-4">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold tracking-wider text-[#F4F4F2] uppercase font-heading">
-                    เช็คราคาเหมาจ่ายฟรี
-                  </span>
-                  <span className="text-[10px] text-[#60646E] font-mono tracking-widest uppercase">
-                    CONCIERGE QUOTE
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-[#10B981] font-medium font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
-                  <span>ONLINE</span>
-                </div>
-              </div>
-
-              <form onSubmit={handleCheckPrice} className="space-y-3">
-                <div className="flex flex-col sm:flex-row gap-2.5">
-                  <div className="relative flex-grow">
-                    <input
-                      type="text"
-                      placeholder="วางลิงก์สินค้าที่นี่ (เช่น StockX, GOAT, eBay)"
-                      value={url}
-                      onChange={(e) => {
-                        setUrl(e.target.value);
-                        setError('');
-                      }}
-                      className="w-full h-12 bg-[#090A0C] border border-white/[0.12] text-[#F4F4F2] rounded-xl px-4 text-sm focus:border-[#10B981] outline-none transition-all placeholder:text-[#60646E] font-medium font-sans"
-                    />
-                    {url && (
-                      <button
-                        type="button"
-                        aria-label="ล้างข้อความในช่องค้นหา"
-                        onClick={() => setUrl('')}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#60646E] hover:text-[#F4F4F2] text-xs font-bold px-1.5 py-0.5 rounded cursor-pointer"
-                      >
-                        ✕
-                      </button>
-                    )}
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="h-12 px-6 bg-[#F4F4F2] hover:bg-white text-[#090A0C] text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-all flex-shrink-0 cursor-pointer font-heading tracking-wider uppercase tactile-btn shadow-sm"
-                  >
-                    {copied ? <Check className="w-4 h-4 text-[#10B981]" /> : <Search className="w-4 h-4" />}
-                    <span>{copied ? 'คัดลอกแล้ว' : 'ส่งเช็คราคา'}</span>
-                  </button>
-                </div>
-              </form>
-
-              {error && (
-                <p className="text-xs text-[#EF4444] font-medium bg-[#EF4444]/10 p-2.5 rounded-lg border border-[#EF4444]/20 font-sans mt-3">
-                  {error}
-                </p>
-              )}
-
-              <p className="text-[11px] text-[#60646E] leading-relaxed pt-3 border-t border-white/[0.06] mt-3 font-sans">
-                ระบบจะสรุปข้อมูลเพื่อส่งต่อให้แอดมินประเมินราคาเหมาจ่ายทาง LINE OA หรือ Facebook ได้ทันที
-              </p>
-            </div>
-
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#D4D4CE] text-xs font-semibold text-[#111111] mb-6 shadow-2xs">
+            <span className="w-2 h-2 rounded-full bg-[#059669]" />
+            <span className="tracking-wide uppercase font-heading">บริการรับสั่งซื้อและนำเข้าของแท้ 100%</span>
           </div>
 
-          {/* Operational Quick Stats */}
-          <div className="grid grid-cols-3 border-t border-white/[0.08] pt-6 gap-4">
-            <div>
-              <span className="block text-[11px] text-[#60646E] font-medium tracking-wider font-heading uppercase">รับประกันสินค้า</span>
-              <span className="block text-sm md:text-base font-semibold text-[#F4F4F2] mt-0.5 font-heading">ของแท้ 100%</span>
-            </div>
-            <div>
-              <span className="block text-[11px] text-[#60646E] font-medium tracking-wider font-heading uppercase">ระยะเวลานำเข้า</span>
-              <span className="block text-sm md:text-base font-semibold text-[#F4F4F2] mt-0.5 font-heading">ตามรอบประเทศ</span>
-            </div>
-            <div>
-              <span className="block text-[11px] text-[#60646E] font-medium tracking-wider font-heading uppercase">ราคาบริการ</span>
-              <span className="block text-sm md:text-base font-semibold text-[#10B981] mt-0.5 font-heading">เหมาจ่ายเบ็ดเสร็จ</span>
-            </div>
-          </div>
-
-          {/* Regional Hubs Wait Times */}
-          <div className="mt-8 border-t border-white/[0.08] pt-6">
-            <span className="block text-xs font-semibold text-[#9B9FA8] uppercase tracking-wider mb-3 font-heading">
-              ระยะเวลารอของโดยประมาณนับแต่สั่งซื้อ
+          {/* Headline - Big, Clear & High Contrast for 40+ Readers */}
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#111111] leading-[1.2] mb-5 font-heading">
+            สั่งซื้อและนำเข้าของสะสมหายาก
+            <span className="block text-[#555555] font-normal mt-1 text-2xl sm:text-4xl lg:text-5xl">
+              สนีกเกอร์ลิมิเต็ดจากทั่วทุกมุมโลก
             </span>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-sans">
-              
-              <div className="bg-[#12141A] p-3.5 rounded-xl border border-white/[0.08]">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-semibold text-[#F4F4F2] font-heading">โซนตะวันตก</span>
-                  <div className="flex items-center gap-1">
-                    <img src="https://flagcdn.com/16x12/us.png" alt="US" className="w-4 h-2.5 rounded-xs object-cover" />
-                    <img src="https://flagcdn.com/16x12/eu.png" alt="EU" className="w-4 h-2.5 rounded-xs object-cover" />
-                    <img src="https://flagcdn.com/16x12/gb.png" alt="GB" className="w-4 h-2.5 rounded-xs object-cover" />
-                  </div>
-                </div>
-                <span className="text-[#60646E] block text-[11px] mb-1">อเมริกา, ยุโรป, อังกฤษ</span>
-                <span className="text-[#F4F4F2] font-semibold text-xs font-mono">20-30 วัน</span>
+          </h1>
+
+          {/* Subtext - 18px readable body */}
+          <p className="max-w-2xl mx-auto text-base sm:text-lg text-[#444444] leading-relaxed font-sans mb-8">
+            บริการรับกดและเคลียร์ภาษีเบ็ดเสร็จ ส่งตรงถึงหน้าบ้านคุณในราคาเหมาจ่ายยอดเดียวจบ ไร้กังวลเรื่องค่าใช้จ่ายเพิ่มเติมภายหลัง
+          </p>
+
+          {/* Sourcing Concierge Quote Box */}
+          <div className="max-w-3xl mx-auto bg-white border border-[#D4D4CE] rounded-2xl p-4 sm:p-5 shadow-xs">
+            <form onSubmit={handleCheckPrice} className="flex flex-col sm:flex-row gap-3">
+              <div className="relative flex-grow">
+                <input
+                  type="text"
+                  placeholder="วางลิงก์สินค้าที่ต้องการเช็คราคา (เช่น StockX, GOAT, eBay, Kith)"
+                  value={url}
+                  onChange={(e) => {
+                    setUrl(e.target.value);
+                    setError('');
+                  }}
+                  className="w-full h-14 bg-[#FBFBFA] border border-[#D4D4CE] text-[#111111] rounded-xl px-5 text-base focus:border-[#111111] focus:bg-white outline-none transition-all placeholder:text-[#777777] font-medium font-sans"
+                />
+                {url && (
+                  <button
+                    type="button"
+                    aria-label="ล้างข้อความในช่องค้นหา"
+                    onClick={() => setUrl('')}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#777777] hover:text-[#111111] text-sm font-bold p-1 rounded cursor-pointer"
+                  >
+                    ✕
+                  </button>
+                )}
               </div>
 
-              <div className="bg-[#12141A] p-3.5 rounded-xl border border-white/[0.08]">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-semibold text-[#F4F4F2] font-heading">โซนเอเชีย</span>
-                  <div className="flex items-center gap-1">
-                    <img src="https://flagcdn.com/16x12/jp.png" alt="JP" className="w-4 h-2.5 rounded-xs object-cover" />
-                    <img src="https://flagcdn.com/16x12/kr.png" alt="KR" className="w-4 h-2.5 rounded-xs object-cover" />
-                    <img src="https://flagcdn.com/16x12/hk.png" alt="HK" className="w-4 h-2.5 rounded-xs object-cover" />
-                  </div>
-                </div>
-                <span className="text-[#60646E] block text-[11px] mb-1">ญี่ปุ่น, เกาหลี, ฮ่องกง</span>
-                <span className="text-[#F4F4F2] font-semibold text-xs font-mono">10-20 วัน</span>
-              </div>
+              <button
+                type="submit"
+                className="h-14 px-8 bg-[#111111] hover:bg-[#222222] text-white text-base font-bold rounded-xl flex items-center justify-center gap-2 transition-all flex-shrink-0 cursor-pointer font-heading tracking-wide shadow-2xs tactile-btn"
+              >
+                {copied ? <Check className="w-5 h-5 text-[#059669]" /> : <Search className="w-5 h-5" />}
+                <span>{copied ? 'คัดลอกแล้ว' : 'ส่งเช็คราคาฟรี'}</span>
+              </button>
+            </form>
 
-              <div className="bg-[#12141A] p-3.5 rounded-xl border border-white/[0.08]">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-semibold text-[#F4F4F2] font-heading">โซนเอเชียใต้</span>
-                  <div className="flex items-center gap-1">
-                    <img src="https://flagcdn.com/16x12/sg.png" alt="SG" className="w-4 h-2.5 rounded-xs object-cover" />
-                    <img src="https://flagcdn.com/16x12/my.png" alt="MY" className="w-4 h-2.5 rounded-xs object-cover" />
-                  </div>
-                </div>
-                <span className="text-[#60646E] block text-[11px] mb-1">สิงคโปร์, มาเลเซีย</span>
-                <span className="text-[#F4F4F2] font-semibold text-xs font-mono">7-14 วัน</span>
-              </div>
+            {error && (
+              <p className="text-sm text-[#DC2626] font-medium bg-[#FEF2F2] p-3 rounded-lg border border-[#FCA5A5] font-sans mt-3 text-left">
+                {error}
+              </p>
+            )}
 
+            <div className="flex flex-wrap items-center justify-between gap-2 pt-3 mt-3 border-t border-[#E5E5E0] text-xs sm:text-sm text-[#666666] font-sans">
+              <span>* ทีมงานจะประเมินราคาสุทธิรวมส่งถึงหน้าบ้านให้คุณทาง LINE หรือ Facebook ทันที</span>
+              <span className="font-semibold text-[#111111]">ประเมินฟรี ไม่มีข้อผูกมัด</span>
             </div>
           </div>
 
         </div>
 
-        {/* Right Column: Dynamic Testimonial + Featured Deal Preview */}
-        <div className="lg:col-span-5 flex flex-col gap-5">
+        {/* 3 Core Value Pillars - Clear White Bento Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           
-          {/* Top Testimonial Quote */}
-          {selectedTestimonial && (
-            <div className="bg-[#12141A] border border-white/[0.08] p-5 rounded-2xl shadow-lg text-left flex flex-col justify-between font-sans">
-              <div>
-                <div className="flex justify-between items-center mb-3">
-                  <div className="flex gap-0.5">
-                    {[...Array(selectedTestimonial.stars || 5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-[#F59E0B] text-[#F59E0B]" />
-                    ))}
-                  </div>
-                  <Quote className="w-4 h-4 text-[#60646E] flex-shrink-0" />
-                </div>
-                <p className="text-xs md:text-sm text-[#9B9FA8] leading-relaxed font-normal mb-4 font-sans">
-                  "{selectedTestimonial.comment}"
-                </p>
-              </div>
-              <div className="border-t border-white/[0.06] pt-3 flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-6 h-6 rounded-full bg-white/[0.08] text-[#F4F4F2] flex items-center justify-center text-[10px] font-bold font-mono">
-                    {selectedTestimonial.name.charAt(0)}
-                  </div>
-                  <div>
-                    <span className="block text-xs font-semibold text-[#F4F4F2] font-heading">
-                      {selectedTestimonial.name}
-                    </span>
-                    <span className="block text-[10px] text-[#60646E] font-sans">
-                      {selectedTestimonial.role}
-                    </span>
-                  </div>
-                </div>
-                <span className="text-[10px] font-mono text-[#10B981] flex items-center gap-1">
-                  <ShieldCheck className="w-3 h-3" /> VERIFIED
-                </span>
-              </div>
+          <div className="bg-white border border-[#E5E5E0] p-6 rounded-2xl shadow-2xs text-left">
+            <div className="w-10 h-10 rounded-xl bg-[#ECFDF5] text-[#059669] flex items-center justify-center font-bold mb-4">
+              <ShieldCheck className="w-6 h-6" />
             </div>
-          )}
+            <h3 className="text-lg font-bold text-[#111111] mb-2 font-heading">
+              การันตีของแท้ 100%
+            </h3>
+            <p className="text-sm text-[#555555] leading-relaxed font-sans">
+              ตรวจสอบประวัติผู้ขายและสภาพสินค้าอย่างเข้มงวดทุกรายการ หากพบสินค้าปลอมยินดีคืนเงินเต็มจำนวนทันที
+            </p>
+          </div>
 
-          {/* Featured Deal Card */}
-          {loadingDeal ? (
-            <div className="w-full aspect-[4/3] border border-white/[0.08] rounded-2xl flex items-center justify-center text-[#60646E] text-xs bg-[#12141A] font-sans">
-              กำลังโหลดข้อมูลดีลล่าสุด...
+          <div className="bg-white border border-[#E5E5E0] p-6 rounded-2xl shadow-2xs text-left">
+            <div className="w-10 h-10 rounded-xl bg-[#F4F4F0] text-[#111111] flex items-center justify-center font-bold mb-4 font-mono">
+              ฿
             </div>
-          ) : latestDeal ? (
-            <div className="bg-[#12141A] border border-white/[0.08] rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between">
+            <h3 className="text-lg font-bold text-[#111111] mb-2 font-heading">
+              ราคาเหมาจ่ายเบ็ดเสร็จ
+            </h3>
+            <p className="text-sm text-[#555555] leading-relaxed font-sans">
+              รวมค่าสินค้า ค่ากด ค่าส่งข้ามประเทศ และเคลียร์ภาษีศุลกากรครบ จบในยอดเดียว ไม่มีบวกเพิ่มหน้าบ้านแน่นอน
+            </p>
+          </div>
+
+          <div className="bg-white border border-[#E5E5E0] p-6 rounded-2xl shadow-2xs text-left">
+            <div className="flex items-center gap-1.5 mb-4">
+              <span className="text-xl">🇺🇸</span>
+              <span className="text-xl">🇯🇵</span>
+              <span className="text-xl">🇪🇺</span>
+              <span className="text-xl">🇬🇧</span>
+              <span className="text-xl">🇰🇷</span>
+            </div>
+            <h3 className="text-lg font-bold text-[#111111] mb-2 font-heading">
+              สั่งได้ทั่วทุกมุมโลก
+            </h3>
+            <p className="text-sm text-[#555555] leading-relaxed font-sans">
+              มีโกดังรับของในสหรัฐอเมริกา ญี่ปุ่น อังกฤษ ยุโรป เกาหลีใต้ และฮ่องกง พร้อมรอบบินตรงถึงไทยสม่ำเสมอ
+            </p>
+          </div>
+
+        </div>
+
+        {/* Featured Deal Section */}
+        {latestDeal && (
+          <div className="bg-white border border-[#E5E5E0] rounded-2xl p-6 md:p-8 shadow-xs max-w-4xl mx-auto text-left">
+            <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#E5E5E0]">
+              <div className="flex items-center gap-2">
+                <span className="px-2.5 py-1 rounded bg-[#F4F4F0] text-xs font-bold text-[#111111] uppercase tracking-wider font-heading">
+                  ดีลแนะนำวันนี้
+                </span>
+                <span className="text-sm text-[#666666] font-sans">สินค้าราคาพิเศษพร้อมส่งมอบ</span>
+              </div>
+              <span className="text-xs font-semibold text-[#059669] font-mono">AUTHENTIC VERIFIED</span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
               
-              {/* Product Poster Block */}
-              <div className="aspect-[16/10] relative w-full overflow-hidden bg-[#090A0C]">
+              <div className="md:col-span-5 aspect-[4/3] rounded-xl overflow-hidden bg-[#F4F4F0] border border-[#E5E5E0]">
                 {latestDeal.img_url ? (
                   <img
                     src={latestDeal.img_url}
@@ -411,196 +336,175 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-[#60646E] text-xs">
+                  <div className="w-full h-full flex items-center justify-center text-sm text-[#777777]">
                     ไม่มีรูปภาพ
                   </div>
                 )}
-                
-                {/* Deal Tag */}
-                <div className="absolute top-3 left-3 bg-[#090A0C]/90 backdrop-blur-md px-2.5 py-1 rounded-sm border border-white/[0.1] text-[10px] font-semibold tracking-wider text-[#F4F4F2] uppercase font-heading">
-                  FEATURED DEAL
-                </div>
+              </div>
 
-                <div className="absolute top-3 right-3 bg-[#10B981] px-2.5 py-1 rounded-sm text-[11px] font-bold text-black font-mono">
-                  {formatPriceString(latestDeal.deal_price)}
-                </div>
-
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#12141A] via-[#12141A]/70 to-transparent p-4 pt-10 text-left">
-                  <div className="text-[#F4F4F2] text-sm font-semibold tracking-wide font-sans mb-0.5 line-clamp-1">
+              <div className="md:col-span-7 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#111111] leading-snug mb-3 font-heading">
                     {latestDeal.title}
-                  </div>
+                  </h3>
+                  
                   {latestDeal.description && (
-                    <p className="text-[#9B9FA8] text-[11px] font-normal leading-relaxed line-clamp-1">
+                    <p className="text-sm text-[#555555] leading-relaxed mb-4 font-sans">
                       {latestDeal.description}
                     </p>
+                  )}
+
+                  {/* HUGE, PROMINENT PRICE TAG FOR 40+ LEGIBILITY */}
+                  <div className="bg-[#FBFBFA] border border-[#E5E5E0] p-4 rounded-xl mb-6">
+                    <span className="text-xs text-[#666666] font-medium block mb-1">ราคาเหมาจ่ายรวมส่งถึงหน้าบ้าน:</span>
+                    <div className="flex items-baseline gap-3">
+                      <span className="text-3xl sm:text-4xl font-black text-[#111111] font-mono tracking-tight">
+                        {formatPriceString(latestDeal.deal_price)}
+                      </span>
+                      {latestDeal.original_price && (
+                        <span className="text-base text-[#777777] line-through font-mono">
+                          {latestDeal.original_price}
+                        </span>
+                      )}
+                    </div>
+                    {latestDeal.sizes && (
+                      <div className="text-xs text-[#555555] mt-2">
+                        <strong className="text-[#111111]">ไซส์ที่มี:</strong> {latestDeal.sizes}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  <button
+                    onClick={() => handleOrderDeal(latestDeal)}
+                    className="flex-1 min-w-[200px] h-12 bg-[#059669] hover:bg-[#047857] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all font-heading tracking-wide tactile-btn shadow-2xs"
+                  >
+                    <span>ฝากสั่งซื้อดีลนี้ทันที</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+
+                  {getSizeChartUrl(latestDeal) && (
+                    <button
+                      onClick={() => setSizeChartModalUrl(getSizeChartUrl(latestDeal))}
+                      className="px-5 h-12 bg-white hover:bg-[#F4F4F0] border border-[#D4D4CE] text-[#111111] text-sm font-semibold rounded-xl transition-all cursor-pointer font-heading tactile-btn"
+                    >
+                      ตารางไซส์
+                    </button>
                   )}
                 </div>
               </div>
 
-              {/* Deal Meta */}
-              <div className="p-4 space-y-2 text-left">
-                <div className="flex justify-between text-xs font-sans">
-                  <span className="text-[#60646E]">ไซส์ที่มี:</span>
-                  <span className="text-[#F4F4F2] font-medium">{latestDeal.sizes || 'Free Size'}</span>
-                </div>
-                <div className="flex justify-between text-xs font-sans">
-                  <span className="text-[#60646E]">ระยะเวลาจัดส่ง:</span>
-                  <span className="text-[#F4F4F2] font-mono">{latestDeal.shipping_time || '20-30 วัน'}</span>
-                </div>
-                {latestDeal.original_price && (
-                  <div className="flex justify-between text-xs font-sans">
-                    <span className="text-[#60646E]">ราคาปกติ:</span>
-                    <span className="text-[#60646E] line-through font-mono">{latestDeal.original_price}</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Action Buttons */}
-              <div className="p-4 pt-0 flex gap-2">
-                <button
-                  onClick={() => handleOrderDeal(latestDeal)}
-                  className="flex-1 h-10 bg-[#10B981] hover:bg-[#059669] text-black text-xs font-bold rounded-xl flex items-center justify-center gap-1.5 transition-all cursor-pointer font-heading tracking-wider uppercase tactile-btn"
-                >
-                  <span>ฝากสั่งซื้อทันที</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-                
-                {getSizeChartUrl(latestDeal) && (
-                  <button
-                    onClick={() => setSizeChartModalUrl(getSizeChartUrl(latestDeal))}
-                    className="px-3.5 h-10 bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] text-[#F4F4F2] text-xs font-medium rounded-xl transition-all cursor-pointer font-heading tactile-btn"
-                  >
-                    ตารางไซส์
-                  </button>
-                )}
-                {latestDeal.affiliate_url && (
-                  <a
-                    href={latestDeal.affiliate_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-3.5 h-10 bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] text-[#9B9FA8] hover:text-[#F4F4F2] text-xs font-medium rounded-xl flex items-center justify-center transition-all tactile-btn"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                )}
-              </div>
-
             </div>
-          ) : (
-            <div className="w-full aspect-[4/3] border border-white/[0.08] rounded-2xl flex items-center justify-center text-[#60646E] text-xs bg-[#12141A] font-sans">
-              ไม่มีดีลลดราคาแสดงในขณะนี้
-            </div>
-          )}
-
-        </div>
+          </div>
+        )}
 
       </div>
 
-      {/* Pricing Checker Modal */}
+      {/* Sourcing Inquiry Modal */}
       {showModal && (
         <div 
           onClick={closeModal}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs"
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-md bg-[#12141A] border border-white/[0.12] p-6 rounded-2xl shadow-2xl relative text-left font-sans text-[#F4F4F2]"
+            className="w-full max-w-lg bg-white border border-[#D4D4CE] p-6 sm:p-8 rounded-2xl shadow-xl relative text-left font-sans text-[#111111]"
           >
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 text-[#60646E] hover:text-[#F4F4F2] p-1 transition-colors"
+              className="absolute top-5 right-5 text-[#777777] hover:text-[#111111] p-1.5 transition-colors"
               aria-label="ปิดหน้าต่าง"
             >
-              <X className="w-4 h-4" />
+              <X className="w-5 h-5" />
             </button>
 
             {step === 1 ? (
               <form onSubmit={handleConfirmInquiry} className="space-y-4">
                 <div>
-                  <span className="text-[10px] text-[#10B981] font-mono uppercase tracking-widest block mb-1">
-                    STEP 1 / SOURCING INQUIRY
+                  <span className="text-xs text-[#059669] font-bold uppercase tracking-wider block mb-1">
+                    ขั้นตอนที่ 1 / ประเมินราคา
                   </span>
-                  <h3 className="text-base font-bold text-[#F4F4F2] font-heading">
+                  <h3 className="text-xl font-bold text-[#111111] font-heading">
                     ระบุช่องทางติดต่อกลับ
                   </h3>
                 </div>
                 
-                <p className="text-xs text-[#9B9FA8] leading-relaxed">
-                  เพื่อให้แอดมินแจ้งราคาสุทธิและสรุปค่าบริการนำเข้า กรุณากรอกช่องทางที่คุณสะดวกติดต่อครับ
+                <p className="text-sm text-[#555555] leading-relaxed">
+                  เพื่อให้แอดมินแจ้งราคาสุทธิและสรุปค่าบริการนำเข้า กรุณากรอกเบอร์โทร, LINE ID หรือชื่อ Facebook ของคุณครับ:
                 </p>
                 
                 <input
                   type="text"
-                  placeholder="LINE ID, เบอร์โทรศัพท์ หรือ Facebook"
+                  placeholder="เช่น LINE ID: somchai / เบอร์โทร: 08x-xxx-xxxx"
                   value={contactInfo}
                   onChange={(e) => {
                     setContactInfo(e.target.value);
                     setModalError('');
                   }}
-                  className="w-full h-12 bg-[#090A0C] border border-white/[0.12] text-[#F4F4F2] rounded-xl px-4 text-sm focus:border-[#10B981] outline-none placeholder:text-[#60646E] font-medium font-sans"
+                  className="w-full h-12 bg-[#FBFBFA] border border-[#D4D4CE] text-[#111111] rounded-xl px-4 text-base focus:border-[#111111] focus:bg-white outline-none placeholder:text-[#777777] font-medium font-sans"
                   required
                 />
 
                 {modalError && (
-                  <p className="text-xs text-[#EF4444] font-medium">{modalError}</p>
+                  <p className="text-sm text-[#DC2626] font-medium">{modalError}</p>
                 )}
 
-                <div className="flex gap-2.5 pt-2">
+                <div className="flex gap-3 pt-3">
                   <button
                     type="button"
                     onClick={closeModal}
-                    className="flex-1 h-11 border border-white/[0.1] hover:bg-white/[0.05] text-[#9B9FA8] text-xs font-semibold rounded-xl transition-all cursor-pointer font-heading tactile-btn"
+                    className="flex-1 h-12 border border-[#D4D4CE] hover:bg-[#F4F4F0] text-[#555555] text-sm font-semibold rounded-xl transition-all cursor-pointer font-heading tactile-btn"
                   >
                     ยกเลิก
                   </button>
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="flex-1 h-11 bg-[#F4F4F2] hover:bg-white text-[#090A0C] text-xs font-bold rounded-xl flex items-center justify-center gap-1.5 transition-all cursor-pointer font-heading tracking-wider uppercase tactile-btn"
+                    className="flex-1 h-12 bg-[#111111] hover:bg-[#222222] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-1.5 transition-all cursor-pointer font-heading tracking-wide uppercase tactile-btn shadow-2xs"
                   >
-                    {submitting ? 'กำลังบันทึก...' : 'ส่งข้อมูลประเมินราคา'}
+                    {submitting ? 'กำลังบันทึก...' : 'ยืนยันข้อมูล'}
                   </button>
                 </div>
               </form>
             ) : step === 2 ? (
-              <div className="space-y-4">
+              <div className="space-y-5">
                 <div>
-                  <span className="text-[10px] text-[#10B981] font-mono uppercase tracking-widest block mb-1">
-                    STEP 2 / CONFIRMATION
+                  <span className="text-xs text-[#059669] font-bold uppercase tracking-wider block mb-1">
+                    ขั้นตอนที่ 2 / บันทึกข้อมูลสำเร็จ
                   </span>
-                  <h3 className="text-base font-bold text-[#F4F4F2] flex items-center gap-2 font-heading">
-                    <Check className="w-5 h-5 text-[#10B981]" />
+                  <h3 className="text-xl font-bold text-[#111111] flex items-center gap-2 font-heading">
+                    <Check className="w-6 h-6 text-[#059669]" />
                     ส่งข้อมูลเรียบร้อยแล้ว
                   </h3>
                 </div>
 
-                <p className="text-xs text-[#9B9FA8] leading-relaxed">
-                  ระบบได้บันทึกและคัดลอกข้อความสรุปลงคลิปบอร์ดแล้ว คุณสามารถกดทักแชทคุยกับแอดมินเพื่อเช็คราคาได้ทันทีครับ
+                <p className="text-sm text-[#555555] leading-relaxed">
+                  ระบบได้บันทึกการเช็คราคาและคัดลอกข้อความสรุปลงคลิปบอร์ดแล้ว คุณสามารถกดปุ่มด้านล่างเพื่อทักแชทคุยกับแอดมินได้ทันทีครับ:
                 </p>
 
-                {/* Inquiry Summary Block */}
-                <div className="bg-[#090A0C] border border-white/[0.08] p-4 rounded-xl text-xs text-[#9B9FA8] break-all space-y-2 font-sans">
+                <div className="bg-[#FBFBFA] border border-[#E5E5E0] p-4 rounded-xl text-sm text-[#444444] break-all space-y-2 font-sans">
                   <div>
-                    <span className="text-[#60646E] block font-medium mb-0.5">ลิงก์สินค้า:</span>
-                    <a href={url} target="_blank" rel="noopener noreferrer" className="text-[#F4F4F2] underline break-all font-mono block">
+                    <span className="text-[#777777] block font-medium mb-0.5">ลิงก์สินค้า:</span>
+                    <a href={url} target="_blank" rel="noopener noreferrer" className="text-[#111111] underline break-all font-mono font-medium block">
                       {url.length > 50 ? url.substring(0, 50) + '...' : url}
                     </a>
                   </div>
                   <div>
-                    <span className="text-[#60646E] block font-medium mb-0.5">ช่องทางติดต่อกลับ:</span>
-                    <span className="text-[#F4F4F2] font-semibold">{contactInfo}</span>
+                    <span className="text-[#777777] block font-medium mb-0.5">ช่องทางติดต่อกลับของคุณ:</span>
+                    <span className="text-[#111111] font-bold">{contactInfo}</span>
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-2 pt-2">
+                <div className="flex flex-col gap-2.5 pt-2">
                   <a
                     href="https://lin.ee/ByS27YW"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeModal}
-                    className="w-full h-11 bg-[#10B981] hover:bg-[#059669] text-black text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm font-heading tracking-wider uppercase tactile-btn"
+                    className="w-full h-12 bg-[#059669] hover:bg-[#047857] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-2xs font-heading tracking-wide uppercase tactile-btn"
                   >
-                    <MessageCircle className="w-4 h-4" />
+                    <MessageCircle className="w-5 h-5" />
                     ทักสอบถามทาง LINE OA (@hij2541a)
                   </a>
                   <a
@@ -608,44 +512,44 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeModal}
-                    className="w-full h-11 bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] text-[#F4F4F2] text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition-all font-heading tracking-wider uppercase tactile-btn"
+                    className="w-full h-12 bg-white hover:bg-[#F4F4F0] border border-[#D4D4CE] text-[#111111] text-sm font-semibold rounded-xl flex items-center justify-center gap-2 transition-all font-heading tracking-wide uppercase tactile-btn"
                   >
-                    <Send className="w-4 h-4 text-[#9B9FA8]" />
-                    ทักสอบถามทาง FB Messenger
+                    <Send className="w-4 h-4 text-[#555555]" />
+                    ทักสอบถามทาง Messenger
                   </a>
                 </div>
               </div>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-5">
                 <div>
-                  <span className="text-[10px] text-[#10B981] font-mono uppercase tracking-widest block mb-1">
-                    ORDER DEAL / CONFIRMATION
+                  <span className="text-xs text-[#059669] font-bold uppercase tracking-wider block mb-1">
+                    สั่งซื้อดีลพิเศษ
                   </span>
-                  <h3 className="text-base font-bold text-[#F4F4F2] flex items-center gap-2 font-heading">
-                    <Check className="w-5 h-5 text-[#10B981]" />
+                  <h3 className="text-xl font-bold text-[#111111] flex items-center gap-2 font-heading">
+                    <Check className="w-6 h-6 text-[#059669]" />
                     คัดลอกรายละเอียดดีลสำเร็จ
                   </h3>
                 </div>
 
-                <p className="text-xs text-[#9B9FA8] leading-relaxed">
-                  ระบบได้คัดลอกข้อมูลดีลส่วนลดนี้ลงคลิปบอร์ดแล้ว ทักแชทแอดมินเพื่อแจ้งสั่งซื้อได้ทันทีครับ
+                <p className="text-sm text-[#555555] leading-relaxed">
+                  ระบบได้คัดลอกข้อมูลดีลส่วนลดนี้ลงคลิปบอร์ดแล้ว ทักแชทคุยกับแอดมินเพื่อจองสั่งซื้อได้ทันทีครับ:
                 </p>
 
-                <div className="bg-[#090A0C] border border-white/[0.08] p-4 rounded-xl text-xs space-y-1.5 font-sans">
-                  <span className="text-[#60646E] block font-medium">รายการดีล:</span>
-                  <div className="text-[#F4F4F2] font-semibold">{orderedDealTitle}</div>
-                  <div className="text-[#10B981] font-mono font-bold">{orderedDealPrice}</div>
+                <div className="bg-[#FBFBFA] border border-[#E5E5E0] p-4 rounded-xl text-sm space-y-1 font-sans">
+                  <span className="text-[#777777] block font-medium">รายการดีล:</span>
+                  <div className="text-[#111111] font-bold text-base">{orderedDealTitle}</div>
+                  <div className="text-[#059669] font-mono font-bold text-lg">{orderedDealPrice}</div>
                 </div>
 
-                <div className="flex flex-col gap-2 pt-2">
+                <div className="flex flex-col gap-2.5 pt-2">
                   <a
                     href="https://lin.ee/ByS27YW"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeModal}
-                    className="w-full h-11 bg-[#10B981] hover:bg-[#059669] text-black text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm font-heading tracking-wider uppercase tactile-btn"
+                    className="w-full h-12 bg-[#059669] hover:bg-[#047857] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-2xs font-heading tracking-wide uppercase tactile-btn"
                   >
-                    <MessageCircle className="w-4 h-4" />
+                    <MessageCircle className="w-5 h-5" />
                     ส่งดีลสั่งซื้อทาง LINE OA
                   </a>
                   <a
@@ -653,9 +557,9 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeModal}
-                    className="w-full h-11 bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] text-[#F4F4F2] text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition-all font-heading tracking-wider uppercase tactile-btn"
+                    className="w-full h-12 bg-white hover:bg-[#F4F4F0] border border-[#D4D4CE] text-[#111111] text-sm font-semibold rounded-xl flex items-center justify-center gap-2 transition-all font-heading tracking-wide uppercase tactile-btn"
                   >
-                    <Send className="w-4 h-4 text-[#9B9FA8]" />
+                    <Send className="w-4 h-4 text-[#555555]" />
                     ส่งดีลสั่งซื้อทาง Messenger
                   </a>
                 </div>
@@ -669,25 +573,25 @@ export default function HeroSection({ selectedTestimonial }: { selectedTestimoni
       {sizeChartModalUrl && (
         <div
           onClick={() => setSizeChartModalUrl(null)}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-2xl bg-[#12141A] border border-white/[0.12] rounded-2xl p-5 shadow-2xl relative"
+            className="w-full max-w-2xl bg-white border border-[#D4D4CE] rounded-2xl p-5 shadow-2xl relative"
           >
-            <div className="flex items-center justify-between border-b border-white/[0.08] pb-3 mb-4">
-              <span className="text-xs font-bold text-[#F4F4F2] uppercase tracking-wider font-heading">
+            <div className="flex items-center justify-between border-b border-[#E5E5E0] pb-3 mb-4">
+              <span className="text-sm font-bold text-[#111111] uppercase tracking-wider font-heading">
                 ตารางเทียบขนาดมาตรฐาน (SIZE CHART)
               </span>
               <button
                 onClick={() => setSizeChartModalUrl(null)}
-                className="text-[#60646E] hover:text-[#F4F4F2] p-1 transition-colors"
+                className="text-[#777777] hover:text-[#111111] p-1.5 transition-colors"
                 aria-label="ปิดหน้าต่าง"
               >
-                <X className="w-4 h-4" />
+                <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="w-full max-h-[75vh] overflow-auto rounded-xl bg-[#090A0C]">
+            <div className="w-full max-h-[75vh] overflow-auto rounded-xl bg-white border border-[#E5E5E0]">
               <img
                 src={sizeChartModalUrl}
                 alt="Brand Size Chart"
